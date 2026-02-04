@@ -1,0 +1,95 @@
+Modelo 1
+--Teoría--
+Comunicación celular es responsable para la información de transmisión neuronal y procesamiento así como aprendiendo y cognistivo y proceso conductual en el cerebro.Esta rápida y precisa comunicación esta hecha posible 
+por dos mecanismos de comunicación:
+
+- Conducción Axonal
+- Transmisión sináptica (básico) para la comunicación de células y para muchos otros procesos en el cerebro .Aquí se puede distinguir entre elementos básicos y restricciones que están mutuamente relacionados
+- elementos básicos
+	-neurotransmisores
+	-receptores
+	-contactos entre células nerviosas
+- Restricciones
+ 	- son unidireccionales: desde la neurona presináptico a la neurona postsináptica
+	- liberación de neurotransmisores y receptores que se ajustan para estos neurotransmisores en los lados presináptica y lados post sináptica respectivamente.
+	- Ahora hay uno nuevo llamado difusión o volumen de transmisión.
+		El volumen de transmisión es representado por medio de un proceso de difusión de gas que es obtenido de un tipo de difusión de señal.
+		La principal diferencia entre VT y transmisión sináptica es que este ultimo es membrana permeable y multidireccional  porque desprecia las restricciones espaciales en la actividad neurotranmisora
+
+
+La presencia de una molécula en el cerebro que actúa como una señal difusiva que afecta los diversos procesos de células vecinasabre nuevas perspectivas en relación al estudio de las funciones del cerebro.
+NO fue pronto encontrado para ser un candidatos más probable porque su difusible isotrópico extremo en ambos acuosos y entornos lípidos que permite una expensacion rápida en 3d de la señal independientemente 
+de la presencia de membranas.
+En la ausencia de datos experimentales relevantes para entender como las funciones del NO como una  comunicación neuronal molecular,nosotros hemos desarrollado un modelo computacional de difusión del NO.
+Muchos modelos de difusión del NO han sido publicados .Ellos consideran la expansión del NO desde fuentes cuya morfología no son biologicamnete validadas e incluso algunas anomalías matemáticas y resultados biológicas 
+no plausible pueden ser presentados por aquellos aproximamientos.
+
+ Su modelo se basa en la resolución de problemas tiene repercusiones en el establecimiento de la hipótesis sobre la existencia de mecanismos neuronales y el diseño e interpretación de experimentos
+biológicos sobre el comportamiento del NO y sus efectos en la estructura y función cerebral.
+Posible extensión .pkl,h5,keras,json,gexf
+
+---------
+Etapa 1
+F -> Ratio de transferencia por unidad de area de sección(lo que dará)
+C -> la concentración de sustancia de difusioin
+x -> el espacio co-ordenada medida normal a la sección
+D -> coeficiente de difusión es constante 
+lambda de n --> separación de la variable
+Jo,J1 --> son funciones Bessel 
+y -> mitad de vida
+r1 -> máximo de difusión radio
+(x,y,z) --> coordenada espacial
+t --> tiempo
+t tiempo
+Dataset posible
+D,C,x  ----------> Ecuación --------> F
+1/2life = In(2/y)
+
+--------
+Etapa 2
+------
+Etapa 3
+w la interconexión de pesos entre A y B neuronas
+xa -> información de la neurona presináptica
+sb -> es el estado activo de una neurona posináptica
+theta -> la tasa de aprendizaje  relacionada con el proceso de gas de difusión
+incremento de a y b -> son los gradientes de la concentración del NO alrededor de la neurona A y B .Son determinados por medio de transporte de fenomonas usando leyes de fenomenas como ecuaciones de difusión
+g1,g2 -> funciones lineales o no lineales que indican los efectos específicos de la presináptica y postsináptica información en el proceso de aprendizaje
+Efecto producido en el proceso de aprendizaje debido al VT
+Modificación simple de Hebb
+-----------------------
+Etapa 4
+Correlacion matricial
+Tiene una capa de entrada y una capa asociada 
+Capa de entrada explicada:
+1. Dos partes
+	- Las claves usada para codificar los datos
+	- Los valores 
+Los inputs son los receptores
+Los asociadores consiste en un conjunto de elementos etiquetados por un par (i,j) el i esta asociado a los receptores y j a los valores 
+El proceso de aprendizaje para memorizar datos consiste en incrementar el valor de cada receptor Mji por la cantidad directamenete proporcional a aiui
+Para un conjunto (a,u)….
+Mji= p Sum(a^pi,u^pj)
+p es la normalización constante
+la rellamada de una partícula u asociada con el receptor a esta hecho para transformar
+u=Sum(Mjia^ri)
+El numero de neuronas ensambladas in una DAN es igual a la dimensión de la clave ,n.Cada esamblaje esta hecho por un numero de receptores igual al tamaño 
+del data field  del DNA.Cada asociador pertence a un ensamblaje neuronal que recibe dos conexiones desde el campo receptor.
+
+Uno viene del  receptor de la clave campo que es la que define el esamblaje neuronal y el otro las conexión que es recibida desde el receptor pertenece al campo datos de la misma orden como 
+el asociado,Un elemento asociado el DNA es definido por Mij donde el subscript i indica el ith ensamblado neuronal y el subscript j el asociado jth elenebti dek esamblado.Ademas un asociador jth elemento
+del ith esamblado recibe la entrada de la uj y aj elementos.
+
+
+(Correlacion entre la etapa y la salida)
+
+Se  hace una función con dos posibles resultados si a == máximo de a^p entonce es igual a la fuerza de las neuronas NO  
+por el contrario si no es igual entonces es igual a la conducta basada en la difusion
+
+1. Fast diffuse neural propagation(FDNP)
+2. Diffuse neighbourhood
+3. Learning Processing
+4. Difussion Associative Network(DAN)(heatmap)
+
+--Conclusiones propias--
+Para mostrar esto es necesario entender más el tema en cuanto a la correlación porque hay bastantes graficados que podrían hacer esto
