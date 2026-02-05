@@ -57,8 +57,30 @@ Configuración de la BD
 	3-5 django.contrib.messages --> framework de mensajería
 	3-6 django.contrib.staticfiles --> framework para manejar ficheros estáticos
 
-4- 
+4- Para actualizar los modelos de la base de datos usamos el siguiente comando
 
+	python manage.py makemigrations name-app
+	
+	Aquí es como decirle He hecho cambio a mis modelos y que le gustaría que lo guarde como una migración
+	En el caso en que no sepas que es una migración son la forma en la que django almacena los cambios en
+	tus  modelos (y, por lo tanto, en el esquema de tu base de datos);son archivos en el disco.Si lo 
+	deseas puedes leer la migración de tu nuevo modelo; es el archivo name_app/migrations/0001_initial.py.
+	No te preocupes no se espera que lo leas cada vez que Django crea uno pero están diseñados para que
+	puedan ser editados por humanos en caso de que quieras modificar manualmente los cambios que Django
+	realiza.
+	Comando para las migraciones es migrate
+	Toma todas las migraciones que no han sido aplicadas rastreándolas usando una tabla especial llamada django_migrations
+	y lo ejecuta contra su BD,basicamente,sincronizando los cambios que usted ha realizado a sus modelos con el esquema de la BD
+5- 
+	5.1 - La salida exacta depende de la BD
+	5.2 - Los nombres de las tablas se genera automáticamente combinando el nombre de la aplicación y el nombre del modelo
+	Convención: los nombres de los modelos van en mayusucula
+	5.3 - Las claves primarias (ids) se agregan automáticamente.
+	5.4 - Convencionalmente Django añade "_id" al nombre del campo de la clave externa
+	5.5 - La relación de clave externa se hace explicita mediante una restricción FOREIGN_KEY 
+	5.6 - Esta adaptado a la BD que estas utilizando por lo que los tipos de campos especificados de la base de datos se gestionan automáticamente.
+	      Lo mismo hace con las doble comillas en los nombres de los campos
+	
+	Los comandos migrate y makemigrations están separado por tema de control de versiones
 
-
-
+6- Para saber si hay problemas  se puede ejecutar el siguiente comando python manage.py check este comando revisa cualquier problema sin hacer migraciones ni modificaciones en la BD
