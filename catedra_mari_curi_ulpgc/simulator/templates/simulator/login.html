@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'simulator/login.css'%}">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    </head>
+    <body>
+        <section class="structure-presentation">
+            <h1>Login</h1>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            
+            <form method="post">
+                {% csrf_token %}
+                <div>
+                    <h4>Email</h4>
+                    <input name="email" id="inputs" type="email" placeholder="pepe@example.com">
+                </div>
+                <div>
+                    <h4>Password</h4>
+                    <input name="password" id="inputs" type="password" placeholder="12345678">
+                </div>
+                <div id="button-login-section">
+                    <button type="submit" id="button-login">Enter</button>
+                </div>
+            </form>
+                 
+            <p>If you don't have an account you can create in this <a href="{% url 'sign_up'%}">link</a></p>
+        </section>
+    </body>
+</html>

@@ -1,3 +1,48 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.http import HttpResponse
+from django.template import loader
+from .forms import sign_up_user_form,login_user_form
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib import messages
+from django.contrib.auth.models import User
 
-# Create your views here.
+def index(request):
+    template = loader.get_template("simulator/index.html")
+    return HttpResponse(template.render({},request))
+
+def login(request):
+    if request.method == "POST":
+        form = login_user_form(request.POST)
+        if form.is_valid():
+            email_input = form.cleaned_data['email']
+            password_input = form.cleaned_data['password']
+            user_obj = User.objects.filter(email=email_input).first()
+            if user_obj is not None:
+                user = authenticate(request, username=user_obj.username, password=password_input)
+                if user is not None:
+                    auth_login(request, user)
+                    return HttpResponse("Funciona")
+                else:
+                    messages.error(request, "Contraseña incorrecta.")
+            else:
+                messages.error(request, "Este correo electrónico no está registrado.")
+        else:
+            messages.error(request, "Por favor, rellena los campos correctamente.")
+    else:
+        form = login_user_form()
+        
+    return render(request, "simulator/login.html", {'form': form})
+
+def sign_up(request):
+    if request.method == "POST":
+        form = sign_up_user_form(request.POST)
+        if form.is_valid():
+            form.create_user()
+            return redirect('login')
+        else:
+            print(form.errors)
+    else:
+        form = sign_up_user_form()
+
+    return render(request,"simulator/sign_up.html",{'form':form})
+

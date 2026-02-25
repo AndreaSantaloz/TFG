@@ -1,0 +1,42 @@
+            
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'simulator/sign_up.css'%}">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    </head>
+    <body>
+        <section class="structure-presentation">
+            <div >
+                <h1>Sign Up</h1>
+            </div>
+            
+            <form action="" method="post">
+            {% csrf_token %}<div>
+                <h4>Name</h4>
+               <input name="name" id="inputs" type="text" placeholder=" for example: pepe">
+            </div>
+             <div>
+                <h4>Email</h4>
+                <input name="email" id="inputs" type="email" placeholder=" for example: pepe@example.com">
+            </div>
+            <div>
+                <h4>Password</h4>
+                <input name="password" id="inputs" type="password" placeholder="for example: 12345678">
+            </div>
+            <div>
+                <h4>Confirm your password</h4>
+                <input  name="confirm_password" id="inputs" type="password" placeholder="for example: 12345678">
+            </div>
+             <div id="button-signup-section">
+               <button type="submit" id="button-signup">Enter</button>
+            </div>
+        </form>
+             
+            <p>If you  have an account you can sign  in this <a href="{% url 'login'%}">link</a></p>
+        </section>
+       
+        
+    </body>
+</html>

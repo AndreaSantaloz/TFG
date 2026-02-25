@@ -1,0 +1,39 @@
+
+{% load static %}
+<!DOCTYPE html>                         
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'simulator/index.css'%}">
+         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    </head>
+    <body>
+        <header></header>
+        <main>
+          
+            <nav class="layout">
+                <div class="design_logo">
+                     <img src="../../static/simulator/Logo.jpg" id="logo"/>
+                </div>
+                
+                <div class="layout_button">
+                        <button class="button" onclick="gotoLogin()">Login</button>
+                        <button  class="button" onclick="gotoSignUp()">Sign up</button>
+                </div>
+                 
+          </nav>
+          
+        </main>
+
+        
+
+        <script>
+            function gotoLogin(){
+                window.location.href = "{% url 'login' %}";
+            }
+            function gotoSignUp(){
+                window.location.href = "{% url 'sign_up' %}";
+            }
+        </script>
+       
+    </body>
+</html>
