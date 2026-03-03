@@ -22,5 +22,10 @@ urlpatterns = [
     path('login/',views.login,name="login" ),
     path('sign_up/',views.sign_up,name="sign_up" ),
     path('simulator/',views.simulator,name="simulator" ),
+    
+    path('profile/',views.profile,name="profile" ),
+    path('store/',views.store,name="store" ),
+    path('setting/',views.setting,name="setting" ),
+    path('upload_model/',views.upload_model,name="upload_model" ),
     path('admin/', admin.site.urls),
 ]

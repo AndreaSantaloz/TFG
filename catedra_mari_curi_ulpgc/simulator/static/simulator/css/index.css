@@ -1,10 +1,4 @@
-.button{
 
-    border:none;
-    background-color:#ffffff;
-    font-size:medium; 
-   
-}
 
 
 body{
@@ -49,4 +43,15 @@ body{
     justify-content: flex-start;;
     width:60%;
     margin-left:50px;
+}
+
+#login-button{
+    border:none;
+    background-color:#ffffff;
+    font-size:medium; 
+}
+#sign_up-button{
+    border:none;
+    background-color:#ffffff;
+    font-size:medium; 
 }

@@ -50,3 +50,17 @@ def sign_up(request):
 def simulator(request):
     return render(request,"simulator/simulator.html",{})
     
+def profile(request):
+    return HttpResponse("En mantenimiento")
+
+    
+def store(request):
+    return HttpResponse("En mantenimiento")
+
+    
+def setting(request):
+    return HttpResponse("En mantenimiento")
+
+    
+def upload_model(request):
+    return HttpResponse("En mantenimiento")
