@@ -1,0 +1,177 @@
+
+{% load static %}
+<!DOCTYPE html>                         
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'simulator/simulator.css'%}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+        <script src='https://cdn.plot.ly/plotly-3.3.0.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+    </head>
+    <body>
+        <header id="header-app">
+           <div>
+                <img  src="" id="user_photo"  >
+           </div>
+          
+            <nav>
+                <ul id="button-orden">
+                <li><button onclick="go_to_dashboard()" class="sim-button">Icon Dashboard</button></li>
+                <li><button onclick="" class="sim-button">Icon Add Model</button></li>
+                <li><button onclick="" class="sim-button">Icon Profile</button></li>
+                <li><button onclick="" class="sim-button">Icon Model Store</button></li>
+                <li><button onclick="" class="sim-button">Icon Setting</button></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <!-- Hacer dinámico  para cuando cambie de página-->
+            <section id="second-header">
+                <div id="title"><h1>Simulator</h1></div>
+                <div id="buton-charge">
+                    <button id="charge-models">Upload Models</button>
+                </div>
+            </section>
+            <br>
+            <section id="dashboard-style">
+                <div id="lineal_chart"></div>
+                <div id="tresd_chart"></div>
+                <div id="heatmap_chart"></div>
+                <div id="scatter_chart"></div>
+                <div id="table"></div>
+            </section>
+            
+            
+        </main>
+        
+        <script>
+            function go_to_dashboard(){
+                  window.location.href="{%url 'simulator' %}"
+            }
+            function create_scatter_chart(){
+               
+                var trace1 = {
+  x: [1, 2, 3, 4],
+  y: [10, 15, 13, 17],
+  mode: 'markers',
+  type: 'scatter'
+};
+
+
+
+var data = [trace1];
+
+Plotly.newPlot('scatter_chart', data);
+
+            }
+
+            function create_lineal_chart(){
+                var trace1 = {
+  x: [1, 2, 3, 4],
+  y: [10, 15, 13, 17],
+  type: 'scatter'
+};
+
+var trace2 = {
+  x: [1, 2, 3, 4],
+  y: [16, 5, 11, 9],
+  type: 'scatter'
+};
+
+var data = [trace1, trace2];
+
+Plotly.newPlot('lineal_chart', data);
+
+
+            }
+
+            function create_heatmap_chart(){
+                var data = [
+                    {
+                    z: [[1, 20, 30], [20, 1, 60], [30, 60, 1]],
+                    type: 'heatmap'
+                    }
+                ];
+
+                Plotly.newPlot('heatmap_chart', data);
+
+            }
+            function create_threeD_chart(){
+                d3.csv('https://raw.githubusercontent.com/plotly/datasets/master/api_docs/mt_bruno_elevation.csv', function(err, rows){
+function unpack(rows, key) {
+  return rows.map(function(row) { return row[key]; });
+}
+
+var z_data=[ ]
+for(i=0;i<24;i++)
+{
+  z_data.push(unpack(rows,i));
+}
+
+var data = [{
+           z: z_data,
+           type: 'surface'
+        }];
+
+var layout = {
+
+  autosize: false,
+  width: 500,
+  height: 500,
+  margin: {
+    l: 65,
+    r: 50,
+    b: 65,
+    t: 90,
+  }
+};
+Plotly.newPlot('tresd_chart', data, layout);
+});
+
+            }
+                        
+
+           function create_table(){
+                var values = [
+      ['Salaries', 'Office', 'Merchandise', 'Legal', '<b>TOTAL</b>'],
+      [1200000, 20000, 80000, 2000, 12120000],
+      [1300000, 20000, 70000, 2000, 130902000],
+      [1300000, 20000, 120000, 2000, 131222000],
+      [1400000, 20000, 90000, 2000, 14102000]]
+
+var data = [{
+  type: 'table',
+  header: {
+    values: [["<b>EXPENSES</b>"], ["<b>Q1</b>"],
+				 ["<b>Q2</b>"], ["<b>Q3</b>"], ["<b>Q4</b>"]],
+    align: "center",
+    line: {width: 1, color: 'black'},
+    fill: {color: "grey"},
+    font: {family: "Arial", size: 20, color: "white"},
+    height:40
+  },
+  cells: {
+    values: values,
+    align: "center",
+    line: {color: "black", width: 1},
+    font: {family: "Arial", size: 20, color: ["black"]},
+    height:58
+    
+  }
+}]
+
+Plotly.newPlot('table', data);
+
+            }
+
+            create_scatter_chart();
+            create_lineal_chart();
+           create_heatmap_chart();
+           create_threeD_chart();
+           create_table();
+        </script>
+
+       
+    </body>
+</html>

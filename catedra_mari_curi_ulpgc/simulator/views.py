@@ -21,7 +21,7 @@ def login(request):
                 user = authenticate(request, username=user_obj.username, password=password_input)
                 if user is not None:
                     auth_login(request, user)
-                    return HttpResponse("Funciona")
+                    return redirect('simulator')
                 else:
                     messages.error(request, "Contraseña incorrecta.")
             else:
@@ -46,3 +46,7 @@ def sign_up(request):
 
     return render(request,"simulator/sign_up.html",{'form':form})
 
+
+def simulator(request):
+    return render(request,"simulator/simulator.html",{})
+    

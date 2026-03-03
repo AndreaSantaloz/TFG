@@ -21,5 +21,6 @@ urlpatterns = [
     path('',views.index,name="index" ),
     path('login/',views.login,name="login" ),
     path('sign_up/',views.sign_up,name="sign_up" ),
+    path('simulator/',views.simulator,name="simulator" ),
     path('admin/', admin.site.urls),
 ]
