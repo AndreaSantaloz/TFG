@@ -38,7 +38,7 @@
                 },
                 showlegend:false,
               };
-               Plotly.newPlot('lineal_chart',data,layout,{staticPlot:true});
+               Plotly.newPlot('lineal_chart',data);
 
             }
              

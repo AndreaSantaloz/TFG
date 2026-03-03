@@ -2,7 +2,7 @@
 
 
 body{
-    background-color:#156082;
+    background-color:white;
     margin:0px;
     padding:0px;
 }
@@ -17,6 +17,7 @@ body{
 #logo{
     width:100px;
     height:100px;
+    background-color:#156082;
 }
 #footerindex{
         background-color:rgb(3, 8, 30);
@@ -29,13 +30,12 @@ body{
 .layout{
     display:flex;
     justify-content: space-around;
-    background-color:#ffffff; 
-    height:100px;
+    background-color:#156082;
+    height:150px;
 }
 .layout_button{
     display:flex;
     justify-content: flex-start;
-    background-color:#ffffff; 
     width:40%;
 }
 .design_logo{
@@ -47,11 +47,16 @@ body{
 
 #login-button{
     border:none;
-    background-color:#ffffff;
-    font-size:medium; 
+    background-color:#156082;
+    font-size:medium;
+    color:rgb(171, 166, 166); 
 }
 #sign_up-button{
     border:none;
-    background-color:#ffffff;
+    background-color:#156082;
     font-size:medium; 
+     color:rgb(171, 166, 166); 
+}
+#portada{
+    width:100%;
 }
