@@ -62,10 +62,24 @@ h1{
     margin-bottom:30px;
 }
 
-
-
-
-
+.simulator_button{
+    background-color:transparent;
+    border:none;
+    color:rgb(0, 0, 0);
+    margin-bottom:30px;
+    color:rgb(233, 237, 234);
+    
+}
+.charts_list{
+    margin-top: 40px;
+    margin-left:10%;
+    display:flex;
+    justify-content:space-evenly;
+    width:100%;
+    background-color: #156082;
+    border-radius: 25px;
+    height:40px;
+}
 
 
 

@@ -27,5 +27,15 @@ urlpatterns = [
     path('store/',views.store,name="store" ),
     path('setting/',views.setting,name="setting" ),
     path('upload_model/',views.upload_model,name="upload_model" ),
+    path('tabular_chart/',views.tabular_chart,name="tabular_chart" ),
+    path('dispersion_charts/',views.dispersion_chart,name="dispersion_chart" ),
+    path('correlation_charts/',views.correlation_chart,name="correlation_chart" ),
+    path('erros_charts/',views.errors_chart,name="erros_chart" ),
+    path('volume_charts/',views.volume_chart,name="volume_charts" ),
+
+
+    
+    
+    
     path('admin/', admin.site.urls),
 ]

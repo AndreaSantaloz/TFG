@@ -36,3 +36,33 @@ const upload_model_button=document.getElementById('charge-models')
 upload_model_button?.addEventListener('click',() =>{
     window.location.href=upload_model_button.dataset.url;
 });
+
+//Botones de simulador
+
+
+const tabular_button=document.getElementById('tabular_chart')
+tabular_button.addEventListener('click',() =>{
+    window.location.href=tabular_button.dataset.url;
+});
+
+
+
+const dispersion_button=document.getElementById('dispersion_chart')
+dispersion_button?.addEventListener('click',() =>{
+    window.location.href=dispersion_button.dataset.url;
+});
+
+const correlation_button=document.getElementById('correlation_chart')
+correlation_button?.addEventListener('click',() =>{
+    window.location.href=correlation_button.dataset.url;
+});
+
+const volume_button=document.getElementById('volume_chart')
+volume_button?.addEventListener('click',() =>{
+    window.location.href=volume_button.dataset.url;
+});
+
+const error_button =document.getElementById('error_chart')
+error_button?.addEventListener('click',() =>{
+    window.location.href=error_button.dataset.url;
+});

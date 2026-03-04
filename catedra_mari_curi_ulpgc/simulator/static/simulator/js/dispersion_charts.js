@@ -1,5 +1,3 @@
-
-
     function create_scatter_chart(data=null){
               var trace1={
                 x:[1,2,3],
@@ -17,6 +15,8 @@
                 
                Plotly.newPlot('scatter_chart',data,layout,{staticPlot:true});
             }
+
+        
 
             function create_lineal_chart(data=null){
                var tracer1 ={
@@ -41,25 +41,8 @@
                Plotly.newPlot('lineal_chart',data);
 
             }
-             
-            function create_heatmap_chart(data=null){
-              var data = [
-                {
-                  z:[[1,20,30],[20,1,60],[30,60,1]],
-                  type:'heatmap'
-                }
-                
-              ];
 
-               var layout={
-                title:{
-                   text:'Gráfica heatmap',
-                },
-                showlegend:false,
-              };
-               Plotly.newPlot('heatmap_chart',data,layout,{staticPlot:true});
-            }
-
+            
             function create_boxplot_chart(data=null){
               var y0=[];
               var y1=[];
@@ -90,38 +73,6 @@
               Plotly.newPlot('boxplot_chart',data,layout,{staticPlot:true});
 
             }
-
-
-            function create_table(data=null){
-              var values=[
-                ['sí','no'],
-                ['no','sí'],
-                
-              ];
-
-              var data=[{
-                type:'table',
-                header:{
-                  values:[["<b>Fumar</b>"],["<b>No Fumar</b>"]],
-                  align:'center',
-                  line:{width:1,color:'black'},
-                  fill:{color:'grey'},
-                  font:{familiy:'Arial',size:12,color:'white'}
-                },
-                cells:{
-                  values:values,
-                  align:'center',
-                  line:{width:1,color:'black'},
-                  fill:{color:'white'},
-                  font:{familiy:'Arial',size:11,color:'black'}
-                },
-              }]
-
-              Plotly.newPlot(table,data)
-
-            }
-create_scatter_chart();
-create_lineal_chart();
-create_heatmap_chart();
-create_boxplot_chart();
-create_table();
+        create_scatter_chart();
+        create_lineal_chart();
+        create_boxplot_chart();

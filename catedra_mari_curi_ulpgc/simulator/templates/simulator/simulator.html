@@ -7,10 +7,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <script src='https://cdn.plot.ly/plotly-3.3.0.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
-        <script src="{% static 'simulator/js/simulator.js' %}" defer></script>
         <script src="{% static 'simulator/js/nav.js' %}" defer ></script>
 
     </head>
+    {% csrf_token %}
     <body>
         <header id="header-app">
            <div>
@@ -33,13 +33,20 @@
                     <button id="charge-models" data-url="{% url 'upload_model' %}">Upload Models</button>
                 </div>
             </section>
+            <section>
+               <nav class="charts_list">
+                    <div><button id="tabular_chart" class="simulator_button" data-url="{%url 'tabular_chart'%}">Tabla de Datos</button></div>  
+                    <!--<div><button id="dispersion_chart" class="simulator_button" data-url="{%url 'dispersion_chart'%}">Gráficas de dispersión</button></div>  -->
+                    <!--<div><button id="correlation_chart" class="simulator_button" data-url="{%url 'correlation_chart'%}">Gráficas de correlación</button></div> -->
+                    <!--<div><button id="volumen_chart" class="simulator_button" data-url="{%url 'volume_charts'%}">Gráficas de volumen</button></div> -->
+                    <!--<div><button id="error_chart" class="simulator_button" data-url="{%url 'erros_chart'%}" >Gráficas de validación</button></div>   -->
+                                 
+                </nav>
+            </section>
+         
             <br>
             <section id="dashboard-style">
-                <div id="lineal_chart"></div>
-                <div id="boxplot_chart"></div>
-                <div id="heatmap_chart"></div>
-                <div id="scatter_chart"></div>
-                <div id="table"></div>
+              
             </section>
             
             

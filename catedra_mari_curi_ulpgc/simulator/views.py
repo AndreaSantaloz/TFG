@@ -64,3 +64,22 @@ def setting(request):
     
 def upload_model(request):
     return HttpResponse("En mantenimiento")
+
+
+def tabular_chart(request):
+    return render(request,"simulator/table.html",{})
+    
+def dispersion_chart(request):
+    return render(request,"simulator/dispersion_charts.html",{})
+    
+def correlation_chart(request):
+    return render(request,"simulator/correlation_charts.html",{})
+    
+    
+def volume_chart(request):
+    return render(request,"simulator/volume_charts.html",{})
+    
+def errors_chart(request):
+        return render(request,"simulator/errors_charts.html",{})
+
+    
