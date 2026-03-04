@@ -21,6 +21,7 @@
     color:rgb(0, 0, 0);
     margin-bottom:30px;
     padding-right: 50px;
+    margin-top: 5%;
     
 }
 
@@ -40,8 +41,11 @@
     gap:100px;
     border-bottom-style:solid;
     border-color:black;
-    background-color: rgb(161, 230, 255);
+    background-color: #158ac5;
     border-radius: 25px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    color:white;
     
 }
 .cell-models-table{
