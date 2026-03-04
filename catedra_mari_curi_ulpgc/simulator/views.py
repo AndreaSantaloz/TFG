@@ -51,19 +51,19 @@ def simulator(request):
     return render(request,"simulator/simulator.html",{})
     
 def profile(request):
-    return HttpResponse("En mantenimiento")
+    return render(request,"simulator/profile.html",{})
 
     
 def store(request):
-    return HttpResponse("En mantenimiento")
+    return render(request,"simulator/store.html",{})
 
     
 def setting(request):
-    return HttpResponse("En mantenimiento")
+    return render(request,"simulator/setting.html",{})
 
+def tutorial(request):
+    return render(request,"simulator/tutorial.html",{})
     
-def upload_model(request):
-    return HttpResponse("En mantenimiento")
 
 
 def tabular_chart(request):
@@ -80,6 +80,6 @@ def volume_chart(request):
     return render(request,"simulator/volume_charts.html",{})
     
 def errors_chart(request):
-        return render(request,"simulator/errors_charts.html",{})
+        return render(request,"simulator/erros_charts.html",{})
 
     

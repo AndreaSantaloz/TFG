@@ -10,12 +10,14 @@ sign_up_button?.addEventListener('click',() =>{
 });
 
 
+
+
+//Botones de menú
+
 const simulator_button=document.getElementById('dashboard-button')
 simulator_button?.addEventListener('click',() =>{
     window.location.href=simulator_button.dataset.url;
 });
-
-
 
 const profile_button=document.getElementById('profile-button')
 profile_button?.addEventListener('click',() =>{
@@ -32,6 +34,11 @@ setting_button?.addEventListener('click',() =>{
     window.location.href=setting_button.dataset.url;
 });
 
+const tutorial_button=document.getElementById('tutorial-button')
+tutorial_button?.addEventListener('click',() =>{
+    window.location.href=tutorial_button.dataset.url;
+});
+
 const upload_model_button=document.getElementById('charge-models')
 upload_model_button?.addEventListener('click',() =>{
     window.location.href=upload_model_button.dataset.url;
@@ -40,8 +47,10 @@ upload_model_button?.addEventListener('click',() =>{
 //Botones de simulador
 
 
+
+
 const tabular_button=document.getElementById('tabular_chart')
-tabular_button.addEventListener('click',() =>{
+tabular_button?.addEventListener('click',() =>{
     window.location.href=tabular_button.dataset.url;
 });
 
@@ -57,7 +66,7 @@ correlation_button?.addEventListener('click',() =>{
     window.location.href=correlation_button.dataset.url;
 });
 
-const volume_button=document.getElementById('volume_chart')
+const volume_button=document.getElementById('volumen_chart')
 volume_button?.addEventListener('click',() =>{
     window.location.href=volume_button.dataset.url;
 });

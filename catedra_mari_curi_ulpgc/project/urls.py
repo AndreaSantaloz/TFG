@@ -22,11 +22,10 @@ urlpatterns = [
     path('login/',views.login,name="login" ),
     path('sign_up/',views.sign_up,name="sign_up" ),
     path('simulator/',views.simulator,name="simulator" ),
-    
     path('profile/',views.profile,name="profile" ),
     path('store/',views.store,name="store" ),
+    path('tutorial/',views.tutorial,name="tutorial" ),
     path('setting/',views.setting,name="setting" ),
-    path('upload_model/',views.upload_model,name="upload_model" ),
     path('tabular_chart/',views.tabular_chart,name="tabular_chart" ),
     path('dispersion_charts/',views.dispersion_chart,name="dispersion_chart" ),
     path('correlation_charts/',views.correlation_chart,name="correlation_chart" ),

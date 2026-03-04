@@ -1,0 +1,39 @@
+
+{% load static %}
+<!DOCTYPE html>                         
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'simulator/css/simulator.css'%}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <script src='https://cdn.plot.ly/plotly-3.3.0.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+        <script src="{% static 'simulator/js/nav.js' %}" defer ></script>
+
+    </head>
+    
+    <body>
+        {% csrf_token %}
+        <header id="header-app">
+           <div>
+                <img  src="" id="user_photo"  >
+           </div>
+          
+            <nav>
+                <ul id="button-orden">
+                <li><button  id="dashboard-button" data-url="{% url 'simulator'%}">Icon Simulator</button></li>
+                <li><button  id="profile-button"  data-url="{% url 'profile'%}" >Icon Profile</button></li>
+                <li><button  id="store-button" data-url="{% url 'store'%}">Icon Model Store</button></li>
+                <li><button  id="tutorial-button" data-url="{% url 'tutorial' %}">Icon Tutorial</button></li>
+                <li><button  id="setting-button" data-url="{% url 'setting' %}">Icon Setting</button></li>
+                </ul>
+            </nav>
+        </header>
+        <main >
+          
+            
+        </main>
+        
+        
+       
+    </body>
+</html>
