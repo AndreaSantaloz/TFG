@@ -3,7 +3,7 @@
 <!DOCTYPE html>                         
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'simulator/css/simulator.css'%}">
+        <link rel="stylesheet" href="{% static 'simulator/css/profile.css'%}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <script src='https://cdn.plot.ly/plotly-3.3.0.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
@@ -29,7 +29,35 @@
             </nav>
         </header>
         <main >
-          
+          <section id="information-user">
+                <img  src="" id="photo_profile"/>
+                <!---Aquí el backend pondrá el nombre del usuario-->
+                <section id="data-user">
+                    <div><h1>Manola</h1></div>
+                    <div>
+                        <ul>
+                            <li id="email-user">Email: manola@example.com</li>
+                            <li id="phone-user">Phone: 666 66 89 19</li>
+                            <li id="social-media-user">Social Media: #manola</li>
+                        </ul>
+                    </div>
+                    
+                </section>
+                
+                
+                
+               
+          </section>
+          <section id="about-user">
+            <h1>About Me</h1>
+            <input id="description" type="textarea" placeholder="My name is Pepe and my passion is learning new things."/>
+          </section>
+
+           <section id="researchs-user">
+            <h1>Researchs</h1>
+             <input id="researchs" type="textarea" placeholder="I have researched many works.For example, the neuron in the brain(1998)"/>
+          </section>
+            
             
         </main>
         
