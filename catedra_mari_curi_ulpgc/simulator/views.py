@@ -5,6 +5,7 @@ from .forms import sign_up_user_form,login_user_form
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
 from django.contrib.auth.models import User
+from .models import profile_user
 
 def index(request):
     template = loader.get_template("simulator/index.html")
@@ -37,7 +38,10 @@ def sign_up(request):
     if request.method == "POST":
         form = sign_up_user_form(request.POST)
         if form.is_valid():
-            form.create_user()
+            user = form.create_user()
+            user.save()
+            profile_user.objects.create(id_user=user.id,user_name=user.username,email=user.email,phone='',image='',description='',researchs='')
+            
             return redirect('login')
         else:
             print(form.errors)
@@ -51,7 +55,10 @@ def simulator(request):
     return render(request,"simulator/simulator.html",{})
     
 def profile(request):
-    return render(request,"simulator/profile.html",{})
+    
+    user = profile_user.objects.get(id_user=request.user.id)
+    
+    return render(request,"simulator/profile.html",{'name':user.user_name,'email':user.email,'social_media':user.social_media,'phone':user.phone,'image':user.image,'description':user.description,'researchs':user.researchs})
 
     
 def store(request):

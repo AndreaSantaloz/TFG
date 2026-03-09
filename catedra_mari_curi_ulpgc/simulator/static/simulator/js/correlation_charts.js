@@ -21,3 +21,22 @@
               ];
 
       create_heatmap_chart(data);
+    function create_scatter_chart(data=null){
+              var trace1={
+                x:[1,2,3],
+                y:[90,40,60],
+                type:'scatter'
+              };
+              var data = [trace1];
+              var layout={
+                title:{
+                   text:'Gráfica de puntos',
+                },
+                showlegend:false,
+              };
+
+                
+               Plotly.newPlot('scatter_chart',data,layout,{staticPlot:true});
+            }
+
+    create_scatter_chart();

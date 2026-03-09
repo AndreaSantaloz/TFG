@@ -1,4 +1,7 @@
 
+
+//Botones de autenticación 
+
 const login_button=document.getElementById('login-button')
 login_button?.addEventListener('click',() =>{
     window.location.href=login_button.dataset.url;
@@ -9,10 +12,7 @@ sign_up_button?.addEventListener('click',() =>{
     window.location.href=sign_up_button.dataset.url;
 });
 
-
-
-
-//Botones de menú
+// Botones de menú
 
 const simulator_button=document.getElementById('dashboard-button')
 simulator_button?.addEventListener('click',() =>{
@@ -46,15 +46,10 @@ upload_model_button?.addEventListener('click',() =>{
 
 //Botones de simulador
 
-
-
-
 const tabular_button=document.getElementById('tabular_chart')
 tabular_button?.addEventListener('click',() =>{
     window.location.href=tabular_button.dataset.url;
 });
-
-
 
 const dispersion_button=document.getElementById('dispersion_chart')
 dispersion_button?.addEventListener('click',() =>{
@@ -74,4 +69,10 @@ volume_button?.addEventListener('click',() =>{
 const error_button =document.getElementById('error_chart')
 error_button?.addEventListener('click',() =>{
     window.location.href=error_button.dataset.url;
+});
+
+// Botones de settings 
+const exit_button=document.getElementById('exit-button')
+exit_button?.addEventListener('click',() =>{
+    window.location.href=exit_button.dataset.url;
 });

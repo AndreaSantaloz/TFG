@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 
+
 class sign_up_user_form(forms.Form):
     name = forms.CharField(max_length=150)
     email = forms.EmailField()
@@ -29,3 +30,5 @@ class sign_up_user_form(forms.Form):
 class login_user_form(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
+
+
