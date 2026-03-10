@@ -21,16 +21,16 @@
             
             <section id="lado-carga-modelo">
                 <section>
-                    <p>If you dont save your model uploading here your model.</p>
+                    <p>If you dont want to save your model you can upload your model here.</p>
                 </section>
                 <section id="button-upload-computer">
                     <input type="file" id="archivo" name="archivo"/>
                     <label for="archivo">Upload Model from Computer</label>
                 </section>
-                <button>Simulate model</button>
+                <button id="simulate-button">Simulate model</button>
             </section>
         </form>
-        <button  id="return-button" data-url="{% url 'simulator'%}">Return home</button>
+        <button  id="return-button" data-url="{% url 'home'%}">Return home</button>
          <img id="imagen-fondo" src="../../static/simulator/images/ImagenFondo11.webp">
        
            

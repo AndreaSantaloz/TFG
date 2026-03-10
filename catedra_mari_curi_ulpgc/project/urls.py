@@ -21,6 +21,7 @@ urlpatterns = [
     path('',views.index,name="index" ),
     path('login/',views.login,name="login" ),
     path('sign_up/',views.sign_up,name="sign_up" ),
+    path('home/',views.home,name="home" ),
     path('simulator/',views.simulator,name="simulator" ),
     path('profile/',views.profile,name="profile" ),
     path('store/',views.store,name="store" ),
@@ -32,6 +33,7 @@ urlpatterns = [
     path('erros_charts/',views.errors_chart,name="erros_chart" ),
     path('volume_charts/',views.volume_chart,name="volume_charts" ),
     path('popup_simulator/',views.popup_simulator,name="popup_simulator" ),
+    
 
 
     

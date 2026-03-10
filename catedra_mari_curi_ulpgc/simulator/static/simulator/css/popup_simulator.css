@@ -6,10 +6,14 @@ body{
 }
 
 #button-upload-computer{
-    width:150px;
+    width:250px;
     height:50px;
-    background-color: aqua;
+    background-color: #7d78b5;
     border-radius: 25px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    color:#e0f7fa;
 }
 
 img{
@@ -30,21 +34,37 @@ img{
     display: flex;
     align-items: center;
     flex-direction: column;
-   background-image: linear-gradient(to bottom right,#191970, #9966CC);
+   background-image: linear-gradient(135deg,#0b1a30 0%,#1a2a6c 60%,#b24592 100%);
+}
+h1{
+    color:#e0f7fa;
+    width:600px;
+}
+p{
+    color:#e0f7fa;
 }
 #return-button{
     width:150px;
     height:50px;
-    background-color: aqua;
+    background-color: #564bd1;
     border-radius: 25px;
     margin-left:45%;
     margin-top: 5%;
+    color:#e0f7fa;
 }
 #lado-carga-modelo{
     border-style: dotted;
     width:600px;
     height:400px;
-   
-    
 }
 
+#simulate-button{
+    width:150px;
+    height:50px;
+     background-color: #564bd1;
+    border-radius: 25px;
+    margin-left:40%;
+    margin-top: 5%;
+    margin-top:55%;
+    color:#e0f7fa;
+}

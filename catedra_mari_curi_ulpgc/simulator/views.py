@@ -22,7 +22,7 @@ def login(request):
                 user = authenticate(request, username=user_obj.username, password=password_input)
                 if user is not None:
                     auth_login(request, user)
-                    return redirect('simulator')
+                    return redirect('home')
                 else:
                     messages.error(request, "Contraseña incorrecta.")
             else:
@@ -51,7 +51,7 @@ def sign_up(request):
     return render(request,"simulator/sign_up.html",{'form':form})
 
 
-def simulator(request):
+def home(request):
     return render(request,"simulator/home.html",{})
     
 def profile(request):
@@ -92,3 +92,7 @@ def errors_chart(request):
     
 def popup_simulator(request):
     return render(request,'simulator/popup_simulator.html',{})
+
+
+def simulator(request):
+    return render(request,'simulator/simulator.html',{})
