@@ -52,7 +52,7 @@ def sign_up(request):
 
 
 def simulator(request):
-    return render(request,"simulator/simulator.html",{})
+    return render(request,"simulator/home.html",{})
     
 def profile(request):
     
@@ -90,3 +90,5 @@ def errors_chart(request):
         return render(request,"simulator/erros_charts.html",{})
 
     
+def popup_simulator(request):
+    return render(request,'simulator/popup_simulator.html',{})

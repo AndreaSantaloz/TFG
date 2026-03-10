@@ -4,6 +4,8 @@
     background-color:#ffffff;
     border-radius: 25px;
     height:40px;
+    margin-left:20%;
+  
  
 }
 
@@ -13,7 +15,8 @@
     width:50%;
     display:flex;
     justify-content:flex-start;
-    margin-left:5%;
+   
+    margin-left:20%;
 }
 .sytle-button-store{
     background-color:transparent;
@@ -31,6 +34,9 @@
     background-color:#ffffff;
     border-radius: 25px;
     height:700px;
+    margin-left:20%;
+    margin-top: 2%;
+  
 }
 #collection-models-header{
     list-style: none;
@@ -46,6 +52,7 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     color:white;
+    
     
 }
 .cell-models-table{

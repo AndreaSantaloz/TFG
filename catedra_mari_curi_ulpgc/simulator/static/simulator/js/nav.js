@@ -76,3 +76,10 @@ const exit_button=document.getElementById('exit-button')
 exit_button?.addEventListener('click',() =>{
     window.location.href=exit_button.dataset.url;
 });
+
+
+//Botones de volver hacia atras
+const return_button=document.getElementById('return-button')
+return_button?.addEventListener('click',() =>{
+    window.location.href=return_button.dataset.url;
+});

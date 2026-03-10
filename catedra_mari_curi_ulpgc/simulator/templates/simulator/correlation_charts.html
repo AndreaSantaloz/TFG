@@ -4,6 +4,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="{% static 'simulator/css/simulator.css'%}">
+        <link rel="stylesheet" href="{% static 'simulator/css/general.css'%}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <script src='https://cdn.plot.ly/plotly-3.3.0.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
@@ -28,7 +29,7 @@
             </nav>
         </header>
         {% csrf_token %}
-        <main>
+        <main class="maindos">
             <section id="second-header">
                 <div id="title"><h1>Simulator</h1></div>
             </section>

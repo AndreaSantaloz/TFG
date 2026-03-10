@@ -31,6 +31,7 @@ urlpatterns = [
     path('correlation_charts/',views.correlation_chart,name="correlation_chart" ),
     path('erros_charts/',views.errors_chart,name="erros_chart" ),
     path('volume_charts/',views.volume_chart,name="volume_charts" ),
+    path('popup_simulator/',views.popup_simulator,name="popup_simulator" ),
 
 
     

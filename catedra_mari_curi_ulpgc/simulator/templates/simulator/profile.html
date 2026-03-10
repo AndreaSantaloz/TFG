@@ -14,55 +14,40 @@
     
     <body>
         {% csrf_token %}
-        <header id="header-app">
-           <div>
-                <img  src="" id="user_photo"  >
-           </div>
-          
-            <nav>
-                <ul id="button-orden">
-                <li><button  id="dashboard-button" data-url="{% url 'simulator'%}">Icon Simulator</button></li>
-                <li><button  id="profile-button"  data-url="{% url 'profile'%}" >Icon Profile</button></li>
-                <li><button  id="store-button" data-url="{% url 'store'%}">Icon Model Store</button></li>
-                <li><button  id="tutorial-button" data-url="{% url 'tutorial' %}">Icon Tutorial</button></li>
-                <li><button  id="setting-button" data-url="{% url 'setting' %}">Icon Setting</button></li>
-                </ul>
+        <header>
+            <nav >
+                <div><button  id="dashboard-button" data-url="{% url 'simulator'%}">Icon Simulator</button></div>
+                <div><button  id="store-button" data-url="{% url 'store'%}">Icon Model Store</button></div>
+                <div><button  id="tutorial-button" data-url="{% url 'tutorial' %}">Icon Tutorial</button></div>
+                <div><button  id="profile-button"  data-url="{% url 'profile'%}" >Icon Profile</button></div>
             </nav>
         </header>
         <main >
-          <section id="information-user">
+        <section id="information-user">
                 <img  src="" id="photo_profile"/>
                 <!---Aquí el backend pondrá el nombre del usuario-->
                 <section id="data-user">
                     <div><h1>{{name}}</h1></div>
-                    <div>
+                    <section>
                         <ul id="info">
                             <li id="email-user"><span>Email:{{email}}</span></li>
                             <li id="phone-user"><span>Phone: {{phone}}</span></li>
                             <li id="social-media-user"><span>Social Media: {{social_media}}</span></li>
                         </ul>
-                    </div>
-                    
+                    </section>
+                    <section id="about-user">
+                        <h1>About Me</h1>
+                        <input id="description" type="textarea" placeholder="My name is Pepe and my passion is learning new things."/>
+                    </section>
+                    <section id="researchs-user">
+                        <h1>Researchs</h1>
+                        <input id="researchs" type="textarea" placeholder="I have researched many works.For example, the neuron in the brain(1998)"/>
+                    </section>
                 </section>
-                
-                
-                
-               
-          </section>
-          <section id="about-user">
-            <h1>About Me</h1>
-            <input id="description" type="textarea" placeholder="My name is Pepe and my passion is learning new things."/>
-          </section>
-
-           <section id="researchs-user">
-            <h1>Researchs</h1>
-             <input id="researchs" type="textarea" placeholder="I have researched many works.For example, the neuron in the brain(1998)"/>
-          </section>
-            
-            
+        </section>
         </main>
-        
-        
-       
+        <footer>
+            <div><span>Para más información consultar al servicio tecnico</span></div>
+        </footer>
     </body>
 </html>

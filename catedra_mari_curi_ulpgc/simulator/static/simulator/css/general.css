@@ -8,6 +8,7 @@ body{
     padding:0;
     height:1200px;
     display:flex;
+    flex-direction: column;
 }
 h1{
     margin-left:2%;
@@ -18,9 +19,40 @@ main{
     display:flex;
     flex-direction: column;
     align-items: center;
-    gap:2%;
-    
-    
+    gap:2%; 
+}
+
+header{
+    width:100%;
+    height:8%;
+    background-color:#213576;
+    display:flex;
+}
+
+
+main{
+    width:100%!important;
+    height:80% !important;
+    background-color:#E8EAEB!important;
+    display:inline!important;
+    flex-direction: none!important;
+    align-items: none!important;
+    gap:none!important;
+}
+nav{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 5%;
+    margin-top:2%;
+   
+}
+
+footer{
+    width:100%;
+    height:10%;
+    background-color:#213576;
+    display:flex;
 }
 
 #button-orden{
@@ -28,16 +60,6 @@ main{
     padding:0;
 }
 
-#header-app{
-    width:20%;
-    background-color:#156082;
-    margin:0;
-    padding:0px 0px 50% 0px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:40px;
-}
 
 
 
@@ -75,11 +97,5 @@ main{
     margin-bottom:30px;
     color:rgb(233, 237, 234);
 }
-#user_photo{
-    margin-top:25%;
-    border-radius:100%;
-    width:180px;
-    height:180px;
-    background-color:white;
-    
-}
+
+

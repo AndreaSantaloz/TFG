@@ -13,26 +13,21 @@
     
     <body>
         {% csrf_token %}
-        <header id="header-app">
-           <div>
-                <img  src="" id="user_photo"  >
-           </div>
-          
-            <nav>
-                <ul id="button-orden">
-                <li><button  id="dashboard-button" data-url="{% url 'simulator'%}">Icon Simulator</button></li>
-                <li><button  id="profile-button"  data-url="{% url 'profile'%}" >Icon Profile</button></li>
-                <li><button  id="store-button" data-url="{% url 'store'%}">Icon Model Store</button></li>
-                <li><button  id="tutorial-button" data-url="{% url 'tutorial' %}">Icon Tutorial</button></li>
-                <li><button  id="setting-button" data-url="{% url 'setting' %}">Icon Setting</button></li>
-                </ul>
+        <header>
+            <nav >
+                <div><button  id="dashboard-button" data-url="{% url 'simulator'%}">Icon Simulator</button></div>
+                <div><button  id="store-button" data-url="{% url 'store'%}">Icon Model Store</button></div>
+                <div><button  id="tutorial-button" data-url="{% url 'tutorial' %}">Icon Tutorial</button></div>
+                <div><button  id="profile-button"  data-url="{% url 'profile'%}" >Icon Profile</button></div>
             </nav>
         </header>
         <main >
            
             
         </main>
-        
+         <footer>
+            <div><span>Para más información consultar al servicio tecnico</span></div>
+        </footer>
         
        
     </body>
