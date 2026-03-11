@@ -33,11 +33,6 @@ urlpatterns = [
     path('erros_charts/',views.errors_chart,name="erros_chart" ),
     path('volume_charts/',views.volume_chart,name="volume_charts" ),
     path('popup_simulator/',views.popup_simulator,name="popup_simulator" ),
-    
-
-
-    
-    
-    
+    path('popup_store/',views.popup_store,name="popup_store" ),
     path('admin/', admin.site.urls),
 ]

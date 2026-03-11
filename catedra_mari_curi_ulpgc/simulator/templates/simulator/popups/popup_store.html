@@ -1,0 +1,23 @@
+
+{% load static %}
+<!DOCTYPE html>                         
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'simulator/css/general.css'%}">
+        <link rel="stylesheet" href="{% static 'simulator/css/popup_simulator.css'%}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <script src='https://cdn.plot.ly/plotly-3.3.0.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+        <script src="{% static 'simulator/js/nav.js' %}" defer ></script>
+
+    </head>
+    
+    <body>
+        {% csrf_token %}
+        <header></header>
+        <main></main>
+        <footer></footer>
+        
+    </body>
+    
+</html>

@@ -3,7 +3,7 @@ html{
     padding:0;
 }
 body{
-    background-color:#E8EAEB;
+    background-image: linear-gradient(135deg, #e0e7ff 0%, #cbd5e1 60%, #f9d5e5 100%);
     margin:0;
     padding:0;
     height:1200px;
@@ -25,15 +25,27 @@ main{
 header{
     width:100%;
     height:8%;
-    background-color:#213576;
+    background-color:#5c7cbd;
     display:flex;
+    
+}
+
+header.dark-mode{
+    background-color:#213576;
 }
 
 
+body.dark-mode{
+    background-image: linear-gradient(135deg,#0b1a30 0%,#1a2a6c 60%,#b24592 100%);
+}
+
+main.dark-mode{
+    background-image: linear-gradient(135deg,#0b1a30 0%,#1a2a6c 60%,#b24592 100%);
+}
 main{
     width:100%!important;
     height:80% !important;
-    background-color:#E8EAEB!important;
+    background-image: linear-gradient(135deg, #5c7cbd 0%, #7d91c7 50%, #a3b1d6 100%);
     display:inline!important;
     flex-direction: none!important;
     align-items: none!important;
@@ -50,9 +62,13 @@ nav{
 
 footer{
     width:100%;
-    height:10%;
-    background-color:#213576;
+    height:15%;
+    background-color:#5c7cbd;
     display:flex;
+}
+
+footer.dark-mode{
+     background-color:#213576;
 }
 
 #button-orden{
@@ -68,6 +84,7 @@ footer{
     border:none;
     color:white;
     margin-bottom:30px;
+    font-size: large;
 }
 
 #profile-button{
@@ -75,12 +92,14 @@ footer{
     border:none;
     color:white;
     margin-bottom:30px;
+    font-size: large;
 }
 #store-button{
     background-color:transparent;
     border:none;
     color:white;
     margin-bottom:30px;
+    font-size: large;
 }
 
 #setting-button{
@@ -88,6 +107,8 @@ footer{
     border:none;
     color:white;
     margin-bottom:30px;
+    font-size: large;
+    
 }
 
 #tutorial-button{
@@ -96,6 +117,7 @@ footer{
     color:rgb(0, 0, 0);
     margin-bottom:30px;
     color:rgb(233, 237, 234);
+    font-size: large;
 }
 
 

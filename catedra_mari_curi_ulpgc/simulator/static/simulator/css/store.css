@@ -1,12 +1,11 @@
 #menu-store{
     margin-top: 40px;
     width:70%;
-    background-color:#ffffff;
+    background-color:#5b5fb7;
     border-radius: 25px;
     height:40px;
     margin-left:20%;
-  
- 
+    
 }
 
 
@@ -15,7 +14,6 @@
     width:50%;
     display:flex;
     justify-content:flex-start;
-   
     margin-left:20%;
 }
 .sytle-button-store{
@@ -25,19 +23,23 @@
     margin-bottom:30px;
     padding-right: 50px;
     margin-top: 5%;
-    
+  
 }
 
 
 #collection-models{
     width:70%;
-    background-color:#ffffff;
+    background-color:#eeedef;
     border-radius: 25px;
     height:700px;
     margin-left:20%;
     margin-top: 2%;
+    
   
 }
+/*
+
+*/
 #collection-models-header{
     list-style: none;
     width:100%;
@@ -46,8 +48,8 @@
     align-items: center;
     gap:100px;
     border-bottom-style:solid;
-    border-color:black;
-    background-color: #158ac5;
+    border-color:#d6e2eb;
+    background-color:#5b5fb7;
     border-radius: 25px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
@@ -69,4 +71,21 @@
     border-bottom-style:solid;
     border-color:black;
    
+}
+
+#add-button{
+    color:white;
+    font-size:large;
+}
+#delete-button{
+    color:white;
+    font-size:large;
+}
+#update-button{
+    color:white;
+    font-size:large;
+}
+#simulate-button{
+    color:white;
+    font-size:large;
 }

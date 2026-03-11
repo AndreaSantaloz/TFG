@@ -4,7 +4,9 @@ input[type="file"]{
 body{
     background-color: transparent !important;
 }
-
+main{
+    background-image: none !important;
+}
 #button-upload-computer{
     width:250px;
     height:50px;
@@ -17,11 +19,11 @@ body{
 }
 
 img{
-  position: absolute;
-  width:100%;
-  left: 0px;
-  top: 0px;
-  z-index: -1;
+    position: absolute;
+    width:100%;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
 }
 
 #style-form{
@@ -34,7 +36,7 @@ img{
     display: flex;
     align-items: center;
     flex-direction: column;
-   background-image: linear-gradient(135deg,#0b1a30 0%,#1a2a6c 60%,#b24592 100%);
+    background-image: linear-gradient(135deg, #5c7cbd 0%, #7d91c7 50%, #a3b1d6 100%);
 }
 h1{
     color:#e0f7fa;
@@ -48,8 +50,8 @@ p{
     height:50px;
     background-color: #564bd1;
     border-radius: 25px;
-    margin-left:45%;
-    margin-top: 5%;
+    margin-left:10%;
+    margin-top:5%;
     color:#e0f7fa;
 }
 #lado-carga-modelo{
@@ -63,8 +65,10 @@ p{
     height:50px;
      background-color: #564bd1;
     border-radius: 25px;
-    margin-left:40%;
-    margin-top: 5%;
+    margin-left:20%;
     margin-top:55%;
     color:#e0f7fa;
+}
+#section-buttons{
+    display: flex;
 }

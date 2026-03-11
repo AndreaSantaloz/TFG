@@ -3,8 +3,8 @@
 <!DOCTYPE html>                         
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'simulator/css/general.css'%}">
         <link rel="stylesheet" href="{% static 'simulator/css/popup_simulator.css'%}">
+        <link rel="stylesheet" href="{% static 'simulator/css/general.css'%}">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <script src='https://cdn.plot.ly/plotly-3.3.0.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
@@ -14,12 +14,21 @@
     
     <body>
         {% csrf_token %}
-          <form id="style-form">
-            <section>
+        <header></header>
+        <main>
+        <button  id="return-button" data-url="{% url 'home'%}">Return home</button>
+        
+        <form id="style-form">
+             <section>
                 <h1>Upload and simulate your model</h1>
             </section>
-            
             <section id="lado-carga-modelo">
+                <label>Insert your input data</label><br>
+                <section id="button-upload-computer">
+                    <input type="file" id="archivo" name="archivo"/>
+                    <label for="archivo">Insert your input data</label>
+                </section>
+                <label>Upload your model</label><br>
                 <section>
                     <p>If you dont want to save your model you can upload your model here.</p>
                 </section>
@@ -27,15 +36,14 @@
                     <input type="file" id="archivo" name="archivo"/>
                     <label for="archivo">Upload Model from Computer</label>
                 </section>
-                <button id="simulate-button">Simulate model</button>
+                <div id="section-buttons">
+                    <button id="simulate-button">Simulate model</button>
+                </div>
             </section>
+            
         </form>
-        <button  id="return-button" data-url="{% url 'home'%}">Return home</button>
-         <img id="imagen-fondo" src="../../static/simulator/images/ImagenFondo11.webp">
-       
-           
-        
-       
+        <img id="imagen-fondo" src="../../static/simulator/images/ImagenFondo15.jpg">
+    </main>
+    <footer></footer>
     </body>
-    
 </html>

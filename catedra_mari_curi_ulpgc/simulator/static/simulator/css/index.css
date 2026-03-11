@@ -16,7 +16,6 @@ body{
 #logo{
     width:100px;
     height:100px;
-    background-color:#213576;
 }
 #footerindex{
         background-color:rgb(3, 8, 30);
@@ -29,7 +28,7 @@ body{
 .layout{
     display:flex;
     justify-content: space-around;
-    background-color:#213576;
+    
     height:150px;
 }
 .layout_button{

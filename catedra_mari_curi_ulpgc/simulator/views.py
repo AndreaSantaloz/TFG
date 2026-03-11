@@ -32,7 +32,7 @@ def login(request):
     else:
         form = login_user_form()
         
-    return render(request, "simulator/login.html", {'form': form})
+    return render(request, "simulator/authentication/login.html", {'form': form})
 
 def sign_up(request):
     if request.method == "POST":
@@ -48,51 +48,54 @@ def sign_up(request):
     else:
         form = sign_up_user_form()
 
-    return render(request,"simulator/sign_up.html",{'form':form})
+    return render(request,"simulator/authentication/sign_up.html",{'form':form})
 
 
 def home(request):
-    return render(request,"simulator/home.html",{})
+    return render(request,"simulator/others/home.html",{})
     
 def profile(request):
     
     user = profile_user.objects.get(id_user=request.user.id)
     
-    return render(request,"simulator/profile.html",{'name':user.user_name,'email':user.email,'social_media':user.social_media,'phone':user.phone,'image':user.image,'description':user.description,'researchs':user.researchs})
+    return render(request,"simulator/others/profile.html",{'name':user.user_name,'email':user.email,'social_media':user.social_media,'phone':user.phone,'image':user.image,'description':user.description,'researchs':user.researchs})
 
     
 def store(request):
-    return render(request,"simulator/store.html",{})
+    return render(request,"simulator/others/store.html",{})
 
     
 def setting(request):
-    return render(request,"simulator/setting.html",{})
+    return render(request,"simulator/others/setting.html",{})
 
 def tutorial(request):
-    return render(request,"simulator/tutorial.html",{})
+    return render(request,"simulator/others/tutorial.html",{})
     
 
 
 def tabular_chart(request):
-    return render(request,"simulator/table.html",{})
+    return render(request,"simulator/charts/table.html",{})
     
 def dispersion_chart(request):
-    return render(request,"simulator/dispersion_charts.html",{})
+    return render(request,"simulator/charts/dispersion_charts.html",{})
     
 def correlation_chart(request):
-    return render(request,"simulator/correlation_charts.html",{})
+    return render(request,"simulator/charts/correlation_charts.html",{})
     
     
 def volume_chart(request):
-    return render(request,"simulator/volume_charts.html",{})
+    return render(request,"simulator/charts/volume_charts.html",{})
     
 def errors_chart(request):
-        return render(request,"simulator/erros_charts.html",{})
+        return render(request,"simulator/charts/erros_charts.html",{})
 
     
 def popup_simulator(request):
-    return render(request,'simulator/popup_simulator.html',{})
+    return render(request,'simulator/popups/popup_simulator.html',{})
 
 
 def simulator(request):
-    return render(request,'simulator/simulator.html',{})
+    return render(request,'simulator/others/simulator.html',{})
+
+def popup_store(request):
+    return render(request,'simulator/popups/popup_store.html',{})

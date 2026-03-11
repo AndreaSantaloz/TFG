@@ -9,6 +9,7 @@
         <script src='https://cdn.plot.ly/plotly-3.3.0.min.js'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
         <script src="{% static 'simulator/js/nav.js' %}" defer ></script>
+        <script src="{% static 'simulator/js/store.js' %}" defer ></script>
 
     </head>
     
@@ -27,16 +28,16 @@
             <section id="menu-store" >
                 <section id="menu-store-buttons">
                     <div>
-                        <button class="sytle-button-store" >Add model</button>
+                        <button id="add-button" data-url="{% url 'popup_store'%}" class="sytle-button-store" >Add model</button>
                     </div>
                     <div>
-                        <button class="sytle-button-store">Delete model</button>
+                        <button id="delete-button" data-url="{% url 'popup_store'%}" class="sytle-button-store">Delete model</button>
                     </div>
                      <div>
-                        <button class="sytle-button-store">Update model</button>
+                        <button id="update-button" data-url="{% url 'popup_store'%}"  class="sytle-button-store">Update model</button>
                     </div>
                     <div>
-                        <button class="sytle-button-store">Simulate model</button>
+                        <button id="simulate-button" data-url="{% url 'popup_simulator'%}"  class="sytle-button-store">Simulate model</button>
                     </div>
                 </section>
                
@@ -50,7 +51,8 @@
                     <div class="cell-models-table"><span>Format</span></div>
                     <div class="cell-models-table"><span>Last Accesed</span></div>
                 </section>
-                
+                <!--Hacer un checkbox para seleccionar el modelo que se va a ejecutar-->
+                <!--Hacer barra de movimiento para varios modelos limit 15-->
                 <!--Cambiar aquí cuando termine el diseño para asociarlo a la BD-->
                 <section>
                     <!--Esto es lo que será automatizado-->
