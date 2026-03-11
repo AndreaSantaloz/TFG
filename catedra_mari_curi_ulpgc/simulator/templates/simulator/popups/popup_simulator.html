@@ -19,11 +19,12 @@
         <button  id="return-button" data-url="{% url 'home'%}">Return home</button>
         
         <div id="style-form">
-             <section>
+            <section>
                 <h1>Upload and simulate your model</h1>
             </section>
             <section id="lado-carga-modelo">
                 <form  enctype="multipart/form-data" method="post">
+                    {% csrf_token %}
                     <label for="archivo">Insert your input data</label><br>
                     <section id="button-upload-computer">
                     <input type="file" id="archivo" name="archivo"/>

@@ -92,14 +92,15 @@ def errors_chart(request):
 
     
 def popup_simulator(request):
-    if request.method == 'POST' and request.FILES['myfile']:
-        myfile = request.FILES['myfile']
-        fs=FileSystemStorage()
-        filename= fs.save(myfile.name,myfile)
-        upload_file_url=fs.url(filename)
-        return render(request,'simulator/popups/popup_simulator.html',{
-            'upload_file_url':upload_file_url
-        })
+    if request.method == 'POST' and request.FILES['archivo']:
+        myfile = request.FILES['archivo']
+        if myfile:
+            fs=FileSystemStorage()
+            filename= fs.save(myfile.name,myfile)
+            upload_file_url=fs.url(filename)
+            return render(request,'simulator/popups/popup_simulator.html',{
+                'upload_file_url':upload_file_url
+            })
         
     return render(request,'simulator/popups/popup_simulator.html',{})
 
