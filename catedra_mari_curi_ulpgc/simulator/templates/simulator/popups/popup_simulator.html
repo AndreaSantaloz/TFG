@@ -18,16 +18,21 @@
         <main>
         <button  id="return-button" data-url="{% url 'home'%}">Return home</button>
         
-        <form id="style-form">
+        <div id="style-form">
              <section>
                 <h1>Upload and simulate your model</h1>
             </section>
             <section id="lado-carga-modelo">
-                <label>Insert your input data</label><br>
-                <section id="button-upload-computer">
+                <form  enctype="multipart/form-data" method="post">
+                    <label for="archivo">Insert your input data</label><br>
+                    <section id="button-upload-computer">
                     <input type="file" id="archivo" name="archivo"/>
                     <label for="archivo">Insert your input data</label>
+                    <button id="simulate-button" type="submit">Upload file</button>
                 </section>
+            </div>
+                
+                <!--
                 <label>Upload your model</label><br>
                 <section>
                     <p>If you dont want to save your model you can upload your model here.</p>
@@ -36,9 +41,8 @@
                     <input type="file" id="archivo" name="archivo"/>
                     <label for="archivo">Upload Model from Computer</label>
                 </section>
-                <div id="section-buttons">
-                    <button id="simulate-button">Simulate model</button>
-                </div>
+                <button id="simulate-button">Simulate model</button>
+                -->
             </section>
             
         </form>

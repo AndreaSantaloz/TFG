@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import profile_user
+from django.core.files.storage import FileSystemStorage
 
 def index(request):
     template = loader.get_template("simulator/index.html")
@@ -91,6 +92,15 @@ def errors_chart(request):
 
     
 def popup_simulator(request):
+    if request.method == 'POST' and request.FILES['myfile']:
+        myfile = request.FILES['myfile']
+        fs=FileSystemStorage()
+        filename= fs.save(myfile.name,myfile)
+        upload_file_url=fs.url(filename)
+        return render(request,'simulator/popups/popup_simulator.html',{
+            'upload_file_url':upload_file_url
+        })
+        
     return render(request,'simulator/popups/popup_simulator.html',{})
 
 
@@ -99,3 +109,4 @@ def simulator(request):
 
 def popup_store(request):
     return render(request,'simulator/popups/popup_store.html',{})
+

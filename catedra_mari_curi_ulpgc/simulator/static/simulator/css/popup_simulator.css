@@ -37,6 +37,7 @@ img{
     align-items: center;
     flex-direction: column;
     background-image: linear-gradient(135deg, #5c7cbd 0%, #7d91c7 50%, #a3b1d6 100%);
+    border-radius:25px;
 }
 h1{
     color:#e0f7fa;
@@ -63,10 +64,10 @@ p{
 #simulate-button{
     width:150px;
     height:50px;
-     background-color: #564bd1;
+    background-color: #564bd1;
     border-radius: 25px;
-    margin-left:20%;
-    margin-top:55%;
+    margin-left:40%;
+    margin-top:40%;
     color:#e0f7fa;
 }
 #section-buttons{
