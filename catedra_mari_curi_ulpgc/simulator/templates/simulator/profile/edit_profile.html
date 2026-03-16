@@ -1,0 +1,65 @@
+
+{% load static %}
+<!DOCTYPE html>                         
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'simulator/css/profile.css'%}">
+        <link rel="stylesheet" href="{% static 'simulator/css/general.css'%}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <script src='https://cdn.plot.ly/plotly-3.3.0.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+        <script src="{% static 'simulator/js/nav.js' %}" defer ></script>
+
+    </head>
+    
+    <body>
+        {% csrf_token %}
+        <header>
+            <img src="../../static/simulator/images/Logo.jpg" id="logo"  />
+            <nav >
+                <div><button  id="dashboard-button" data-url="{% url 'home'%}">Simulator</button></div>
+                <div><button  id="store-button" data-url="{% url 'store'%}"> Model Store</button></div>
+                <div><button  id="tutorial-button" data-url="{% url 'tutorial' %}"> Tutorial</button></div>
+                <div><button  id="profile-button"  data-url="{% url 'profile'%}" > Profile</button></div>
+            </nav>
+        </header>
+        <main >
+            <section id="section-setting-button">
+                <div>
+                    <button id="setting-button" data-url="{%url 'setting'%}">Icon Setting</button>
+                </div>
+                
+            </section>
+        
+        <section id="information-user">
+               
+                <!---Aquí el backend pondrá el nombre del usuario-->
+                <section id="data-user">
+                    <section id="basic-data-user">
+                        <img  src="" id="photo_profile"/>
+                        <div>
+                            <h1>{{name}}</h1>
+                            <ul id="info">
+                            <li id="email-user"><span><strong>Email:</strong>{{email}}</span></li>
+                            <li id="phone-user"><strong>Phone:</strong></li>
+                            <li id="social-media-user"><span><strong>Social media:</strong> {{social_media}}</span></li>
+                        </ul>
+                        </div>
+                        
+                    </section>
+                    <section id="about-user">
+                        <h1>About Me</h1>
+                        <textarea id="description"  rows="10" cols="100" placeholder="My name is Pepe and my passion is learning new things."></textarea>
+                    </section>
+                    <section id="researchs-user">
+                        <h1>Researchs</h1>
+                        <textarea id="researchs" rows="10" cols="50"  placeholder="I have researched many works.For example, the neuron in the brain(1998)"></textarea>
+                    </section>
+                </section>
+        </section>
+        </main>
+        <footer>
+            <div><span>Para más información consultar al servicio tecnico</span></div>
+        </footer>
+    </body>
+</html>

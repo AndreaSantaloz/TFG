@@ -4,7 +4,7 @@
     background-color:#5b5fb7;
     border-radius: 25px;
     height:40px;
-    margin-left:20%;
+    
     
 }
 
@@ -16,7 +16,7 @@ header{
     width:50%;
     display:flex;
     justify-content:flex-start;
-    margin-left:20%;
+    
 }
 .sytle-button-store{
     background-color:transparent;
@@ -25,7 +25,6 @@ header{
     margin-bottom:30px;
     padding-right: 50px;
     margin-top: 5%;
-  
 }
 
 
@@ -34,14 +33,10 @@ header{
     background-color:#eeedef;
     border-radius: 25px;
     height:700px;
-    margin-left:20%;
     margin-top: 2%;
     
-  
 }
-/*
 
-*/
 #collection-models-header{
     list-style: none;
     width:100%;

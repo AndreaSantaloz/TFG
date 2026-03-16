@@ -16,7 +16,7 @@
         {% csrf_token %}
         <header></header>
         <main>
-        <button  id="return-button" onclick="history.back()">Return home</button>
+        <button  id="return-button" onclick="history.back()"><strong>Return home</strong></button>
         
         <div id="style-form">
             <section>
@@ -29,7 +29,7 @@
                         <label for="archivo"><h2>Insert your input data</h2></label>
                     </section>
                     <section>
-                        <input type="file" class="archivo" name="archivo"/>
+                        <input type="file" id="archivo" name="archivo"/>
                         <label class="button-upload-computer" for="archivo">Upload input data</label><br>
                     </section>
 
@@ -38,7 +38,7 @@
                     </section>
 
                     <section>
-                        <input type="file" class="archivo2" name="archivo2"/>
+                        <input type="file" id="archivo2" name="archivo2"/>
                         <label class="button-upload-computer" for="archivo2">Upload your model</label><br>
                     </section>
                     <button id="simulate-button" type="submit">Simulate </button>

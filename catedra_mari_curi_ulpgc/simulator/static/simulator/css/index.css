@@ -12,17 +12,15 @@ main{
     height:100px;
 }
 
-#login-button{
+.index-button{
     border:none;
     background-color:transparent;
     font-size:medium;
-    color:rgb(171, 166, 166); 
+    color:rgb(255, 255, 255); 
 }
+
 #sign_up-button{
-    border:none;
-    background-color:transparent;
-    font-size:medium; 
-     color:rgb(171, 166, 166); 
+    font-size:large !important;
 }
 #portada{
     width:100%;
