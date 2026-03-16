@@ -1,3 +1,7 @@
 header{
     justify-content:space-around !important;
 }
+main{
+    background-image: none !important;
+    
+}

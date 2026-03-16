@@ -14,38 +14,49 @@
     
     <body>
         {% csrf_token %}
-         <!--
-        <header id="header-app">
-           <div>
-                <img  src="" id="user_photo"  >
-           </div>
-           
-            <nav>
-                <ul id="button-orden">
-                <li><button  id="dashboard-button" data-url="{% url 'simulator'%}">Icon Simulator</button></li>
-                <li><button  id="profile-button"  data-url="{% url 'profile'%}" >Icon Profile</button></li>
-                <li><button  id="store-button" data-url="{% url 'store'%}">Icon Model Store</button></li>
-                <li><button  id="tutorial-button" data-url="{% url 'tutorial' %}">Icon Tutorial</button></li>
-                <li><button  id="setting-button" data-url="{% url 'setting' %}">Icon Setting</button></li>
-                </ul>
-            </nav>
-        
-        </header>
-        -->
         <header>
            
             <img src="../../static/simulator/images/Logo.jpg" id="logo"  />
 
-        
+            <!--Cambio de diseño lo del pop pup se pondra en el home y si solo se verá el simulator en las demás páginas-->
             <nav>
-                <button  id="dashboard-button" data-url="{% url 'popup_simulator'%}"> Simulator</button>
+               
                 <button  id="store-button" data-url="{% url 'store'%}"> Model Store</button>
                 <button  id="tutorial-button" data-url="{% url 'tutorial' %}"> Tutorial</button>
                 <button  id="profile-button"  data-url="{% url 'profile'%}" > Profile</button>
             </nav>
         </header>
         <main>
-            <img id="imagen-fondo" src="../../static/simulator/images/ImagenFondo15.jpg">
+
+               <section class="structure-presentation">
+                <section id="information-presentation">
+                    <h1>Upload and simulate your model</h1>
+                </section>
+                <section id="section-form-upload-model">
+                     <form id="form-upload-model"  enctype="multipart/form-data" method="post" id="form-simulator">
+                        {% csrf_token %}
+                         <section class="tile">
+                            <label for="archivo"><h2>Insert your input data</h2></label>
+                        </section>
+                        <section>
+                            <input type="file" id="archivo" name="archivo"/>
+                            <label class="button-upload-computer" for="archivo">Upload input data</label><br>
+                        </section>
+                        <section class="tile">
+                            <label for="archivo"><h2>Insert your model</h2></label>
+                        </section>
+                        <section>
+                            <input type="file" id="archivo2" name="archivo2"/>
+                            <label class="button-upload-computer" for="archivo2">Upload your model</label><br>
+                        </section>
+                            <button id="simulate-button" type="submit">Simulate </button>
+                        </section>
+                    </form>
+                </section>
+            </section>
+
+        <img id="imagen-fondo" src="../../static/simulator/images/ImagenFondo15.jpg">
+            
         </main>
         <footer>
             <div><span>Para más información consultar al servicio tecnico</span></div>

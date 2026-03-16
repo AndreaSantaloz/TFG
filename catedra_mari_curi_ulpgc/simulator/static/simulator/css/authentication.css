@@ -10,7 +10,7 @@ h1{
     justify-content:space-around;
     align-items:stretch;
     width:80vw;
-    min-height:90vh;
+    min-height:70vh;
     box-sizing:border-box;
     border-radius:25px;
 }

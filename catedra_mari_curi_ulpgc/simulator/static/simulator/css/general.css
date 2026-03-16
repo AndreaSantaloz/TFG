@@ -9,12 +9,14 @@ html{
     padding:0;
 }
 body{
-    background-image: linear-gradient(135deg, #e0e7ff 0%, #cbd5e1 60%, #f9d5e5 100%);
+    background-image: linear-gradient(135deg, #5c7cbd 0%, #7d91c7 50%, #a3b1d6 100%);
     margin:0;
     padding:0;
     height:1200px;/*Buscar una manera de quitar estas restricciones*/
     display:flex;
     flex-direction: column;
+    gap:10px;
+
 }
 h1{
     margin-left:2%;
@@ -24,14 +26,21 @@ main{
     padding:0;
     margin:0;
     width:100%;
-    height:80%;
     background-image: linear-gradient(135deg, #5c7cbd 0%, #7d91c7 50%, #a3b1d6 100%);
     display:flex;
     flex-direction: column;
     align-items: center;
     justify-content:center;
-   
-     
+    min-height: 50vh;
+}
+#imagen-fondo{
+    width:100%;
+    min-height:100vh;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: -1;
+    background-size: cover;
 }
 
 header{
@@ -67,10 +76,16 @@ nav{
 }
 
 footer{
-    width:100%;
-    height:15%;
     background-color:#5c7cbd;
     display:flex;
+    width:100%;
+    height:100px;
+    position: fixed;
+    bottom: 0;
+
+
+
+
 }
 
 footer.dark-mode{
