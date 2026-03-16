@@ -81,6 +81,6 @@ exit_button?.addEventListener('click',() =>{
 //Botones de volver hacia atras
 const return_button=document.getElementById('return-button')
 return_button?.addEventListener('click',() =>{
-    window.location.href=return_button.dataset.url;
+    history.back();
 });
 

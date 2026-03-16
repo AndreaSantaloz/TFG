@@ -6,16 +6,32 @@ body{
 }
 main{
     background-image: none !important;
+    align-items:flex-start !important;
 }
-#button-upload-computer{
+.button-upload-computer{
     width:250px;
     height:50px;
-    background-color: #7d78b5;
+    background-color:  #5c7cbd;
     border-radius: 25px;
     display:flex;
     align-items: center;
     justify-content: center;
     color:#e0f7fa;
+}
+.title{
+    width:10%;
+}
+label{
+    width:100%;
+}
+.inputdata{
+    width:500px;
+    display:flex;
+}
+#form-simulator{
+    display: flex;
+    flex-direction: column;
+    gap:25px;
 }
 
 img{
@@ -47,13 +63,13 @@ p{
     color:#e0f7fa;
 }
 #return-button{
-    width:150px;
-    height:50px;
-    background-color: #564bd1;
+    
+    background-color: transparent;
     border-radius: 25px;
     margin-left:10%;
     margin-top:5%;
     color:#e0f7fa;
+    border-color:transparent;
 }
 #lado-carga-modelo{
     border-style: dotted;
@@ -64,10 +80,10 @@ p{
 #simulate-button{
     width:150px;
     height:50px;
-    background-color: #564bd1;
+    background-color:  #5c7cbd;
     border-radius: 25px;
     margin-left:40%;
-    margin-top:40%;
+    margin-top:20%;
     color:#e0f7fa;
 }
 #section-buttons{

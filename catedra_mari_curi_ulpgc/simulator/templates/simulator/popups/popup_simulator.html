@@ -16,20 +16,32 @@
         {% csrf_token %}
         <header></header>
         <main>
-        <button  id="return-button" data-url="{% url 'home'%}">Return home</button>
+        <button  id="return-button" onclick="history.back()">Return home</button>
         
         <div id="style-form">
             <section>
                 <h1>Upload and simulate your model</h1>
             </section>
             <section id="lado-carga-modelo">
-                <form  enctype="multipart/form-data" method="post">
+                <form  enctype="multipart/form-data" method="post" id="form-simulator">
                     {% csrf_token %}
-                    <label for="archivo">Insert your input data</label><br>
-                    <section id="button-upload-computer">
-                    <input type="file" id="archivo" name="archivo"/>
-                    <label for="archivo">Insert your input data</label>
-                    <button id="simulate-button" type="submit">Upload file</button>
+                    <section class="tile">
+                        <label for="archivo"><h2>Insert your input data</h2></label>
+                    </section>
+                    <section>
+                        <input type="file" class="archivo" name="archivo"/>
+                        <label class="button-upload-computer" for="archivo">Upload input data</label><br>
+                    </section>
+
+                    <section class="tile">
+                        <label for="archivo"><h2>Insert your model</h2></label>
+                    </section>
+
+                    <section>
+                        <input type="file" class="archivo2" name="archivo2"/>
+                        <label class="button-upload-computer" for="archivo2">Upload your model</label><br>
+                    </section>
+                    <button id="simulate-button" type="submit">Simulate </button>
                 </section>
             </div>
                 
