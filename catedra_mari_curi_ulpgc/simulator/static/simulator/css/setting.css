@@ -1,4 +1,6 @@
-
+header{
+    justify-content:space-around !important;
+}
 #collection-models{
     width:70%;
     background-color:#ffffff;

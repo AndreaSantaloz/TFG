@@ -2,43 +2,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'simulator/css/login.css'%}">
+       
         <link rel="stylesheet" href="{% static 'simulator/css/general.css'%}">
-         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <link rel="stylesheet" href="{% static 'simulator/css/authentication.css'%}">
+        <script src="{% static 'simulator/js/nav.js' %}" defer></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
          
     </head>
     <body>
-        <header></header>
+       <header></header>
         <main>
-        <section class="structure-presentation">
-            <h1>Login</h1>
 
-            {% if messages %}
-                {% for message in messages %}
-                    <div style="color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 10px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-            {% endif %}
-            
-            <form method="post">
-                {% csrf_token %}
-                <div>
-                    <h4>Email</h4>
-                    <input name="email" id="inputs" type="email" placeholder="pepe@example.com">
-                </div>
-                <div>
-                    <h4>Password</h4>
-                    <input name="password" id="inputs" type="password" placeholder="12345678">
-                </div>
-                <div id="button-login-section">
-                    <button type="submit" id="button-login">Enter</button>
-                </div>
-            </form>
+            <section class="structure-presentation">
+                <section id="information-presentation">
+                    <h2>You are not registered</h2>
+                    <button id="sign_up-button" class="button-signup" data-url="{% url 'sign_up' %}" >Go to Sign up</button>
+                </section>
+                <section id="section-form-signup">
+                     <h1>Login</h1>
+                     <form id="form-sign-up" method="post">
+                        {% csrf_token %}
+                        <label>Email</label>
+                        <input name="email" id="inputs" type="email" placeholder="pepe@example.com">
+                        <label>Password</label>
+                        <input name="password" id="inputs" type="password" placeholder="********">
+                        <button type="submit" class="button-signup">Enter</button>
+                    </form>
+                </section>
                  
-            <p>If you don't have an account you can create in this <a href="{% url 'sign_up'%}">link</a></p>
-        </section>
+            </section>
+       
         </main>
         <footer></footer>
+       
+        
     </body>
 </html>

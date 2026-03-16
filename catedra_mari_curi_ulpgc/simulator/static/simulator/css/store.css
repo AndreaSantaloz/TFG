@@ -8,7 +8,9 @@
     
 }
 
-
+header{
+    justify-content:space-around !important;
+}
 #menu-store-buttons{
     list-style: none;
     width:50%;

@@ -1,4 +1,6 @@
-
+header{
+    justify-content:space-around !important;
+}
 #photo_profile{
     border-radius:100%;
     border-color:white;
@@ -67,7 +69,7 @@ span{
 #description{
     margin-left:2%;
     padding-bottom: 100px;
-    padding-right:400px ;
+    padding-right:200px ;
     border:none;
     width:100%;
     
@@ -89,7 +91,7 @@ span{
 #researchs{
     margin-left:2%;
     padding-bottom: 100px;
-    padding-right:400px ;
+    padding-right:200px ;
     width:100%;
     border:none;
 

@@ -1,46 +1,15 @@
-
-
-
-body{
-    background-color:white;
-    margin:0px;
-    padding:0px;
+header{
+    justify-content:space-around !important;
 }
-#headerindex{
-        height:100px;
-        margin:0px;
-        padding:0px;
-        box-sizing:border-box;
 
+main{
+    width:100% !important;
+    height:100% !important;
+    display:block !important;
 }
 #logo{
     width:100px;
     height:100px;
-}
-#footerindex{
-        background-color:rgb(3, 8, 30);
-        height:100px;
-}
-.container_elements{
-    height: 1000px;
-    width:100%
-}
-.layout{
-    display:flex;
-    justify-content: space-around;
-    
-    height:150px;
-}
-.layout_button{
-    display:flex;
-    justify-content: flex-start;
-    width:40%;
-}
-.design_logo{
-    display:flex;
-    justify-content: flex-start;;
-    width:60%;
-    margin-left:50px;
 }
 
 #login-button{
@@ -57,4 +26,5 @@ body{
 }
 #portada{
     width:100%;
+    height:1002px;
 }
