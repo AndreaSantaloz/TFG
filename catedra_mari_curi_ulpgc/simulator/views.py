@@ -53,7 +53,24 @@ def sign_up(request):
 
 
 def home(request):
-    return render(request,"simulator/others/home.html",{})
+    if request.method == 'POST' and request.FILES['archivo'] and request.FILES['archivo2']:
+        myfile = request.FILES['archivo']
+        myfile2= request.FILES['archivo2']
+        if myfile and myfile2:
+            fs=FileSystemStorage()
+            filename= fs.save(myfile.name,myfile)
+            filename2= fs.save(myfile2.name,myfile2)
+            upload_file_url=fs.url(filename)
+            print(upload_file_url)
+            upload_file_url2=fs.url(filename2)
+            print(upload_file_url2)
+            return render(request,'simulator/others/home.html',{
+                'upload_file_url':upload_file_url,
+                'upload_file_url2':upload_file_url2,
+            })
+        
+    return render(request,'simulator/others/home.html',{})
+    
     
 def profile(request):
     
@@ -92,21 +109,8 @@ def errors_chart(request):
 
     
 def popup_simulator(request):
-    if request.method == 'POST' and request.FILES['archivo'] and request.FILES['archivo2']:
-        myfile = request.FILES['archivo']
-        myfile2= request.FILES['archivo2']
-        if myfile and myfile2:
-            fs=FileSystemStorage()
-            filename= fs.save(myfile.name,myfile)
-            filename2= fs.save(myfile2.name,myfile2)
-            upload_file_url=fs.url(filename)
-            upload_file_url2=fs.url(filename2)
-            return render(request,'simulator/popups/popup_simulator.html',{
-                'upload_file_url':upload_file_url,
-                'upload_file_url2':upload_file_url2,
-            })
-        
     return render(request,'simulator/popups/popup_simulator.html',{})
+    
 
 
 def simulator(request):

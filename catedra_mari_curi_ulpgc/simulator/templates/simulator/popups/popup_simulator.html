@@ -15,39 +15,7 @@
     <body>
         {% csrf_token %}
         <header></header>
-        <main>
-        <button  id="return-button" onclick="history.back()"><strong>Return home</strong></button>
-        
-        <div id="style-form">
-            <section>
-                <h1>Upload and simulate your model</h1>
-            </section>
-            <section id="lado-carga-modelo">
-                <form  enctype="multipart/form-data" method="post" id="form-simulator">
-                    {% csrf_token %}
-                    <section class="tile">
-                        <label for="archivo"><h2>Insert your input data</h2></label>
-                    </section>
-                    <section>
-                        <input type="file" id="archivo" name="archivo"/>
-                        <label class="button-upload-computer" for="archivo">Upload input data</label><br>
-                    </section>
-
-                    <section class="tile">
-                        <label for="archivo"><h2>Insert your model</h2></label>
-                    </section>
-
-                    <section>
-                        <input type="file" id="archivo2" name="archivo2"/>
-                        <label class="button-upload-computer" for="archivo2">Upload your model</label><br>
-                    </section>
-                    <button id="simulate-button" type="submit">Simulate </button>
-                </section>
-            </div>
-            </section>
-        </form>
-        <img id="imagen-fondo" src="../../static/simulator/images/ImagenFondo15.jpg">
-    </main>
+        <main></main>
     <footer></footer>
     </body>
 </html>
