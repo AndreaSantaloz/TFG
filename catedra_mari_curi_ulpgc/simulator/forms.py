@@ -31,6 +31,7 @@ class login_user_form(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
 
+"""
 class upload_correct_files(forms.Form):
     file1=forms.FileField()
     file2=forms.FileField()
@@ -39,3 +40,5 @@ class upload_correct_files(forms.Form):
     class Meta:
         pass
     pass
+    
+    """
