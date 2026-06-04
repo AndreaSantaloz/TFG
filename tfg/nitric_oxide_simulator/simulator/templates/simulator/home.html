@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+{% load static %}
+  {%block content%}
+    <p> Estamos en el home</p>
+    <a href="{% url 'logout' %}">LOGOUT</a>
+  {% endblock%}

@@ -1,0 +1,45 @@
+main{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding-top:80px;
+}
+
+#authentication-container{
+    background-color:#CCE6EC;
+    padding: 32px 64px 160px 64px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    border-radius:25px;
+}
+
+#authentication-form{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:24px;
+}
+
+
+#authentication-form label{
+  align-self:flex-start;
+}
+#authentication-form input{
+   width:320px;
+   height:32px;
+   border-radius:25px;
+   padding-left:4px;
+}
+#authentication-form button{
+    width:160px;
+    height:40px;
+    border-radius:25px;
+    background-color:#60cbe9;
+}
+#section-signup-form{
+    display:flex;
+    flex-direction:row;
+    gap:16px;
+}

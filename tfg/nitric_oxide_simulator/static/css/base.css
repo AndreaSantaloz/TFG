@@ -1,0 +1,50 @@
+html,body{
+    padding:0;
+    margin:0;
+    font-family:Arial;
+
+}
+header{
+    padding:8px;
+    height:80px;
+}
+main{
+    height:1124px;
+    background-image:url('../images/brain2.png');
+    background-repeat:no-repeat;
+    background-position:center;
+}
+footer{
+    background-color:#CCE6EC;
+    height:160px;
+}
+
+ul{
+    list-style-type:none;
+    display:flex;
+    width:400px;
+    justify-content:space-around;
+}
+ul li a{
+    text-decoration: none;
+    color:black;
+}
+#scheme-header{
+    display:flex;
+    justify-content:space-around;
+}
+#images-institution{
+    display:flex;
+    width:240px;
+    justify-content:space-around;
+}
+#institution{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+
+#language{
+     background-color:#CCE6EC;
+    
+}
