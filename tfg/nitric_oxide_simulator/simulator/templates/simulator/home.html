@@ -1,6 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block css %}
+            {{block.super}}
+            <link href="{% static 'simulator/css/home.css' %}" rel="stylesheet"> 
+  {% endblock %}
   {%block content%}
-    <p> Estamos en el home</p>
-    <a href="{% url 'logout' %}">LOGOUT</a>
+   <div id="upload_data">
+    <h1>Simulation</h1>
+   <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div id="file_upload">
+            <label for="file"> Maximum 5 files</label>
+          </div>
+         
+        <input type="file" id="file" name="file" multiple>
+        <button type="submit"><b>Upload Data</b> </button>
+   </form>
+   </div>
   {% endblock%}

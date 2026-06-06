@@ -11,10 +11,10 @@
       </div>
       <form id ="authentication-form" method="post">
         {% csrf_token %}
-        <label>Email</label>
-        <input type="email" name="email" placeholder="pepe@gmail.com">
-        <label>Password</label>
-        <input type="password" name="password" placeholder="12345678">
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" placeholder="pepe@gmail.com">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password" placeholder="12345678">
         <button type="submit">Enter</button>
       </form>
       <p>If you don't have an account you can create an account in this <a href="{% url 'sign_up' %}">link</a></p>

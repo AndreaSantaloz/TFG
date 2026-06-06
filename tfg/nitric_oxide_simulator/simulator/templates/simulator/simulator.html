@@ -1,2 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="{% static 'simulator/css/home.css' %}" rel="stylesheet">
+     <link href="{% static 'simulator/css/simulator.css' %}" rel="stylesheet">
+    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js" ></script>
+{% endblock %}
+
+{% block content %}
+<div id="simulate">
+    <h1 id="dynamic-title">Simulation Workspace</h1>
+    <div class="chart-container" id="nitricOxidePlotGlobal"></div>
+    <div id="menu-button">
+       <button onclick="history.back()">Return</button>
+        <button>Stop Simulation</button>
+        <button>Save Model</button>
+    </div>
+</div>
+<script id="datos-django" type="application/json">
+    {{ json_simulacion|safe }}
+</script>
+<script src="{% static 'simulator/js/simulator.js' %}" ></script>
+{% endblock %}

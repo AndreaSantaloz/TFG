@@ -46,5 +46,10 @@ ul li a{
 
 #language{
      background-color:#CCE6EC;
+      display:block;
     
+}
+ul li label{
+    display:inline-block;
+    margin-right:10px;
 }

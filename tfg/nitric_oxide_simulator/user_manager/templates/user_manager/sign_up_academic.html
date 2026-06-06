@@ -12,14 +12,12 @@
       </div>
       <form id ="authentication-form" method="post">
          {% csrf_token %}
+         <label>Institution</label>
+        <input type="text" name="institution" placeholder="ulpgc">
         <label>Research field</label>
         <input type="text" name="researchfield" placeholder=" Computacional Neuroscience">
         <label>Research area</label>
         <input type="text" name="researcharea" placeholder="brain movement">
-        <label>Password</label>
-        <input type="password" name="password" placeholder="12345678">
-        <label>Confirm Password</label>
-        <input type="password" name="password" placeholder="12345678">
         <div id="section-signup-form">
           <button onclick="window.history.back()">Return</button>
           <button type="submit">Enter</button>

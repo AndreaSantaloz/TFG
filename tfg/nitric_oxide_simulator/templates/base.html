@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 {% load static %}
-<html>
+<html lang="en">
     <head>
         {%block favicon %} 
         <link rel="icon" type="image/x-icon" href="{% static 'images/brain.png' %}"> 
         {% endblock %}
-         {%block title%}
+         {%block metadato%}
          <title>NOsimulator</title> 
          {% endblock %}
          {%block css%}
@@ -27,6 +27,7 @@
                 </div>
             {%if user.is_authenticated %}
                     <ul>
+                         <li><a href="{% url 'home' %}">Home</a></li>
                         <li><a href="{% url 'storage' %}">Storage</a></li>
                         <li><a href="{% url 'tutorial' %}">Tutorial</a></li>
                         <li><a href="{% url 'user_profile' %}">Profile</a></li>
@@ -42,10 +43,11 @@
                     <ul>
                         <li><a href="{% url 'login' %}">Login</a></li>
                         <li><b><a href="{% url 'sign_up' %}">Sign up</a></b></li>
-                        <li><a>About this app</a></li>
+                        <li><a href="{% url 'about_this_app' %}">About this app</a></li>
                         <li> 
-                            <select id="language" name="Languages">
-                                <option value="languages">Languages</option>
+                            <label for="language">Languages</label>
+                            <select id="language" name="language">
+                                <option value=""></option>
                                 <option value="english">English</option>
                                 <option value="spanish">Spanish</option>
                             </select>

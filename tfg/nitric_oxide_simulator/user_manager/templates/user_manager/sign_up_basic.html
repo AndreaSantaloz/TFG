@@ -5,20 +5,24 @@
            <link href="{% static 'user_manager/css/authentication.css' %}" rel="stylesheet"> 
   {% endblock %}
    {%block content%}
-   <!--El formulario es demasiado largo bro-->
    <div id ="authentication-container">
       <div>
         <h1>SIGN UP</h1>
       </div>
-      <form id ="authentication-form" action="{% url 'sign_up_academic'%}" method="get">
+      <form id ="authentication-form"  method="post">
          {% csrf_token %}
-        <label>Name</label>
+        <label>Name*</label>
         <input type="text" name="name" placeholder="pepe">
-        <label>Email</label>
+        <label>Email*</label>
         <input type="email" name="email" placeholder="pepe@gmail.com">
-        <label>Institution</label>
-        <input type="text" name="institution" placeholder="ulpgc">
-        <button type="submit">Next Page</button>
+         <label>Password*</label>
+        <input type="password" name="password" placeholder="12345678">
+        <label>Confirm Password*</label>
+        <input type="password" name="confirm_password" placeholder="12345678">
+         <div id="section-signup-form">
+          <button onclick="window.history.back()">Return</button>
+          <button type="submit">Create an account</button>
+        </div>
       </form>
       <p>If you  have an account you can login  in this <a href="{% url 'login' %}">link</a></p>
       

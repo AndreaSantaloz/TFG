@@ -27,7 +27,7 @@ urlpatterns = [
     path('',include('user_manager.urls')),
     path('',include('simulator.urls')),
     path('',include('storage.urls')),
-    path('',include('user_profile_manager.urls')),
+   
   
   
 

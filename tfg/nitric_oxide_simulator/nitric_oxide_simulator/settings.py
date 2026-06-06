@@ -13,8 +13,11 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import os 
 from dotenv import load_dotenv
+import dj_database_url
 
 load_dotenv()
+SESSION_COOKIE_AGE = 900
+SESSION_SAVE_EVERY_REQUEST = True
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
@@ -39,7 +42,7 @@ INSTALLED_APPS = [
     'user_manager',
     'simulator',
     'storage',
-    'user_profile_manager'
+   
 ]
 
 MIDDLEWARE = [
