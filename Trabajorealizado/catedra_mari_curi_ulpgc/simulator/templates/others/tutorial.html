@@ -1,0 +1,40 @@
+
+{% load static %}
+<!DOCTYPE html>                         
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/general.css'%}">
+        <link rel="stylesheet" href="{% static 'css/header.css'%}">
+        <link rel="stylesheet" href="{% static 'css/tutorial.css'%}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <script src='https://cdn.plot.ly/plotly-3.3.0.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+        <script src="{% static 'js/nav.js' %}" defer ></script>
+        <script src="{% static 'js/settings.js' %}" defer ></script>
+
+    </head>
+    
+    <body>
+        {% csrf_token %}
+        <header>
+            <a id="home-button" class="image-button" href="{% url 'home'%}"><img src="{% static 'images/brain.png' %}" id="logo" width="20" height="20"  ></a>
+            <nav>
+                <a  id="store-button" href="{% url 'store'%}"> Model Store</a>
+                <a  id="tutorial-button" href="{% url 'tutorial' %}"> Tutorial</a>
+                <a  id="profile-button"  href="{% url 'profile'%}" > Profile</a>
+                <select class="index-button" id="language" >
+                            <option disabled selected hidden>Language</option>
+                            <option >English</option>
+                            <option> Spanish</option>
+                </select>
+                <div id="section-dark-mode-button">
+                    <button id="darkmode-button"  onclick=changeMode() ></button>
+                </div>
+            </nav>
+        </header>
+        <main ></main>
+            <footer>
+            <div><span>For more information, please contact technical support</span></div>
+        </footer>
+    </body>
+</html>

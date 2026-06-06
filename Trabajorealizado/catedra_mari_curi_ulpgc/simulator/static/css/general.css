@@ -1,0 +1,187 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    margin:0;
+    padding:0;
+    
+}
+body{
+    background-image:url(../images/prueba.png) !important;
+    margin:auto;
+    padding:0;
+    display:flex;
+    flex-direction: column;
+    background-repeat: no-repeat !important;
+    font-family: Arial;
+    align-items: center;
+    min-height:150vh;
+    background-position: center top;
+    background-size:50%;
+    
+}
+p{
+    font-style:arial;
+}
+
+
+body.dark-mode{
+    background-image:url(../images/image3.png) !important;
+}
+h1{
+    margin-left:2%;
+    height:50px;
+    font-style:arial;
+}
+main{
+    padding:0;
+    margin:0;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    padding-bottom: 100%;
+}
+
+a{
+    text-decoration:none;
+    font-style:arial;
+}
+
+#logo{
+    width:100px !important;
+    height:100px !important;
+}
+.image-button{
+    width:10px !important;
+    height:10px !important;
+    background-color: transparent;
+    border-color:transparent;
+}
+
+
+body.dark-mode header{
+    width:100%;
+    height:8%;
+    background-color:#312112;
+    display:flex;
+    justify-content:space-around !important;
+    color:white;
+}
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    width:100% !important;
+    gap:24px;
+}
+
+#darkmode-button{
+    border-radius:100%;
+    background-color:#4daabf;
+    position:relative;
+    width: 20px;
+    height: 20px;
+    top:0;
+    left:0;
+}
+#section-dark-mode-button{
+   width: 64px;
+  height: 24px;
+  background-color: #bfe2ea;
+  border-radius: 25px;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  border-color: transparent;
+  border-style: solid;
+}
+body.dark-mode nav a{
+    color:white;
+    font-style:arial;
+}
+
+footer{
+    background-color:#cce6ec;
+    display:flex;
+    width:100%;
+    height:100px;
+    position: relative;
+    bottom: 0;
+    font-style:arial;
+    background-attachment: fixed;
+}
+
+body.dark-mode footer{
+    background-color:#312112;
+    display:flex;
+    width:100%;
+    height:100px;
+    position: fixed;
+    bottom: 0;
+    color:white;
+}
+
+
+#button-orden{
+    list-style: none;
+    padding:0;
+}
+
+
+
+
+#dashboard-button{
+    background-color:transparent;
+    border:none;
+    color:#3e342c;
+    margin-bottom:30px;
+    font-size: large;
+    font-style:arial;
+}
+
+#profile-button{
+    background-color:transparent;
+    border:none;
+    color:#3e342c;
+    margin-bottom:30px;
+    font-size: large;
+    font-style:arial;
+}
+#store-button{
+    background-color:transparent;
+    border:none;
+    color:#3e342c;
+    margin-bottom:30px;
+    font-size: large;
+    font-style:arial;
+}
+
+#setting-button{
+    background-color:transparent;
+    border:none;
+    color:#3e342c;
+    margin-bottom:30px;
+    font-size: large;
+    font-style:arial;
+    
+}
+
+#tutorial-button{
+    background-color:transparent;
+    border:none;
+    color:#3e342c;
+    margin-bottom:30px;
+    font-size: large;
+    font-style:arial;
+
+}
+
+
+#language{
+    padding-bottom:1%;
+}

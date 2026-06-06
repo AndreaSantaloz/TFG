@@ -1,0 +1,14 @@
+#apartado-opciones{
+    background-color:#cce6ec;
+    width:80%;
+    height:40px;
+    border-radius:25px;
+    display:flex;
+    justify-content:space-evenly;
+    gap:128px;
+   
+}
+a{
+    padding-top:1%;
+    font-size:large;
+}

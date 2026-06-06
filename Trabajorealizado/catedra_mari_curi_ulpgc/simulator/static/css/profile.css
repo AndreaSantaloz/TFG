@@ -1,0 +1,103 @@
+header{
+    justify-content:space-around !important;
+}
+#photo_profile{
+    border-radius: 100%;
+    border-color: transparent;
+    width: 200px;
+    height: 200px;
+    background-color: rgb(247, 247, 247);
+    margin-left: 5%;
+    margin-top: 2.5%;
+    border-style: solid;
+}
+
+span{
+    color:rgb(0, 0, 0) !important;
+}
+
+
+#info{
+    list-style:none;
+}
+#basic-data-user{
+    display: flex;
+    gap: 30px;
+    background-color: white;
+    border-radius: 25px;
+    height: 300px;
+    width: 96%;
+}
+#section-setting-button{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width:100%;
+    
+}
+span{
+    font-size: medium;
+}
+#setting-button{
+    margin-right: 250px;
+    margin-top: 5px;
+}
+#information-user{
+    display: flex;
+    width: 56%;
+    height: 720px;
+    border-radius: 25px;
+    margin-bottom: 2%;
+    justify-content: center;
+    background-color: #cce6ec;
+    align-items:center;
+}
+#data-user{
+    display:flex;
+    flex-direction: column;
+    width:96%;
+    margin-left: 2%;
+    
+}
+
+textarea{
+    resize:none;
+}
+ul{
+    width:40%;
+}
+li{
+    margin-top:5%;
+    
+}
+strong{
+    margin-right:5%;
+}
+
+#about-user{
+    display: flex;
+    flex-direction: column;
+    width: 96%;
+   background-color: white;
+    border-radius: 25px;
+    margin-top: 5%;
+    height: 300px;
+    
+
+
+}
+#description{
+   margin-left: 2%;
+   border: none;
+   width: 95%;
+   height: 200px;
+    
+}
+
+    
+
+
+main{
+    background-image: none !important;
+    
+}

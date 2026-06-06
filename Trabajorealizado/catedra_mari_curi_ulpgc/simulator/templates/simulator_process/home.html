@@ -1,0 +1,65 @@
+
+{% load static %}
+<!DOCTYPE html>                         
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/general.css'%}">
+        <link rel="stylesheet" href="{% static 'css/header.css'%}">
+        <link rel="stylesheet" href="{% static 'css/simulator.css'%}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <script src='https://cdn.plot.ly/plotly-3.3.0.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+        <script src="{% static 'js/nav.js' %}" defer ></script>
+        <script src="{% static 'js/settings.js' %}" defer ></script>
+
+    </head>
+    <!--Poner que si viene del store si pico un modelo a simular que solo ponga el input data-->
+    <body>
+        {% csrf_token %}
+        <header>
+            <img src="{% static 'images/brain.png' %}" id="logo" width="20" height="20"  ></img>
+            <nav>
+                <a  id="store-button" href="{% url 'store'%}"> Model Store</a>
+                <a  id="tutorial-button" href="{% url 'tutorial' %}"> Tutorial</a>
+                <a  id="profile-button"  href="{% url 'profile'%}" > Profile</a>
+                <select class="index-button" id="language" >
+                            <option disabled selected hidden>Language</option>
+                            <option >English</option>
+                            <option> Spanish</option>
+                </select>
+                <div id="section-dark-mode-button">
+                    <a id="darkmode-button"  onclick=changeMode() ></a>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <section class="structure-presentation">
+                <h1>Upload and simulate your model</h1>
+                <section id="section-form-upload-model">
+                    <form id="form-upload-model"  enctype="multipart/form-data" method="post" >
+                        {% csrf_token %}
+                        <section class="tile">
+                            <label for="archivo"><h2>Insert your input data</h2></label>
+                        </section>
+                        <section>
+                            <input type="file" id="input_file" name="input_file" accept=".py"  required/>
+                            <label class="button-upload-computer" for="input_file">Upload input data</label><br>
+                        </section>
+                        <section class="tile">
+                            <label for="archivo"><h2>Insert your model</h2></label>
+                        </section>
+                        <section>
+                            <input type="file" id="model" name="model" accept=".py"  required/>
+                            <label class="button-upload-computer" for="model">Upload your model</label><br>
+                        </section>
+                            <button id="revise-button" type="submit">Revise your data</button>
+                        </section>
+                    </form>
+                </section>
+            </section>
+        </main>
+            <footer>
+            <div><span>For more information, please contact technical support</span></div>
+        </footer>
+    </body>
+</html>

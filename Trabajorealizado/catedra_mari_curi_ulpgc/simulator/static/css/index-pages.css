@@ -1,0 +1,68 @@
+main{
+    display:flex !important;
+    align-items:center !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    padding-top:4% !important;
+}
+
+#about-app{
+    display:flex !important;
+    align-items:center !important;
+    flex-direction:column !important;
+    justify-content: center;
+    width:50% !important;
+    background-color:rgb(255, 255, 255) !important;
+    min-height:200px;
+    padding-bottom:100px;
+}
+#about-app h1{
+    margin-left:0% ! important;
+    height:0px !important;
+    padding-bottom:48px;
+    width:100% !important;
+    background-color:rgb(223, 198, 181) !important;
+    padding-left:40%;
+}
+#help{
+    display:flex !important;
+    align-items:center !important;
+    flex-direction:column !important;
+    justify-content: center;
+    width:50% !important;
+    background-color:rgb(255, 255, 255) !important;
+    padding-bottom:100px;
+}
+#help h1{
+    margin-left:0% ! important;
+    height:0px !important;
+    padding-bottom:48px;
+    width:100% !important;
+    background-color:rgb(223, 198, 181) !important;
+    margin-bottom:4%;
+    padding-left:40%;
+    font-style:arial;
+}
+#help h2{
+    width:100% !important;
+    background-color:rgb(223, 198, 181) !important;
+    margin-bottom:2%;
+    font-style:arial;
+    
+}
+#help h3{
+    width:100% !important;
+    background-color:rgb(223, 198, 181) !important;
+}
+#help p{
+    font-style:arial;
+}
+#about-app p{
+    padding-top:4%;
+    padding-left:4%;
+    padding-right:4%;
+    text-align:justify;
+}
+#language{
+    margin-bottom: 2%;
+}

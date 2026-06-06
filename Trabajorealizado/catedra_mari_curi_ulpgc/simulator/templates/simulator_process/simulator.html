@@ -1,0 +1,73 @@
+
+{% load static %}
+<!DOCTYPE html>                         
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'css/general.css'%}">
+        <link rel="stylesheet" href="{% static 'css/header.css'%}">
+        <link rel="stylesheet" href="{% static 'css/simulator.css'%}">
+        <link rel="stylesheet" href="{% static 'css/popup_simulator.css'%}">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        
+        <script src='https://cdn.plot.ly/plotly-3.3.0.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+        
+        <script src="{% static 'js/nav.js' %}" defer ></script>
+        <script src="{% static 'js/settings.js' %}" defer ></script>
+        {{time|json_script:"time"}}
+        {{concentration|json_script:"concentration"}}
+        <script src="{% static 'js/charts.js' %}" defer  ></script>
+
+    </head>
+    
+    <body>
+        {% csrf_token %}
+        <header>
+           
+            <a id="home-button" class="image-button" href="{% url 'home'%}"><img src="{% static 'images/brain.png' %}" id="logo" width="20" height="20"  ></a>
+            <nav>
+               
+                <button  id="store-button" data-url="{% url 'store'%}"> Model Store</button>
+                <button  id="tutorial-button" data-url="{% url 'tutorial' %}"> Tutorial</button>
+                <button  id="profile-button"  data-url="{% url 'profile'%}" > Profile</button>
+                <div id="section-dark-mode-button">
+                    <button id="darkmode-button"  onclick=changeMode() ></button>
+                </div>
+            </nav>
+        </header>
+        <main>
+                
+
+               <section class="structure-presentation">
+                 <section id="menu-button-simulador">
+                    <button id="table-button"  onclick="table()" class="button-simulator">Table</button>
+                    <button id="correlation-button" onclick=correlation() class="button-simulator">Correlation</button>
+                    <button id="dispersion-button" onclick=dispersion() class="button-simulator">Dispersion</button>
+                    <button id="volume-button" onclick=volume() class="button-simulator">Volume</button>
+                   
+                </section>
+
+                <section id="charts">
+                </section>
+                
+                <section id="menu-button-action">
+                    <button id="return-button" onclick="history.back()"> Return </button>
+                    <button id="stop-simulate-button"> Stop Simulate </button>
+                    <button id="save-model"> Save Model </button>
+                </section>
+               
+            </section>
+            
+            
+           
+            
+        </main>
+           <footer>
+            <div><span>For more information, please contact technical support</span></div>
+        </footer>
+      
+    
+    </body>
+</html>
+
