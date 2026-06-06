@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+            {{block.super}}
+            <link href="{% static 'user_manager/css/user_profile.css' %}" rel="stylesheet"> 
+  {% endblock %}
+
+{% block content %}
+<section id="profile-section">
+    <div >
+        <input type="file" id="photo" placeholder="no cargado la foto">
+        <div id="photo_where">
+            <label for="photo">Funciona</label>
+        </div>
+    </div>
+    <div class="information-data">
+        <h2>Personal data</h2>
+        <ul>
+            <li>Name:{{name}}</li>
+            <li>Email:{{email}}</li>
+            <li>Institution:{{institution}}</li>
+            <li>Research Field:{{researchfield}}</li>
+            <li>Research Area:{{researcharea}}</li>
+        </ul>
+    </div>
+    <div class="information-data">
+        <h2>About me</h2>
+        <textarea  rows="10" cols="110"></textarea>
+    </div>
+    <div class="information-data">
+        <h2> Researchs</h2>
+         <textarea  rows="10" cols="110"></textarea>
+    </div>
+    <br>
+    <div id="logout" class="information-data">
+        <h2>Do you want to logout? Click on this link</h2>
+        <a href="{% url 'logout' %}">LOGOUT</a>
+    </div>
+    
+  
+
+</section>
+
+
+{% endblock %}

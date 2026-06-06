@@ -1,0 +1,46 @@
+header{
+    padding-bottom:80px;
+}
+
+main{
+    display:flex;
+    justify-content:center;
+}
+
+#upload_data{
+    background-color:#CCE6EC;
+    width:880px;
+    height:580px;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    border-radius:25px;
+}
+#upload_data form{
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    gap:16px;
+  
+
+}
+#upload_data form button{
+    border-radius:25px;
+    width:196px;
+    height:48px;
+    background-color:#53bfe0;
+
+}
+
+input[type="file"]{
+    display:none;
+}
+#file_upload{
+    width:680px;
+    height:340px;
+    border-style:dotted;
+    border-color:black;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}

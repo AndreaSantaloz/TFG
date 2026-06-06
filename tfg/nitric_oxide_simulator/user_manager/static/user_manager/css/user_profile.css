@@ -1,0 +1,48 @@
+html,body{
+    height:1808px;
+}
+header{
+    padding-bottom:80px;
+}
+main{
+    height:1600px;
+}
+
+input[type="file"]{
+   display:none;
+}
+#profile-section{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+   
+}
+
+#photo_where{
+    border-radius:100%;
+    border-color:  black;
+    border-style:solid;
+    width:240px;
+    height:240px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.information-data{
+    border-color:  transparent;
+    border-style:solid;
+    width:800px;
+    height:240px;
+}
+textarea {
+  resize: none;
+}
+.information-data ul{
+    flex-direction:column;
+}
+
+#logout{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}

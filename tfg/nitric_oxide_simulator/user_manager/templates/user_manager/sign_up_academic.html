@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+  {% block css %}
+            {{block.super}}
+           <link href="{% static 'user_manager/css/authentication.css' %}" rel="stylesheet"> 
+  {% endblock %}
+   {%block content%}
+   <!--El formulario es demasiado largo bro-->
+   <div id ="authentication-container">
+      <div>
+        <h1>SIGN UP</h1>
+      </div>
+      <form id ="authentication-form" method="post">
+         {% csrf_token %}
+         <label>Institution</label>
+        <input type="text" name="institution" placeholder="ulpgc">
+        <label>Research field</label>
+        <input type="text" name="researchfield" placeholder=" Computacional Neuroscience">
+        <label>Research area</label>
+        <input type="text" name="researcharea" placeholder="brain movement">
+        <div id="section-signup-form">
+          <button onclick="window.history.back()">Return</button>
+          <button type="submit">Enter</button>
+        </div>
+        
+      </form>
+      <p>If you  have an account you can login  in this <a href="{% url 'login' %}">link</a></p>
+      
+   </div>
+   {% endblock %}
