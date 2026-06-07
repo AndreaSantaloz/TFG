@@ -1,11 +1,35 @@
-#simulate{
-    background-color:#CCE6EC;
-    width:1280px;
-    height:880px;
-    display:flex;
-    align-items:center;
-    flex-direction:column;
-    border-radius:25px;
+main{
+    height:2000px;
+}
+
+#simulate {
+    background-color: #CCE6EC;
+    width: 1280px;
+    /* CAMBIO: Quitamos height fijo para evitar que los elementos se aplasten o se salgan */
+    min-height: 1080px; 
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    /* CAMBIO: Usamos padding en lugar de space-around para controlar el flujo real */
+    padding: 40px 0; 
+    gap: 20px;
+    border-radius: 25px;
+}
+
+#dashboard {
+    display: grid;
+    /* Mantenemos tus dos columnas */
+    grid-template-columns: 1fr 1fr; 
+    column-gap: 40px;
+    /* AÑADIDO: Separación explícita entre filas para cuando caiga la tercera gráfica */
+    row-gap: 30px; 
+}
+
+.chart-container {
+    width: 480px;
+    min-height: 450px; 
+    border-radius: 15px;    /* Opcional: para que combine con tus bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Opcional: le da un toque elegante de laboratorio */
 }
 #menu-button{
     display:flex;

@@ -11,7 +11,14 @@
 {% block content %}
 <div id="simulate">
     <h1 id="dynamic-title">Simulation Workspace</h1>
-    <div class="chart-container" id="nitricOxidePlotGlobal"></div>
+    <div id="dashboard">
+        <div class="chart-container" id="lineal_chart"></div>
+        <div class="chart-container" id="scatter_chart"></div>
+        <div class="chart-container" id="heatmap_chart"></div>
+        <div class="chart-container" id="volume_chart"></div>
+    
+    </div>
+    
     <div id="menu-button">
        <button onclick="history.back()">Return</button>
         <button>Stop Simulation</button>

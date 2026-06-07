@@ -28,7 +28,8 @@ main{
     border-radius:25px;
     width:196px;
     height:48px;
-    background-color:#53bfe0;
+    background-color:#e0e9eb;
+    font-size:large;
 
 }
 
@@ -43,4 +44,5 @@ input[type="file"]{
     display:flex;
     align-items:center;
     justify-content:center;
+    flex-direction:column;
 }
