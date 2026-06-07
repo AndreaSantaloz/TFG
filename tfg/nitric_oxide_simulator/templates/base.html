@@ -1,18 +1,21 @@
-
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
+
     <head>
-        {%block favicon %} 
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="description" content="Aplicación para simular modelos de NO(óxido nítrico)">
+        <meta name="author" content="Andrea">
+        <meta http-equiv="content-language" content="en">
+        <meta name="robots" content="noindex, nofollow">
+        <meta name="referrer" content="no-referrer">
         <link rel="icon" type="image/x-icon" href="{% static 'images/brain.png' %}"> 
-        {% endblock %}
-         {%block metadato%}
-         <title>NOsimulator</title> 
-         {% endblock %}
          {%block css%}
-            <link href="{% static 'css/base.css' %}" rel="stylesheet"> 
+            <title>NOsimulator</title> 
+            <link href="{% static 'css/base.css' %}" rel="stylesheet">
          {% endblock %}
-        
+           
     </head>
     <body>
         <header>
