@@ -2,21 +2,39 @@ html,body{
     padding:0;
     margin:0;
     font-family:Arial;
-
+    color:#1A252C;
+    
+     height: 100%;
+}
+body{
+    display:flex;
+    flex-direction:column;
+    min-height:300vh;
 }
 header{
-    padding:8px;
+    padding-bottom:80px;
     height:80px;
 }
+#profile_icon{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
 main{
-    height:1124px;
+   flex:1 ;
     background-image:url('../images/brain2.png');
     background-repeat:no-repeat;
-    background-position:center;
+    background-position:center top;
+    background-color:#F5F7FA;
+    width:100%;
+    padding:60px 40px;
+   
 }
 footer{
     background-color:#CCE6EC;
     height:160px;
+    flex-shrink: 0;
 }
 
 ul{
@@ -27,7 +45,7 @@ ul{
 }
 ul li a{
     text-decoration: none;
-    color:black;
+    color:#1A252C;
 }
 #scheme-header{
     display:flex;

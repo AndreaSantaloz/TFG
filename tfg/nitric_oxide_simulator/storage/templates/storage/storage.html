@@ -3,14 +3,21 @@
 {% block css %}
     {{block.super}}
   <link href="{% static 'storage/css/storage.css' %}" rel="stylesheet"> 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
 {% endblock%}
 {% block content%}
 <div id="storage-box">
     <div id="menu_buttons">
-        <button id="add_model" title="Add New Model">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill:#3498db;">
-        <path d="M19 11h-6V5a1 1 0 0 0-2 0v6H5a1 1 0 0 0 0 2h6v6a1 1 0 0 0 2 0v-6h6a1 1 0 0 0 0-2z"/>
-    </svg>
+        <button id="add_model" title="Add New Model" onclick=addModel()> 
+           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="12" y1="18" x2="12" y2="12"></line>
+                <line x1="9" y1="15" x2="15" y2="15"></line>
+            </svg>
+            <label>Upload Model</label>
 </button>
     </div>
     <div id="storage">
@@ -22,7 +29,9 @@
                 <th>Model</th>
                 <th>First Date</th>
                 <th>Last Date</th>
-                <th>Delete/Simulate Model </th>
+                <th>Delete</th>
+                <th>Edit</th>
+                <th>Simulate</th>
             </tr>
         </thead>
         
@@ -35,35 +44,529 @@
                             <td>{{ i.first_date|date:"d/m/Y" }}</td>
                             <td>{{ i.last_date|date:"d/m/Y" }}</td>
                             <td>
-                                <div>
-                                    <button class="btn-delete" title="Eliminar Modelo">
+                            
+                                    <button  class="buttons" title="Eliminar Modelo"  onclick=deleteModel()>
                                         <svg id="deletesvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
                                             <path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"></path>
                                         </svg>
                                     </button>
-                                    <button class="btn-simulate" title="Simular Modelo">
+                                  
+                             
+                            </td>
+                            <td>
+                                <button class="buttons" onclick=editModel()>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill: ##156e1e;">
+    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+</svg>
+
+                                </button>
+                            </td>
+                            <td>
+                                  <button  class="buttons" title="Simular Modelo" onclick=simulateModel()>
                                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill:#3498db;">
                                             <path d="M8 5v14l11-7z"/>
                                         </svg>
                                     </button>
-                                </div> 
                             </td>
                         </tr>
                     {% endfor %}
                 {% else %}
-                    <tr>
-                        <td colspan="5" style="text-align: center; padding: 20px; color: #666;">
-                            There aren't models available.
+                        <tr>
+                            <td>{{ "Prueba" }}</td>
+                            <td>{{ "urlPrueba" }}</td>
+                            <td>{{ "11/06/2026" }}</td>
+                            <td>{{  "11/06/2026"  }}</td>
+                            <td>
+                            
+                                    <button  class="buttons" title="Eliminar Modelo"  onclick=deleteModel()>
+                                        <svg id="deletesvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                            <path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"></path>
+                                        </svg>
+                                    </button>
+                                  
+                             
+                            </td>
+                             <td>
+                                <button class="buttons" onclick=editModel()>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill: #156e1e;">
+    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+</svg>
+
+                                </button>
+                            </td>
+                            <td>
+                                  <button  class="buttons" title="Simular Modelo" onclick=simulateModel()>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill:#3498db;">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </button>
+                            </td>
+                        </tr>
                         </td>
                     </tr>
-                {% endif %}
+                    <tr>
+                       
+                             <tr>
+                            <td>{{ "Prueba" }}</td>
+                            <td>{{ "urlPrueba" }}</td>
+                            <td>{{ "11/06/2026" }}</td>
+                            <td>{{  "11/06/2026"  }}</td>
+                             <td>
+                            
+                                    <button class="buttons" title="Eliminar Modelo"  onclick=deleteModel()>
+                                        <svg id="deletesvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                            <path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"></path>
+                                        </svg>
+                                    </button>
+                                  
+                             
+                            </td>
+                             <td>
+                                <button class="buttons" onclick=editModel()>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill: #156e1e;">
+    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+</svg>
 
-       
+                                </button>
+                            </td>
+                            <td>
+                                  <button  class="buttons" title="Simular Modelo" onclick=simulateModel()>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill:#3498db;">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </button>
+                            </td>
+                        </tr>
+                       
+                    </tr>
+                {% endif %}
+                 
     </tbody>
    
 </table>
+
 </div>
 </div>
 
+<script>
+function addModel() {
+    // ==========================================
+    // PASO 1: SweetAlert con HTML del formulario
+    // ==========================================
+    Swal.fire({
+        title: 'Add Model',
+        html: `
+            <div style="text-align: left;">
+                <div class="mb-3">
+                    <label class="form-label" style="font-weight: bold;">Name:</label>
+                    <input type="text" id="nombre" class="swal2-input" placeholder="Name Model" style="margin: 5px 0 15px 0; width: 100%;">
+                </div>
+                
+                <label for="file" id="file_upload" style="display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed #3498db; padding: 20px; border-radius: 8px; cursor: pointer; background: #f8f9fa; transition: background 0.3s;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="80" height="80" style="fill:#3498db; margin-bottom: 10px;">
+                        <path d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
+                    </svg>
+                    <span id="file-label-text" style="color: #555; font-weight: 500;">Click to upload (Maximum 1 file)</span>
+                </label>
+                
+                <input type="file" id="file" name="file" style="display: none;">
+            </div>
+        `,
+        confirmButtonText: 'Save Model',
+        cancelButtonText: 'Return',
+        showCancelButton: true,
+        confirmButtonColor: '#28a745',
+        cancelButtonColor: '#d9e1e7',
+        didOpen: () => {
+            // Interceptamos el cambio de archivo para mostrar el nombre del archivo seleccionado en la interfaz
+            const fileInput = document.getElementById('file');
+            const fileText = document.getElementById('file-label-text');
+            
+            fileInput.addEventListener('change', (e) => {
+                if (e.target.files.length > 0) {
+                    fileText.textContent = `Selected: ${e.target.files[0].name}`;
+                    fileText.style.color = '#28a745';
+                } else {
+                    fileText.textContent = 'Click to upload (Maximum 1 file)';
+                    fileText.style.color = '#555';
+                }
+            });
+        },
+        preConfirm: () => {
+            // ==========================================
+            // PASO 2: Validar campos antes de enviar
+            // ==========================================
+            // Corregido: El id correcto es 'nombre'
+            const nameValue = document.getElementById('nombre').value.trim();
+            const fileInput = document.getElementById('file');
+            
+            if (!nameValue) {
+                Swal.showValidationMessage('Please enter a name');
+                return false;
+            }
+            if (fileInput.files.length === 0) {
+                Swal.showValidationMessage('Please select a file');
+                return false;
+            }
+         
+            // Si vas a enviar archivos por AJAX, usar JSON.stringify NO funcionará de forma nativa para el archivo.
+            // Es mejor retornar el objeto File o preparar un FormData en el siguiente paso.
+            return {
+                name: nameValue,
+                model: fileInput.files[0] // Guardamos el archivo real, no el string de la ruta falsa (.value)
+            };
+        }
+    }).then(async (result) => {
+        // ==========================================
+        // PASO 3: Enviar a Django si confirmó
+        // ==========================================
+        if (result.isConfirmed) {
+            const data = result.value;
+            
+            // Mostrar loading
+            Swal.fire({
+                title: 'Guardando...',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+            
+            try {
+                // Alerta importante: Como estás enviando un ARCHIVO binario, debes usar FormData en lugar de JSON.
+                const formData = new FormData();
+                formData.append('name', data.name);
+                formData.append('model', data.model); // El archivo binario
 
+                const response = await fetch('/productos/crear-ajax/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        // NOTA: Cuando envías FormData, NUNCA debes definir el Content-Type manualmente.
+                        // El navegador se encarga de poner 'multipart/form-data' con el boundary correcto.
+                    },
+                    body: formData
+                });
+                
+                const resultado = await response.json();
+                
+                if (resultado.success) {
+                    // ==========================================
+                    // PASO 4: Actualizar tabla sin recargar
+                    // ==========================================
+                    const nuevoProducto = resultado.producto;
+                    
+                    const tabla = document.getElementById('tabla-productos');
+                    const fila = document.createElement('tr');
+                    fila.id = `producto-${nuevoProducto.id}`;
+                    fila.innerHTML = `
+                        <td>${nuevoProducto.nombre}</td>
+                        <td>$${nuevoProducto.precio}</td>
+                        <td>${nuevoProducto.stock}</td>
+                    `;
+                    tabla.appendChild(fila);
+                    
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Producto creado!',
+                        text: resultado.message,
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                } else {
+                    throw new Error(resultado.message);
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: error.message || 'No se pudo guardar el producto'
+                });
+            }
+        }
+    });
+}
+function deleteModel() {
+    // ==========================================
+    // PASO 1: SweetAlert con HTML del formulario
+    // ==========================================
+    Swal.fire({
+        title: 'Are you sure what do you want to delete your model?',
+        html: `
+            
+        `,
+        confirmButtonText: 'Delete Model',
+        cancelButtonText: 'Return',
+        showCancelButton: true,
+        confirmButtonColor: '#dc3545',
+        cancelButtonColor: '#d9e1e7',
+        preConfirm: () => {
+            // ==========================================
+            // PASO 2: Validar campos antes de enviar
+            // ==========================================
+            const name = document.getElementById('name').value;
+            const model = document.getElementById('file').value;
+         
+            // Devolver datos para enviar
+            return {
+                name: nombre,
+                model:model,
+            };
+        }
+    }).then(async (result) => {
+        // ==========================================
+        // PASO 3: Enviar a Django si confirmó
+        // ==========================================
+        if (result.isConfirmed) {
+            const data = result.value;
+            
+            // Mostrar loading
+            Swal.fire({
+                title: 'Guardando...',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+            
+            try {
+                // Enviar a Django
+                const response = await fetch('/productos/crear-ajax/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const resultado = await response.json();
+                
+                if (resultado.success) {
+                    // ==========================================
+                    // PASO 4: Actualizar tabla sin recargar
+                    // ==========================================
+                    const nuevoProducto = resultado.producto;
+                    
+                    // Agregar fila a la tabla
+                    const tabla = document.getElementById('tabla-productos');
+                    const fila = document.createElement('tr');
+                    fila.id = `producto-${nuevoProducto.id}`;
+                    fila.innerHTML = `
+                        <td>${nuevoProducto.nombre}</td>
+                        <td>$${nuevoProducto.precio}</td>
+                        <td>${nuevoProducto.stock}</td>
+                    `;
+                    tabla.appendChild(fila);
+                    
+                    // Mostrar mensaje de éxito
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Producto creado!',
+                        text: resultado.message,
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                } else {
+                    throw new Error(resultado.message);
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: error.message || 'No se pudo guardar el producto'
+                });
+            }
+        }
+    });
+}
+function editModel() {
+    // ==========================================
+    // PASO 1: SweetAlert con HTML del formulario
+    // ==========================================
+    Swal.fire({
+        title: 'Are you sure what do you want to edit your model?',
+        html: `
+            
+        `,
+        confirmButtonText: 'Edit Model',
+        cancelButtonText: 'Return',
+        showCancelButton: true,
+        confirmButtonColor: '#1f6411',
+        cancelButtonColor: '#d9e1e7',
+        preConfirm: () => {
+            // ==========================================
+            // PASO 2: Validar campos antes de enviar
+            // ==========================================
+            const name = document.getElementById('name').value;
+            const model = document.getElementById('file').value;
+         
+            // Devolver datos para enviar
+            return {
+                name: nombre,
+                model:model,
+            };
+        }
+    }).then(async (result) => {
+        // ==========================================
+        // PASO 3: Enviar a Django si confirmó
+        // ==========================================
+        if (result.isConfirmed) {
+            const data = result.value;
+            
+            // Mostrar loading
+            Swal.fire({
+                title: 'Guardando...',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+            
+            try {
+                // Enviar a Django
+                const response = await fetch('/productos/crear-ajax/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const resultado = await response.json();
+                
+                if (resultado.success) {
+                    // ==========================================
+                    // PASO 4: Actualizar tabla sin recargar
+                    // ==========================================
+                    const nuevoProducto = resultado.producto;
+                    
+                    // Agregar fila a la tabla
+                    const tabla = document.getElementById('tabla-productos');
+                    const fila = document.createElement('tr');
+                    fila.id = `producto-${nuevoProducto.id}`;
+                    fila.innerHTML = `
+                        <td>${nuevoProducto.nombre}</td>
+                        <td>$${nuevoProducto.precio}</td>
+                        <td>${nuevoProducto.stock}</td>
+                    `;
+                    tabla.appendChild(fila);
+                    
+                    // Mostrar mensaje de éxito
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Producto creado!',
+                        text: resultado.message,
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                } else {
+                    throw new Error(resultado.message);
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: error.message || 'No se pudo guardar el producto'
+                });
+            }
+        }
+    });
+}
+function simulateModel() {
+    // ==========================================
+    // PASO 1: SweetAlert con HTML del formulario
+    // ==========================================
+    Swal.fire({
+        title: 'Are you sure what do you want to simulate your model?',
+        html: `
+            
+        `,
+        confirmButtonText: 'Simulate Model',
+        cancelButtonText: 'Return',
+        showCancelButton: true,
+        confirmButtonColor: '#70a5e1',
+        cancelButtonColor: '#d9e1e7',
+        preConfirm: () => {
+            // ==========================================
+            // PASO 2: Validar campos antes de enviar
+            // ==========================================
+            const name = document.getElementById('name').value;
+            const model = document.getElementById('file').value;
+         
+            // Devolver datos para enviar
+            return {
+                name: nombre,
+                model:model,
+            };
+        }
+    }).then(async (result) => {
+        // ==========================================
+        // PASO 3: Enviar a Django si confirmó
+        // ==========================================
+        if (result.isConfirmed) {
+            const data = result.value;
+            
+            // Mostrar loading
+            Swal.fire({
+                title: 'Guardando...',
+                allowOutsideClick: false,
+                didOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+            
+            try {
+                // Enviar a Django
+                const response = await fetch('/productos/crear-ajax/', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}',
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const resultado = await response.json();
+                
+                if (resultado.success) {
+                    // ==========================================
+                    // PASO 4: Actualizar tabla sin recargar
+                    // ==========================================
+                    const nuevoProducto = resultado.producto;
+                    
+                    // Agregar fila a la tabla
+                    const tabla = document.getElementById('tabla-productos');
+                    const fila = document.createElement('tr');
+                    fila.id = `producto-${nuevoProducto.id}`;
+                    fila.innerHTML = `
+                        <td>${nuevoProducto.nombre}</td>
+                        <td>$${nuevoProducto.precio}</td>
+                        <td>${nuevoProducto.stock}</td>
+                    `;
+                    tabla.appendChild(fila);
+                    
+                    // Mostrar mensaje de éxito
+                    Swal.fire({
+                        icon: 'success',
+                        title: '¡Producto creado!',
+                        text: resultado.message,
+                        timer: 2000,
+                        showConfirmButton: false
+                    });
+                } else {
+                    throw new Error(resultado.message);
+                }
+            } catch (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: error.message || 'No se pudo guardar el producto'
+                });
+            }
+        }
+    });
+}
+</script>
 {% endblock%}

@@ -8,13 +8,14 @@ main{
 }
 
 #upload_data{
-    background-color:#CCE6EC;
+    background-color:white;
     width:880px;
     height:580px;
     display:flex;
     align-items:center;
     flex-direction:column;
     border-radius:25px;
+    margin-top:80px;
 }
 #upload_data form{
     display:flex;
@@ -25,11 +26,12 @@ main{
 
 }
 #upload_data form button{
-    border-radius:25px;
-    width:196px;
-    height:48px;
-    background-color:#e0e9eb;
-    font-size:large;
+   border-radius: 25px;
+  width: 196px;
+  height: 48px;
+  background-color: #1E88E5;
+  font-size: large;
+  color: #F5F7FA;
 
 }
 

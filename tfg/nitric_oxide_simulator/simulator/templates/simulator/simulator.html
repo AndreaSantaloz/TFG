@@ -5,12 +5,42 @@
     {{ block.super }}
     <link href="{% static 'simulator/css/home.css' %}" rel="stylesheet">
      <link href="{% static 'simulator/css/simulator.css' %}" rel="stylesheet">
-    <script src="https://cdn.plot.ly/plotly-2.24.1.min.js" ></script>
+    
 {% endblock %}
 
 {% block content %}
 <div id="simulate">
-    <h1 id="dynamic-title">Simulation Workspace</h1>
+    <h1 id="dynamic-title">Simulation in process!</h1>
+    <div id="input_data_content">
+        <h2>Data inputs of Model</h2>
+        <div id="input_data">
+            <div>
+                <h3>Compartimentals </h3>
+                <span id="compartimentals"> </span>
+            </div>
+            <div>
+                <h3>Start time</h3>
+                <span id="start_t"></span>
+            </div>
+            <div>
+                <h3>End time</h3>
+                 <span id="end_t"></span>
+            </div>
+            <div>
+                <h3>Delta time</h3>
+                <span id="delta_t"></span>
+            </div>
+            <div id="dimensions">
+                <h3>Dimension</h3>
+                <span id="rows"> </span>
+                <span id="cols"></span>
+                <span id="depths"></span>
+            
+            </div>
+        </div>
+        <h2>Charts of Model</h2>
+    </div>
+    
     <div id="dashboard">
         <div class="chart-container" id="lineal_chart"></div>
         <div class="chart-container" id="scatter_chart"></div>
@@ -28,5 +58,9 @@
 <script id="datos-django" type="application/json">
     {{ json_simulacion|safe }}
 </script>
-<script src="{% static 'simulator/js/simulator.js' %}" ></script>
+
+<script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+<script src="{% static 'simulator/js/simulator.js' %}"></script>
+
+
 {% endblock %}

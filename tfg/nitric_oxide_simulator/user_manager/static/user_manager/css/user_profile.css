@@ -6,6 +6,87 @@ header{
 }
 main{
     height:1600px;
+    display:flex;
+    justify-content:center;
+}
+
+#profile-panel{
+    background-color:white;
+    border-radius:25px;
+    height:1020px;
+    width:100%;
+    display:flex;
+    gap: 8px;
+    padding:32px;
+}
+#area-texto{
+    display:flex;
+    flex-direction:column;
+    width:100%;
+    gap:8px;
+}
+#setting-button{
+    display:flex;
+    justify-content: flex-end;
+    width:100%;
+}
+.settings-btn svg {
+  width: 28px;
+  height: 28px;
+  stroke: #333;
+  stroke-width: 1.7;
+  fill: none;
+}
+#profile-section {
+  position: relative;
+}
+h2{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+#user{
+    background-color:#D9E0EA;
+    height:80%;
+    width:40%;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    justify-content:center;
+    gap:16px;
+}
+
+#aboutme{
+    background-color:#D9E0EA;
+    height:420px;
+    width:98%;
+}
+
+#researchs{
+    background-color:#D9E0EA;
+    height:420px;
+     width:98%;
+    
+}
+h1{
+     margin-left:32px;
+}
+#profile{
+    display:flex;
+    flex-direction:column;
+    width: 80%;
+    align-items: flex-end;
+    gap:16px;
+
+    
+}
+
+
+textarea{
+    margin-left:16px;
+    border-radius:25px;
+    padding-left:8px;
+    padding-top:16px;
 }
 
 input[type="file"]{
@@ -20,13 +101,13 @@ input[type="file"]{
 
 #photo_where{
     border-radius:100%;
-    border-color:  black;
-    border-style:solid;
+    
     width:240px;
     height:240px;
     display:flex;
     align-items:center;
     justify-content:center;
+    background-color:white;
 }
 .information-data{
     border-color:  transparent;
@@ -37,12 +118,78 @@ input[type="file"]{
 textarea {
   resize: none;
 }
-.information-data ul{
+#userdata{
+    background-color:white;
+    border-radius:25px;
+    width:80%;
+    height:64%;
+}
+#userdata form{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    
+}
+#userdata form label{
+    align-items:center;
+    
+}
+#userdata ul{
     flex-direction:column;
 }
+#userdata {
+    background-color: white;
+    border-radius: 25px;
+    width: 80%;
+    height: 64%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
+/* 2. Cambiamos el formulario para que alinee los textos a la izquierda */
+#userdata form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea todas las etiquetas al inicio izquierdo */
+    width: 100%;
+    gap: 12px;               /* Da un espacio uniforme entre filas */
+    padding-left: 10%;       /* Margen elegante para que no pegue al borde izquierdo */
+    box-sizing: border-box;
+}
+
+/* 3. Forzamos a las etiquetas a comportarse como bloques completos */
+#userdata form label {
+    display: block;
+    width: 100%;
+    text-align: left;        /* Fuerza a que el texto interno vaya a la izquierda */
+}
+
+/* 4. REGLA CLAVE: Sacamos el h1 del flujo de la izquierda y lo centramos */
+#userdata form label:has(h1), 
+#userdata form label:first-of-type {      /* Centra el contenedor del Nombre */
+    margin-bottom: 15px;     /* Separa el nombre del resto de datos */
+    padding-right: 10%;      /* Compensa el padding-left del formulario para centrar real */
+}
+
+#userdata form h1 {
+    margin: 0;               /* Quita los márgenes por defecto que rompen el diseño */
+    display: inline-block;
+}
+
+/* 5. Nos aseguramos de que los inputs ocultos no ocupen espacio residual */
+#userdata form input[hidden] {
+    display: none !important;
+}
 #logout{
     display:flex;
     flex-direction:column;
     align-items:center;
+}
+#buttons{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:32px;
 }

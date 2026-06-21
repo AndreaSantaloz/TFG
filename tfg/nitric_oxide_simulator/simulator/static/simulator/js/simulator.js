@@ -1,97 +1,158 @@
+const layoutLineal = {
+    xaxis: { title: 'Time (t)' },
+    yaxis: { title: 'Concentration (C)' },
+    hovermode: 'closest'
+};
+
+function create_chart(name, traza, layout){
+    Plotly.newPlot(name, traza, layout);
+}
+
 document.addEventListener("DOMContentLoaded", function() {
+    const data = document.getElementById('datos-django');
+    if (!data || !data.textContent.trim()) return;
+
     try {
-        const el = document.getElementById('datos-django');
-        if (!el || !el.textContent.trim()) return;
+        const paquete = JSON.parse(data.textContent.trim());
+        console.log("Actual data structure:", paquete);
+        
+        // 1. Extracción segura de los ejes de simulación
+        const t_axis = paquete?.final_results?.time;
+        const c_plano = paquete?.final_results?.concentration;
+        
+        if (!t_axis || !c_plano) {
+            console.error("Error: 'final_results.time' o 'concentration' no están definidos en el JSON.");
+            return;
+        }
 
-        const paquete = JSON.parse(el.textContent.trim());
-        const t_axis = paquete.resultados_finales.eje_tiempo;
-        const c_plano = paquete.resultados_finales.valores_c_plano;
+        // 2. Mapeo inteligente de dimensiones (Si rowN_ no viene, usa N_ como filas para 1D)
+        const rows = paquete.initial_data.rowN_ || paquete.initial_data.N_ || 1;
+        const cols = paquete.initial_data.columnN_ || 1;
+        const depths = paquete.initial_data.depthN_ || 1;
+        const timestap = t_axis.length;
 
-        const rows = paquete.datos_inicio.rowN_ || 1;
-        const cols = paquete.datos_inicio.columnN_ || 1;
-        const depths = paquete.datos_inicio.depthN_ || 1;
-        const pasos_t = t_axis.length;
+        // Actualización segura del DOM
+        if (document.getElementById('rows')) document.getElementById('rows').textContent = "Rows: " + rows;
+        if (document.getElementById('cols')) document.getElementById('cols').textContent = "Columns: " + cols;
+        if (document.getElementById('depths')) document.getElementById('depths').textContent = "Depth: " + depths;
+        
+        if (document.getElementById('compartimentals')) {
+            document.getElementById("compartimentals").textContent = paquete.initial_data.rowN_ || paquete.initial_data.N_ || rows;
+        }
+        
+        if (document.getElementById('start_t')) document.getElementById('start_t').textContent = paquete.initial_data.start_t + " s";
+        if (document.getElementById('end_t')) document.getElementById('end_t').textContent = paquete.initial_data.end_t + " s";
+        if (document.getElementById('delta_t')) document.getElementById('delta_t').textContent = paquete.initial_data.delta_t + " s";
 
         const title = document.getElementById('dynamic-title');
-        
-        // Contenedor secundario para la gráfica lineal (aseguramos que esté limpio)
         const linealChartEl = document.getElementById('lineal_chart');
-        if (linealChartEl) linealChartEl.style.display = 'none'; // Por defecto oculto
+        if (linealChartEl) linealChartEl.style.display = 'none';
 
-        // ==========================================
-        // CASO 3D
-        // ==========================================
-    if (depths > 1) {
+        // 3. DECLARACIÓN PREVIA DE FUNCIONES AUXILIARES (Evita errores de referencia)
+        function obtenerIntensidadesEnT(t_idx) {
+            let intensidades = [];
+            let total_celdas = rows * cols * depths;
+            for (let i = 0; i < total_celdas; i++) {
+                intensidades.push(c_plano[i * timestap + t_idx] || 0);
+            }
+            return intensidades;
+        }
+
+        function obtenerPlano2D(t_idx, z_fijo) {
+            let x_2d = [], y_2d = [], c_2d = [];
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    let idx = ((r * cols + c) * depths + z_fijo) * timestap + t_idx;
+                    x_2d.push(c);
+                    y_2d.push(r);
+                    c_2d.push(c_plano[idx] || 0);
+                }
+            }
+            return { x: x_2d, y: y_2d, c: c_2d };
+        }
+
+        function obtenerMatrizHeatmap(t_idx, z_fijo) {
+            let matriz = [];
+            for (let r = 0; r < rows; r++) {
+                let fila = [];
+                for (let c = 0; c < cols; c++) {
+                    let idx = ((r * cols + c) * depths + z_fijo) * timestap + t_idx;
+                    fila.push(c_plano[idx] || 0);
+                }
+                matriz.push(fila);
+            }
+            return matriz;
+        }
+
+        // 4. Enrutamiento lógico por dimensiones
+        if (depths > 1) {
             if (linealChartEl) linealChartEl.style.display = 'block';
-            title.innerText = "Simulation: 3D Space Bubbles & 2D Slices";
+            if (title) title.innerText = "Simulation: 3D model";
 
-            // Asegurar que todos los contenedores HTML estén visibles
             if (document.getElementById('heatmap_chart')) document.getElementById('heatmap_chart').style.display = 'block';
             if (document.getElementById('scatter_chart')) document.getElementById('scatter_chart').style.display = 'block';
             if (document.getElementById('volume_chart')) document.getElementById('volume_chart').style.display = 'block';
 
-            // --- 1. PROCESAR HISTÓRICO LINEAL (Promedio global del cubo) ---
-            let concentraciones_promedio = [];
-            for (let t = 0; t < pasos_t; t++) {
-                let intensidades = obtenerIntensidadesEnT(t);
-                let suma = intensidades.reduce((a, b) => a + b, 0);
-                concentraciones_promedio.push(suma / intensidades.length);
+            let concentrations_por_tiempo = [];
+            for (let t = 0; t < timestap; t++) {
+                let intensity = obtenerIntensidadesEnT(t);
+                let data_en_t = [];
+                for (let i = 0; i < intensity.length; i++) {
+                    data_en_t.push(intensity[i]);
+                }
+                concentrations_por_tiempo.push(data_en_t);
             }
 
-            Plotly.newPlot('lineal_chart', [{
-                x: t_axis,
-                y: concentraciones_promedio,
-                type: 'scatter',
-                mode: 'lines',
-                line: { color: 'rgb(219, 64, 82)', width: 3 }
-            }], {
-                title: 'Evolución Temporal de la Concentración Promedio',
-                xaxis: { title: 'Tiempo (s)' },
-                yaxis: { title: 'Concentración Promedio' }
-            }, { responsive: true });
+            let frames = [];
+            for (let t = 0; t < timestap; t++) {
+                let frame_data = [];
+                for (let i = 0; i < concentrations_por_tiempo[0].length; i++) {
+                    let y_values = [];
+                    for (let k = 0; k <= t; k++) {
+                        y_values.push(concentrations_por_tiempo[k][i]);
+                    }
+                    frame_data.push({
+                        y: y_values,
+                        name: `Serie ${i+1}`,
+                        type: 'scatter',
+                        mode: 'lines'
+                    });
+                }
+                frames.push({
+                    name: `frame_${t}`,
+                    data: frame_data
+                });
+            }
 
+            let layoutAnimacion = {
+                title: 'Temporal Evolution of the box of the NO',
+                xaxis: { title: 'Time (s)', range: [0, timestap - 1] },
+                yaxis: { title: 'Concentration' },
+                sliders: [{
+                    pad: { t: 30 },
+                    len: 0.9,
+                    x: 0.1,
+                    currentvalue: {
+                        visible: true,
+                        prefix: 'Time: ',
+                        font: { size: 16 }
+                    },
+                    steps: frames.map((frame, idx) => ({
+                        label: idx,
+                        method: 'animate',
+                        args: [[frame.name], {
+                            mode: 'immediate',
+                            frame: { duration: 0, redraw: true },
+                            transition: { duration: 0 }
+                        }]
+                    }))
+                }]
+            };
 
-            // --- 2. FUNCIONES DE EXTRACCIÓN DE DATOS PARA CORTES 2D ---
+            Plotly.newPlot('lineal_chart', frames[0].data, layoutAnimacion);
+            Plotly.addFrames('lineal_chart', frames);
+
             let z_central = Math.floor(depths / 2);
-
-            function obtenerPlano2D(t_idx, z_fijo) {
-                let x_2d = [], y_2d = [], c_2d = [];
-                for (let r = 0; r < rows; r++) {
-                    for (let c = 0; c < cols; c++) {
-                        // Mapeo correcto del índice plano 3D compuesto: ((r * cols + c) * depths + z_fijo) * pasos_t + t_idx
-                        let idx = ((r * cols + c) * depths + z_fijo) * pasos_t + t_idx;
-                        x_2d.push(c);
-                        y_2d.push(r);
-                        c_2d.push(c_plano[idx] || 0);
-                    }
-                }
-                return { x: x_2d, y: y_2d, c: c_2d };
-            }
-
-            function obtenerMatrizHeatmap(t_idx, z_fijo) {
-                let matriz = [];
-                for (let r = 0; r < rows; r++) {
-                    let fila = [];
-                    for (let c = 0; c < cols; c++) {
-                        let idx = ((r * cols + c) * depths + z_fijo) * pasos_t + t_idx;
-                        fila.push(c_plano[idx] || 0);
-                    }
-                    matriz.push(fila);
-                }
-                return matriz;
-            }
-
-            function obtenerIntensidadesEnT(t_idx) {
-                let intensidades = [];
-                let total_celdas = rows * cols * depths;
-                for (let i = 0; i < total_celdas; i++) {
-                    intensidades.push(c_plano[i * pasos_t + t_idx] || 0);
-                }
-                return intensidades;
-            }
-
-
-            // --- 3. COORDENADAS PARA EL CUBO 3D ---
             let x_coords = [], y_coords = [], z_coords = [];
             for (let r = 0; r < rows; r++) {
                 for (let c = 0; c < cols; c++) {
@@ -103,11 +164,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }
 
-
-            // --- 4. RENDERIZADO DE GRÁFICOS INICIALES (Tiempo t = 0) ---
             let datosPlanoInicial = obtenerPlano2D(0, z_central);
 
-            // Scatter 2D inicial
             Plotly.newPlot('scatter_chart', [{
                 x: datosPlanoInicial.x,
                 y: datosPlanoInicial.y,
@@ -120,7 +178,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 yaxis: { title: 'Eje Y' }
             }, { responsive: true });
 
-            // Heatmap inicial (Corrección del bug de nombre de función)
             Plotly.newPlot('heatmap_chart', [{
                 z: obtenerMatrizHeatmap(0, z_central),
                 type: 'heatmap',
@@ -133,31 +190,24 @@ document.addEventListener("DOMContentLoaded", function() {
                 yaxis: { autorange: 'reverse' }
             }, { responsive: true });
 
-            // Cubo 3D inicial
             Plotly.newPlot('volume_chart', [{
                 x: x_coords, y: y_coords, z: z_coords,
                 type: 'scatter3d', mode: 'markers',
                 marker: { size: 10, color: obtenerIntensidadesEnT(0), colorscale: 'Jet', showscale: true }
             }], {
-                sliders: [{
-                    pad: { t: 30 },
-                    steps: [] // Se llenará dinámicamente abajo
-                }],
+                sliders: [{ pad: { t: 30 }, steps: [] }],
                 scene: { xaxis: { title: 'X' }, yaxis: { title: 'Y' }, zaxis: { title: 'Z' } }
             }, { responsive: true });
 
-
-            // --- 5. CREACIÓN DE ANIMACIONES SINCRONIZADAS ---
             const framesCubo = [];
             const framesScatter = [];
             const framesHeatmap = [];
             const sliderSteps = [];
 
-            for (let t = 0; t < pasos_t; t++) {
+            for (let t = 0; t < timestap; t++) {
                 let label_t = t_axis[t].toFixed(2) + 's';
                 let datosPlanoT = obtenerPlano2D(t, z_central);
 
-                // Frame Cubo 3D
                 framesCubo.push({
                     name: label_t,
                     data: [{
@@ -167,7 +217,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     }]
                 });
 
-                // Frame Scatter 2D
                 framesScatter.push({
                     name: label_t,
                     data: [{
@@ -177,13 +226,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     }]
                 });
 
-                // Frame Heatmap
                 framesHeatmap.push({
                     name: label_t,
                     data: [{ z: obtenerMatrizHeatmap(t, z_central), type: 'heatmap' }]
                 });
 
-                // Control único de Slider asignado al método de animación global
                 sliderSteps.push({
                     label: label_t,
                     method: 'animate',
@@ -195,34 +242,31 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             }
 
-            // Inyectar frames a cada gráfica de forma independiente e implementar la sincronización por eventos
             Plotly.addFrames('volume_chart', framesCubo);
             Plotly.addFrames('scatter_chart', framesScatter);
             Plotly.addFrames('heatmap_chart', framesHeatmap);
 
-            // Actualizar el layout del volumen añadiendo los pasos del slider ya calculados
-            Plotly.relayout('volume_chart', {
-                'sliders[0].steps': sliderSteps
-            });
+            Plotly.relayout('volume_chart', { 'sliders[0].steps': sliderSteps });
 
-            // ESCUCHADOR DE SLIDER: Sincroniza los cambios de cuadro del Cubo 3D hacia las vistas 2D
             let volEl = document.getElementById('volume_chart');
-            volEl.on('plotly_sliderchange', function(e) {
-                let pasoActual = e.step.label;
-                Plotly.animate('scatter_chart', [pasoActual], { mode: 'immediate', frame: { duration: 0, redraw: true } });
-                Plotly.animate('heatmap_chart', [pasoActual], { mode: 'immediate', frame: { duration: 0, redraw: true } });
-            });
-        } else if (cols > 1) {
-            title.innerText = "Simulation: 2D Heatmap & Linear History";
-            if (linealChartEl) linealChartEl.style.display = 'block'; // Mostramos el contenedor lineal
+            if (volEl) {
+                volEl.on('plotly_sliderchange', function(e) {
+                    let pasoActual = e.step.label;
+                    Plotly.animate('scatter_chart', [pasoActual], { mode: 'immediate', frame: { duration: 0, redraw: true } });
+                    Plotly.animate('heatmap_chart', [pasoActual], { mode: 'immediate', frame: { duration: 0, redraw: true } });
+                });
+            }
 
-            // --- 1. CONFIGURACIÓN DEL MAPA DE CALOR (HEATMAP) ---
+        } else if (cols > 1) {
+            if (title) title.innerText = "Simulation: 2D model";
+            if (linealChartEl) linealChartEl.style.display = 'block';
+
             function getGrid2D(t_idx) {
                 let grid = [];
                 for (let r = 0; r < rows; r++) {
                     let fila = [];
                     for (let c = 0; c < cols; c++) {
-                        let idx_plano = (r * cols + c) * pasos_t + t_idx;
+                        let idx_plano = (r * cols + c) * timestap + t_idx;
                         fila.push(c_plano[idx_plano] || 0);
                     }
                     grid.push(fila);
@@ -233,7 +277,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let frames2D = [];
             let steps2D = [];
 
-            for (let t = 0; t < pasos_t; t++) {
+            for (let t = 0; t < timestap; t++) {
                 let lbl = t_axis[t].toFixed(2) + 's';
                 frames2D.push({
                     name: lbl,
@@ -245,7 +289,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             }
 
-            // Dibuja el Heatmap y espera a que termine de procesar sus fotogramas
             Plotly.newPlot('heatmap_chart', [{
                 z: getGrid2D(0),
                 type: 'heatmap',
@@ -256,34 +299,18 @@ document.addEventListener("DOMContentLoaded", function() {
             }, { responsive: true }).then(function() {
                 Plotly.addFrames('heatmap_chart', frames2D);
                 
-                // --- 2. CONFIGURACIÓN DE LA GRÁFICA LINEAL (Dentro del .then seguro) ---
                 let trazas2D = [];
+                let trazasScatter2d = [];
                 for (let r = 0; r < rows; r++) {
                     for (let c = 0; c < cols; c++) {
-                        let inicio = (r * cols + c) * pasos_t;
-                        let datos_celda = c_plano.slice(inicio, inicio + pasos_t);
-
+                        let inicio = (r * cols + c) * timestap;
+                        let datos_celda = c_plano.slice(inicio, inicio + timestap);
                         trazas2D.push({
                             x: t_axis,
                             y: datos_celda,
                             mode: 'lines',
                             name: `Fila ${r + 1}, Col ${c + 1}`
                         });
-                    }
-                }
-
-                const layoutLineal = {
-                    xaxis: { title: 'Tiempo (t)' },
-                    yaxis: { title: 'Concentración (C)' },
-                    hovermode: 'closest'
-                };
-
-                let trazasScatter2d = [];
-                for (let r = 0; r < rows; r++) {
-                    for (let c = 0; c < cols; c++) {
-                        let inicio = (r * cols + c) * pasos_t;
-                        let datos_celda = c_plano.slice(inicio, inicio + pasos_t);
-
                         trazasScatter2d.push({
                             x: t_axis,
                             y: datos_celda,
@@ -291,49 +318,43 @@ document.addEventListener("DOMContentLoaded", function() {
                             name: `Fila ${r + 1}, Col ${c + 1}`
                         });
                     }
-                Plotly.newPlot('lineal_chart', trazas2D, layoutLineal);
-                Plotly.newPlot('scatter_chart', trazasScatter2d);
                 }
-                 document.getElementById('volume_chart').style.display='none';
+                create_chart('lineal_chart', trazas2D, layoutLineal);
+                create_chart('scatter_chart', trazasScatter2d, layoutLineal);
+                
+                if (document.getElementById('volume_chart')) document.getElementById('volume_chart').style.display = 'none';
             });
 
-        // ==========================================
-        // CASO 1D
-        // ==========================================
         } else {
-            title.innerText = "Simulation: 1D Linear History";
-             if (linealChartEl) linealChartEl.style.display = 'block'; 
+            // Modelo 1D: Procesará adecuadamente las colecciones con N_ componentes lineales
+            if (title) title.innerText = "Simulation: 1D model";
+            if (linealChartEl) linealChartEl.style.display = 'block'; 
+
             let trazas1D = [];
+            let trazas1DS = [];
             for (let r = 0; r < rows; r++) {
-                let inicio = r * pasos_t;
+                let inicio = r * timestap;
+                let fragmentoConcentracion = c_plano.slice(inicio, inicio + timestap);
+                
                 trazas1D.push({
                     x: t_axis,
-                    y: c_plano.slice(inicio, inicio + pasos_t),
+                    y: fragmentoConcentracion,
                     mode: 'lines',
                     name: `Comp ${r+1}`
                 });
-            }
-
-            let trazas1DS = [];
-            for (let r = 0; r < rows; r++) {
-                let inicio = r * pasos_t;
                 trazas1DS.push({
                     x: t_axis,
-                    y: c_plano.slice(inicio, inicio + pasos_t),
+                    y: fragmentoConcentracion,
                     mode: 'markers',
                     name: `Comp ${r+1}`
                 });
             }
-             const layoutLineal = {
-                    xaxis: { title: 'Tiempo (t)' },
-                    yaxis: { title: 'Concentración (C)' },
-                    hovermode: 'closest'
-                };
-
-          Plotly.newPlot('lineal_chart', trazas1D, layoutLineal);
-          Plotly.newPlot('scatter_chart', trazas1DS);
-          document.getElementById('heatmap_chart').style.display='none';
-          document.getElementById('volume_chart').style.display='none';
+            
+            create_chart('lineal_chart', trazas1D, layoutLineal);
+            create_chart('scatter_chart', trazas1DS, layoutLineal);
+           
+            if (document.getElementById('heatmap_chart')) document.getElementById('heatmap_chart').style.display = 'none';
+            if (document.getElementById('volume_chart')) document.getElementById('volume_chart').style.display = 'none';
         }
 
     } catch (e) {

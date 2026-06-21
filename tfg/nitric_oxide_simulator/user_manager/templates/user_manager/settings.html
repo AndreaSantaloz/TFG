@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+ {% block css %}
+            {{block.super}}
+            <link href="{% static 'user_manager/css/settings.css' %}" rel="stylesheet"> 
+  {% endblock %}
+  {%block content%}
+  <section id="back">
+<a id="back" onclick="window.history.back()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+    </a>
+  </section>
+   
+  <section id="menu-setting">
+    <a href="{% url 'account_settings'%}">Account Settings</a>
+    <a href="{% url 'accesibility_settings'%}">Accesibility Settings</a>
+  </section>
+  {%block setting%}
+  {%endblock%}
+
+
+{% endblock %}

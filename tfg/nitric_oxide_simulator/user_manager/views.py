@@ -3,22 +3,28 @@ from django.contrib.auth import authenticate, login ,logout
 from django.contrib.auth.models import User
 from .form import LoginForm,SignUpFirstStepForm,SignUpSecondStepForm
 from .models import Profile_User
+from django.contrib import messages
 def login_view(request):
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
-            user_sentence = User.objects.get(email=form.cleaned_data['email'])
-            user = authenticate(request, 
+            try:
+                user_sentence = User.objects.get(email=form.cleaned_data['email'])
+                user = authenticate(request, 
                                 username= user_sentence.username, 
                                 password=form.cleaned_data['password']
                                 )
             
-            if user is not None:
-                login(request, user)
-                return redirect('home')
-            else:
-                pass
-                #redirect('error')
+                if user is not None:
+                    login(request, user)
+                    return redirect('home')
+                else:
+                    messages.error(request, "The user does not exist")
+            except User.DoesNotExist:
+                messages.error(request, "The user does not exist")
+        else:
+              messages.error(request, "Falta un campo")
+
     else:
         form = LoginForm()
     
@@ -83,7 +89,21 @@ def user_profile(request):
                                                                     'institution':profile_user.institution,
                                                                      'researchfield':profile_user.researchfield,
                                                                       'researcharea':profile_user.researcharea,
+                                                                      'image':profile_user.image,
+                                                                      'aboutuser':profile_user.aboutuser,
+                                                                      'researchs':profile_user.researchs,
                                                                     })
 def logout_view(request):
     logout(request)
     return redirect('index')
+
+
+def settings(request):
+    return render(request,'user_manager/settings.html',{})
+
+def account_settings(request):
+    return render(request,'user_manager/account_settings.html',{})
+def accesibility_settings(request):
+    return render(request,'user_manager/accesibility_settings.html',{})
+def edit_profile(request):
+    return render(request,'user_manager/edit_profile.html',{})

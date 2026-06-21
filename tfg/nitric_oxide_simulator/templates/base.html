@@ -8,8 +8,8 @@
         <meta name="description" content="Aplicación para simular modelos de NO(óxido nítrico)">
         <meta name="author" content="Andrea">
         <meta http-equiv="content-language" content="en">
-        <meta name="robots" content="noindex, nofollow">
-        <meta name="referrer" content="no-referrer">
+      
+    
         <link rel="icon" type="image/x-icon" href="{% static 'images/brain.png' %}"> 
          {%block css%}
             <title>NOsimulator</title> 
@@ -31,10 +31,16 @@
                 </div>
             {%if user.is_authenticated %}
                     <ul>
-                         <li><a href="{% url 'home' %}">Home</a></li>
                         <li><a href="{% url 'storage' %}">Storage</a></li>
                         <li><a href="{% url 'tutorial' %}">Tutorial</a></li>
-                        <li><a href="{% url 'user_profile' %}">Profile</a></li>
+                        <li><a id="profile_icon" href="{% url 'user_profile' %}">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                          
+                        </a>
+                    </li>
                          <li> 
                             <select id="language" name="Languages">
                                 <option value="languages">Languages</option>
@@ -48,10 +54,9 @@
                         <li><a href="{% url 'login' %}">Login</a></li>
                         <li><b><a href="{% url 'sign_up' %}">Sign up</a></b></li>
                         <li><a href="{% url 'about_this_app' %}">About this app</a></li>
-                        <li> 
-                            <label for="language">Languages</label>
-                            <select id="language" name="language">
-                                <option value=""></option>
+                         <li> 
+                            <select id="language" name="Languages">
+                                <option value="languages">Languages</option>
                                 <option value="english">English</option>
                                 <option value="spanish">Spanish</option>
                             </select>
