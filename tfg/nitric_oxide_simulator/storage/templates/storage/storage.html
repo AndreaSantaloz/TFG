@@ -18,7 +18,7 @@
                 <line x1="9" y1="15" x2="15" y2="15"></line>
             </svg>
             <label>Upload Model</label>
-</button>
+        </button>
     </div>
     <div id="storage">
         <table>
@@ -26,140 +26,54 @@
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Model</th>
                 <th>First Date</th>
                 <th>Last Date</th>
                 <th>Delete</th>
-                <th>Edit</th>
                 <th>Simulate</th>
             </tr>
         </thead>
         
         <tbody>
-            {% if lista %}
-       {% for i in lista %}
-                        <tr>
-                            <td>{{ i.name }}</td>
-                            <td>{{ i.model }}</td>
-                            <td>{{ i.first_date|date:"d/m/Y" }}</td>
-                            <td>{{ i.last_date|date:"d/m/Y" }}</td>
-                            <td>
-                            
-                                    <button  class="buttons" title="Eliminar Modelo"  onclick=deleteModel()>
-                                        <svg id="deletesvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                                            <path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"></path>
-                                        </svg>
-                                    </button>
-                                  
-                             
-                            </td>
-                            <td>
-                                <button class="buttons" onclick=editModel()>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill: ##156e1e;">
-    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-</svg>
-
-                                </button>
-                            </td>
-                            <td>
-                                  <button  class="buttons" title="Simular Modelo" onclick=simulateModel()>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill:#3498db;">
-                                            <path d="M8 5v14l11-7z"/>
-                                        </svg>
-                                    </button>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                {% else %}
-                        <tr>
-                            <td>{{ "Prueba" }}</td>
-                            <td>{{ "urlPrueba" }}</td>
-                            <td>{{ "11/06/2026" }}</td>
-                            <td>{{  "11/06/2026"  }}</td>
-                            <td>
-                            
-                                    <button  class="buttons" title="Eliminar Modelo"  onclick=deleteModel()>
-                                        <svg id="deletesvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                                            <path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"></path>
-                                        </svg>
-                                    </button>
-                                  
-                             
-                            </td>
-                             <td>
-                                <button class="buttons" onclick=editModel()>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill: #156e1e;">
-    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-</svg>
-
-                                </button>
-                            </td>
-                            <td>
-                                  <button  class="buttons" title="Simular Modelo" onclick=simulateModel()>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill:#3498db;">
-                                            <path d="M8 5v14l11-7z"/>
-                                        </svg>
-                                    </button>
-                            </td>
-                        </tr>
-                        </td>
-                    </tr>
-                    <tr>
-                       
-                             <tr>
-                            <td>{{ "Prueba" }}</td>
-                            <td>{{ "urlPrueba" }}</td>
-                            <td>{{ "11/06/2026" }}</td>
-                            <td>{{  "11/06/2026"  }}</td>
-                             <td>
-                            
-                                    <button class="buttons" title="Eliminar Modelo"  onclick=deleteModel()>
-                                        <svg id="deletesvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
-                                            <path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"></path>
-                                        </svg>
-                                    </button>
-                                  
-                             
-                            </td>
-                             <td>
-                                <button class="buttons" onclick=editModel()>
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill: #156e1e;">
-    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
-</svg>
-
-                                </button>
-                            </td>
-                            <td>
-                                  <button  class="buttons" title="Simular Modelo" onclick=simulateModel()>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill:#3498db;">
-                                            <path d="M8 5v14l11-7z"/>
-                                        </svg>
-                                    </button>
-                            </td>
-                        </tr>
-                       
-                    </tr>
-                {% endif %}
-                 
-    </tbody>
-   
-</table>
-
-</div>
+        {% if lista %}
+            {% for i in lista %}
+                <tr>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.first_date|date:"d/m/Y" }}</td>
+                    <td>{{ i.last_date|date:"d/m/Y" }}</td>
+                    <td>
+                        <button class="buttons" title="Eliminar Modelo" data-id="{{ i.id }}" onclick="deleteModel(this)">
+                            <svg id="deletesvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                                <path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"></path>
+                            </svg>
+                        </button>
+                    </td>
+                    <td>
+                         <button class="buttons" title="Simular Modelo" data-id="{{ i.id }}" onclick="simulateModel(this)">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill:#3498db;">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr><td colspan="6"><p>No existen modelos actualmente almacenados</p></td></tr>
+        {% endif %}
+        </tbody>
+    </table>
+    </div>
 </div>
 
 <script>
 function addModel() {
-    // ==========================================
-    // PASO 1: SweetAlert con HTML del formulario
-    // ==========================================
     Swal.fire({
-        title: 'Add Model',
+        title: 'Are you sure what do you want to save this model?',
         html: `
-            <div style="text-align: left;">
+            <form id="my-django-form" style="text-align: left;" method="post" action="{% url 'add_model' %}" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="mb-3">
                     <label class="form-label" style="font-weight: bold;">Name:</label>
-                    <input type="text" id="nombre" class="swal2-input" placeholder="Name Model" style="margin: 5px 0 15px 0; width: 100%;">
+                    <input type="text" id="nombre" name="name" class="swal2-input" placeholder="Name Model" style="margin: 5px 0 15px 0; width: 100%;" required>
                 </div>
                 
                 <label for="file" id="file_upload" style="display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed #3498db; padding: 20px; border-radius: 8px; cursor: pointer; background: #f8f9fa; transition: background 0.3s;">
@@ -169,8 +83,8 @@ function addModel() {
                     <span id="file-label-text" style="color: #555; font-weight: 500;">Click to upload (Maximum 1 file)</span>
                 </label>
                 
-                <input type="file" id="file" name="file" style="display: none;">
-            </div>
+                <input type="file" id="file" name="model" style="display: none;" required>
+            </form>
         `,
         confirmButtonText: 'Save Model',
         cancelButtonText: 'Return',
@@ -178,7 +92,6 @@ function addModel() {
         confirmButtonColor: '#28a745',
         cancelButtonColor: '#d9e1e7',
         didOpen: () => {
-            // Interceptamos el cambio de archivo para mostrar el nombre del archivo seleccionado en la interfaz
             const fileInput = document.getElementById('file');
             const fileText = document.getElementById('file-label-text');
             
@@ -186,384 +99,73 @@ function addModel() {
                 if (e.target.files.length > 0) {
                     fileText.textContent = `Selected: ${e.target.files[0].name}`;
                     fileText.style.color = '#28a745';
-                } else {
-                    fileText.textContent = 'Click to upload (Maximum 1 file)';
-                    fileText.style.color = '#555';
                 }
             });
         },
         preConfirm: () => {
-            // ==========================================
-            // PASO 2: Validar campos antes de enviar
-            // ==========================================
-            // Corregido: El id correcto es 'nombre'
-            const nameValue = document.getElementById('nombre').value.trim();
-            const fileInput = document.getElementById('file');
-            
-            if (!nameValue) {
-                Swal.showValidationMessage('Please enter a name');
-                return false;
-            }
-            if (fileInput.files.length === 0) {
-                Swal.showValidationMessage('Please select a file');
-                return false;
-            }
-         
-            // Si vas a enviar archivos por AJAX, usar JSON.stringify NO funcionará de forma nativa para el archivo.
-            // Es mejor retornar el objeto File o preparar un FormData en el siguiente paso.
-            return {
-                name: nameValue,
-                model: fileInput.files[0] // Guardamos el archivo real, no el string de la ruta falsa (.value)
-            };
-        }
-    }).then(async (result) => {
-        // ==========================================
-        // PASO 3: Enviar a Django si confirmó
-        // ==========================================
-        if (result.isConfirmed) {
-            const data = result.value;
-            
-            // Mostrar loading
-            Swal.fire({
-                title: 'Guardando...',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-            
-            try {
-                // Alerta importante: Como estás enviando un ARCHIVO binario, debes usar FormData en lugar de JSON.
-                const formData = new FormData();
-                formData.append('name', data.name);
-                formData.append('model', data.model); // El archivo binario
-
-                const response = await fetch('/productos/crear-ajax/', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken': '{{ csrf_token }}',
-                        // NOTA: Cuando envías FormData, NUNCA debes definir el Content-Type manualmente.
-                        // El navegador se encarga de poner 'multipart/form-data' con el boundary correcto.
-                    },
-                    body: formData
-                });
-                
-                const resultado = await response.json();
-                
-                if (resultado.success) {
-                    // ==========================================
-                    // PASO 4: Actualizar tabla sin recargar
-                    // ==========================================
-                    const nuevoProducto = resultado.producto;
-                    
-                    const tabla = document.getElementById('tabla-productos');
-                    const fila = document.createElement('tr');
-                    fila.id = `producto-${nuevoProducto.id}`;
-                    fila.innerHTML = `
-                        <td>${nuevoProducto.nombre}</td>
-                        <td>$${nuevoProducto.precio}</td>
-                        <td>${nuevoProducto.stock}</td>
-                    `;
-                    tabla.appendChild(fila);
-                    
-                    Swal.fire({
-                        icon: 'success',
-                        title: '¡Producto creado!',
-                        text: resultado.message,
-                        timer: 2000,
-                        showConfirmButton: false
-                    });
-                } else {
-                    throw new Error(resultado.message);
-                }
-            } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: error.message || 'No se pudo guardar el producto'
-                });
+            const formulario = document.getElementById('my-django-form');
+            if (formulario.checkValidity()) {
+                formulario.submit(); 
+            } else {
+                formulario.reportValidity();
+                return false; 
             }
         }
     });
 }
-function deleteModel() {
-    // ==========================================
-    // PASO 1: SweetAlert con HTML del formulario
-    // ==========================================
+
+function deleteModel(id) {
+    const idModelo = id.getAttribute('data-id');
     Swal.fire({
-        title: 'Are you sure what do you want to delete your model?',
+        title: 'Are you sure?',
         html: `
-            
+            <form id="delete-django-form" method="POST" action="{% url 'delete_model' %}">
+                {% csrf_token %}
+                <input type="hidden" name="id_eliminar" value="${idModelo}">
+            </form>
         `,
-        confirmButtonText: 'Delete Model',
-        cancelButtonText: 'Return',
+        confirmButtonText: 'Delete',
+        cancelButtonText: 'Cancel',
         showCancelButton: true,
         confirmButtonColor: '#dc3545',
         cancelButtonColor: '#d9e1e7',
         preConfirm: () => {
-            // ==========================================
-            // PASO 2: Validar campos antes de enviar
-            // ==========================================
-            const name = document.getElementById('name').value;
-            const model = document.getElementById('file').value;
-         
-            // Devolver datos para enviar
-            return {
-                name: nombre,
-                model:model,
-            };
-        }
-    }).then(async (result) => {
-        // ==========================================
-        // PASO 3: Enviar a Django si confirmó
-        // ==========================================
-        if (result.isConfirmed) {
-            const data = result.value;
-            
-            // Mostrar loading
-            Swal.fire({
-                title: 'Guardando...',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-            
-            try {
-                // Enviar a Django
-                const response = await fetch('/productos/crear-ajax/', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken': '{{ csrf_token }}',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                const resultado = await response.json();
-                
-                if (resultado.success) {
-                    // ==========================================
-                    // PASO 4: Actualizar tabla sin recargar
-                    // ==========================================
-                    const nuevoProducto = resultado.producto;
-                    
-                    // Agregar fila a la tabla
-                    const tabla = document.getElementById('tabla-productos');
-                    const fila = document.createElement('tr');
-                    fila.id = `producto-${nuevoProducto.id}`;
-                    fila.innerHTML = `
-                        <td>${nuevoProducto.nombre}</td>
-                        <td>$${nuevoProducto.precio}</td>
-                        <td>${nuevoProducto.stock}</td>
-                    `;
-                    tabla.appendChild(fila);
-                    
-                    // Mostrar mensaje de éxito
-                    Swal.fire({
-                        icon: 'success',
-                        title: '¡Producto creado!',
-                        text: resultado.message,
-                        timer: 2000,
-                        showConfirmButton: false
-                    });
-                } else {
-                    throw new Error(resultado.message);
-                }
-            } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: error.message || 'No se pudo guardar el producto'
-                });
+            const formulario = document.getElementById('delete-django-form');
+            const fila = id.closest('tr');
+            if (fila) {
+                fila.remove();
             }
+            formulario.submit();
         }
     });
 }
-function editModel() {
-    // ==========================================
-    // PASO 1: SweetAlert con HTML del formulario
-    // ==========================================
+
+
+function simulateModel(btn) { // Cambiamos el nombre del parámetro a 'btn' para que sea más claro que es el botón
+    const idModelo = btn.getAttribute('data-id');
+
+    if (!idModelo) {
+        console.error("Error: No se detectó el ID en el botón.");
+        return;
+    }
+
     Swal.fire({
-        title: 'Are you sure what do you want to edit your model?',
+        title: 'Are you sure  what do you want to simulate this model?',
         html: `
-            
+            <form id="simulate-django-form" method="POST" action="{% url 'simulate_model' %}">
+                {% csrf_token %}
+                <input type="hidden" name="id_simulator" value="${idModelo}">
+            </form>
         `,
-        confirmButtonText: 'Edit Model',
-        cancelButtonText: 'Return',
+        confirmButtonText: 'Simulate',
+        cancelButtonText: 'Cancel',
         showCancelButton: true,
-        confirmButtonColor: '#1f6411',
+        confirmButtonColor: '#3580dc',
         cancelButtonColor: '#d9e1e7',
         preConfirm: () => {
-            // ==========================================
-            // PASO 2: Validar campos antes de enviar
-            // ==========================================
-            const name = document.getElementById('name').value;
-            const model = document.getElementById('file').value;
-         
-            // Devolver datos para enviar
-            return {
-                name: nombre,
-                model:model,
-            };
-        }
-    }).then(async (result) => {
-        // ==========================================
-        // PASO 3: Enviar a Django si confirmó
-        // ==========================================
-        if (result.isConfirmed) {
-            const data = result.value;
-            
-            // Mostrar loading
-            Swal.fire({
-                title: 'Guardando...',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-            
-            try {
-                // Enviar a Django
-                const response = await fetch('/productos/crear-ajax/', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken': '{{ csrf_token }}',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                const resultado = await response.json();
-                
-                if (resultado.success) {
-                    // ==========================================
-                    // PASO 4: Actualizar tabla sin recargar
-                    // ==========================================
-                    const nuevoProducto = resultado.producto;
-                    
-                    // Agregar fila a la tabla
-                    const tabla = document.getElementById('tabla-productos');
-                    const fila = document.createElement('tr');
-                    fila.id = `producto-${nuevoProducto.id}`;
-                    fila.innerHTML = `
-                        <td>${nuevoProducto.nombre}</td>
-                        <td>$${nuevoProducto.precio}</td>
-                        <td>${nuevoProducto.stock}</td>
-                    `;
-                    tabla.appendChild(fila);
-                    
-                    // Mostrar mensaje de éxito
-                    Swal.fire({
-                        icon: 'success',
-                        title: '¡Producto creado!',
-                        text: resultado.message,
-                        timer: 2000,
-                        showConfirmButton: false
-                    });
-                } else {
-                    throw new Error(resultado.message);
-                }
-            } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: error.message || 'No se pudo guardar el producto'
-                });
-            }
-        }
-    });
-}
-function simulateModel() {
-    // ==========================================
-    // PASO 1: SweetAlert con HTML del formulario
-    // ==========================================
-    Swal.fire({
-        title: 'Are you sure what do you want to simulate your model?',
-        html: `
-            
-        `,
-        confirmButtonText: 'Simulate Model',
-        cancelButtonText: 'Return',
-        showCancelButton: true,
-        confirmButtonColor: '#70a5e1',
-        cancelButtonColor: '#d9e1e7',
-        preConfirm: () => {
-            // ==========================================
-            // PASO 2: Validar campos antes de enviar
-            // ==========================================
-            const name = document.getElementById('name').value;
-            const model = document.getElementById('file').value;
-         
-            // Devolver datos para enviar
-            return {
-                name: nombre,
-                model:model,
-            };
-        }
-    }).then(async (result) => {
-        // ==========================================
-        // PASO 3: Enviar a Django si confirmó
-        // ==========================================
-        if (result.isConfirmed) {
-            const data = result.value;
-            
-            // Mostrar loading
-            Swal.fire({
-                title: 'Guardando...',
-                allowOutsideClick: false,
-                didOpen: () => {
-                    Swal.showLoading();
-                }
-            });
-            
-            try {
-                // Enviar a Django
-                const response = await fetch('/productos/crear-ajax/', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRFToken': '{{ csrf_token }}',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                const resultado = await response.json();
-                
-                if (resultado.success) {
-                    // ==========================================
-                    // PASO 4: Actualizar tabla sin recargar
-                    // ==========================================
-                    const nuevoProducto = resultado.producto;
-                    
-                    // Agregar fila a la tabla
-                    const tabla = document.getElementById('tabla-productos');
-                    const fila = document.createElement('tr');
-                    fila.id = `producto-${nuevoProducto.id}`;
-                    fila.innerHTML = `
-                        <td>${nuevoProducto.nombre}</td>
-                        <td>$${nuevoProducto.precio}</td>
-                        <td>${nuevoProducto.stock}</td>
-                    `;
-                    tabla.appendChild(fila);
-                    
-                    // Mostrar mensaje de éxito
-                    Swal.fire({
-                        icon: 'success',
-                        title: '¡Producto creado!',
-                        text: resultado.message,
-                        timer: 2000,
-                        showConfirmButton: false
-                    });
-                } else {
-                    throw new Error(resultado.message);
-                }
-            } catch (error) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error',
-                    text: error.message || 'No se pudo guardar el producto'
-                });
+            const formulario = document.getElementById('simulate-django-form');
+            if (formulario) {
+                formulario.submit();
             }
         }
     });
