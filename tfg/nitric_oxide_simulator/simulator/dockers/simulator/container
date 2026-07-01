@@ -1,0 +1,6 @@
+FROM python:3.10-slim
+RUN pip install  numpy pandas scipy
+RUN groupadd -r appgroup && useradd -r -g appgroup appuser
+USER appuser
+WORKDIR /app
+CMD ["sh", "-c", "mkdir -p /app && tail -f /dev/null"]

@@ -31,7 +31,7 @@ USE_I18N = True
 USE_TZ = True
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 DEBUG = True
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'db']
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -74,14 +74,9 @@ TEMPLATES = [
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('NAME'),
-        'PORT': os.getenv('PORT'),
-        'HOST':os.getenv('HOST'),
-        'USER':os.getenv('USER'),
-        'PASSWORD':os.getenv('PASSWORD_D'),
-    }
+    'default': dj_database_url.config(
+        default='postgresql://tfg_user:tfg_password@db:5432/tfg_db'
+    )
 }
 
 

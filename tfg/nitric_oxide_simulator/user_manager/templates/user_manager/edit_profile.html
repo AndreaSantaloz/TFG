@@ -10,7 +10,6 @@
 <div id="profile">
     
     <div id="buttons" style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px;">
-        
         <a class="edit-btn" onclick="window.history.back()" style="cursor: pointer; display: flex; align-items: center;" title="Volver atrás">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -18,77 +17,61 @@
             </svg>
         </a>
 
-
-        <a class="edit-btn"  style="display: flex; align-items: center;" title="Editar perfil">
-           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
-        <polyline points="17 21 17 13 7 13 7 21"></polyline>
-        <polyline points="7 3 7 8 15 8"></polyline>
-    </svg>
-        </a>
-
-         <a class="settings-btn" href="{% url 'settings' %}" style="display: flex; align-items: center;" title="Configuración">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor">
-                <path d="M12 15.5C13.933 15.5 15.5 13.933 15.5 12C15.5 10.067 13.933 8.5 12 8.5C10.067 8.5 8.5 10.067 8.5 12C8.5 13.933 10.067 15.5 12 15.5Z" />
-                <path d="M19.4 15.05L18.3 14.4C18.15 14.2 18.05 13.9 18.05 13.7V10.3C18.05 10.05 18.15 9.8 18.3 9.6L19.4 8.95C19.7 8.75 19.8 8.35 19.6 8.05L18.35 5.85C18.15 5.55 17.75 5.45 17.45 5.65L16.35 6.3C16.15 6.45 15.85 6.5 15.65 6.4C14.95 6.05 14.25 5.85 13.5 5.75C13.25 5.7 13.05 5.5 13.05 5.25V3.9C13.05 3.5 12.75 3.2 12.35 3.2H11.65C11.25 3.2 10.95 3.55 10.95 3.95V5.25C10.95 5.5 10.75 5.75 10.5 5.8C9.8 5.9 9.1 6.1 8.4 6.45C8.2 6.55 7.95 6.5 7.75 6.35L6.65 5.7C6.35 5.5 5.95 5.6 5.75 5.9L4.5 8.1C4.3 8.4 4.4 8.8 4.7 9L5.8 9.65C5.95 9.85 6.05 10.15 6.05 10.35V13.75C6.05 14 5.95 14.25 5.8 14.45L4.7 15.1C4.4 15.3 4.3 15.7 4.5 16L5.75 18.2C5.95 18.5 6.35 18.6 6.65 18.4L7.75 17.75C7.95 17.6 8.25 17.55 8.45 17.65C9.15 18 9.85 18.2 10.6 18.3C10.85 18.35 11.05 18.55 11.05 18.8V20.1C11.05 20.5 11.35 20.8 11.75 20.8H12.45C12.85 20.8 13.15 20.45 13.15 20.05V18.75C13.15 18.5 13.35 18.25 13.6 18.2C14.3 18.1 15 17.9 15.7 17.55C15.9 17.45 16.15 17.5 16.35 17.65L17.45 18.3C17.75 18.5 18.15 18.4 18.35 18.1L19.6 15.9C19.8 15.6 19.7 15.25 19.4 15.05ZM12 15.75C9.95 15.75 8.25 14.05 8.25 12C8.25 9.95 9.95 8.25 12 8.25C14.05 8.25 15.75 9.95 15.75 12C15.75 14.05 14.05 15.75 12 15.75Z" />
+        <button  type="submit" form="profile-form" class="edit-btn" style="display: flex; align-items: center;" title="Editar perfil">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                <polyline points="7 3 7 8 15 8"></polyline>
             </svg>
-        </a>
+        </button >
     </div>
 
     <section id="profile-panel">
         <div id="user">
-            <input type="file" id="photo" placeholder="no cargado la foto" >
-            <div id="photo_where">
-                <label for="photo">Imagen de usuario</label>
-            </div>
-            
             <div id="userdata">
-                <form method="POST" action="">
+                <form method="POST" action="" id="profile-form">
                     {% csrf_token %}
                     
                     <label>
-                     
-                            {% if name %} {{ name }} {% else %} <b>Name</b> {% endif %}
-                        
+                        {% if name %} <b>Name</b>  {% else %} <b>Name</b> {% endif %}
                     </label>
-                    <input type="text" value="{{ name }}" >
+                    <input type="text" name="name" value="{{ name|default:'' }}" >
                     
                     <label>
-                        {% if email %} <b>Email</b>: {{ email }} {% else %} <b>Email</b> {% endif %}
+                         <b>Email</b>: {{ email }} 
                     </label>
-                    <input type="email" value="{{ email }}" >
+                    <input type="email" name="email" value="{{ email|default:'' }}" disabled>
                     
                     <label>
                         {% if institution %} <b>Institución</b>: {{ institution }} {% else %} <b>Institution</b> {% endif %}
                     </label>
-                    <input type="text" value="{{ institution }}" >
+                    <input type="text" name="institution" value="{{ institution|default:'' }}" >
                     
                     <label>
                         {% if researchfield %} <b>Research Field</b>: {{ researchfield }} {% else %} <b>Research Field</b> {% endif %}
                     </label>
-                    <input type="text" value="{{ researchfield }}" >
+                    <input type="text" name="researchfield" value="{{ researchfield|default:'' }}" >
                     
                     <label>
                         {% if researcharea %} <b>Research Area</b>: {{ researcharea }} {% else %} <b>Research Area</b> {% endif %}
                     </label>
-                    <input type="text" value="{{ researcharea }}" >
+                    <input type="text" name="researcharea" value="{{ researcharea|default:'' }}" >
                 </form>
             </div>
         </div>
 
         <div id="area-texto">
             <div id="aboutme">
-                <h1>Sobre mí</h1>
-                <textarea rows="20" cols="100" ></textarea>
+                <h1>About me </h1>
+                <textarea name="aboutme" rows="20" cols="100" form="profile-form">{{ aboutme|default:'' }}</textarea>
             </div>
             <div id="researchs">
-                <h1>Investigaciones</h1>
-                <textarea rows="20" cols="100" ></textarea>
+                <h1>Researchs</h1>
+                <textarea name="researchs" rows="20" cols="100" form="profile-form">{{ researchs|default:'' }}</textarea>
             </div>
         </div>
     </section>
-    <div style="margin-top: 15px;">
-                        <button type="submit" class="save-btn" style="padding: 8px 15px; cursor: pointer;">Guardar Cambios</button>
-    </div>
+    
+  
 </div>
 {% endblock %}

@@ -15,7 +15,7 @@
             <title>NOsimulator</title> 
             <link href="{% static 'css/base.css' %}" rel="stylesheet">
          {% endblock %}
-           
+            <script src="{% static 'js/base.js' %}" defer></script>
     </head>
     <body>
         <header>
@@ -27,47 +27,42 @@
                      {% else %}
                       <a href="{% url 'index' %}"><img src="{% static 'images/brain2.png' %}" width="80" height="80" alt="it doesn't charge image"></a>
                       {%endif%}
-                      <img src="{% static 'images/brain2.png' %}" width="80" height="80" alt="it doesn't charge image">
+                     
                 </div>
             {%if user.is_authenticated %}
                     <ul>
                         <li><a href="{% url 'storage' %}">Storage</a></li>
-                        <li><a href="{% url 'tutorial' %}">Tutorial</a></li>
                         <li><a id="profile_icon" href="{% url 'user_profile' %}">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
-                            </svg>
-                          
-                        </a>
-                    </li>
-                         <li> 
-                            <select id="language" name="Languages">
-                                <option value="languages">Languages</option>
-                                <option value="english">English</option>
-                                <option value="spanish">Spanish</option>
-                            </select>
+                            </svg>  
+                        </a></li>
+                        <li>
+                            <label class="theme-switch">
+                                <input type="checkbox" class="theme-checkbox">
+                                <div class="slider round"></div>
+                            </label>
                         </li>
                     </ul>
             {% else %}
                     <ul>
                         <li><a href="{% url 'login' %}">Login</a></li>
                         <li><b><a href="{% url 'sign_up' %}">Sign up</a></b></li>
-                        <li><a href="{% url 'about_this_app' %}">About this app</a></li>
-                         <li> 
-                            <select id="language" name="Languages">
-                                <option value="languages">Languages</option>
-                                <option value="english">English</option>
-                                <option value="spanish">Spanish</option>
-                            </select>
+                       <li>
+                            <label class="theme-switch">
+                                <input type="checkbox" class="theme-checkbox">
+                                <div class="slider round"></div>
+                            </label>
                         </li>
+                        
                     </ul>
             {%endif%}
           
              <div id="institution">
                      <img src="{% static 'images/ulpgc.png' %}" width="88" height="80" alt="it doesn't charge image">
                     <div>
-                       <span>Comciencia </span><span>Instituto Universitario de Cibérnetica , Empresa y Sociedad</span>
+                        <span>Comciencia </span><span>Instituto Universitario de Cibérnetica , Empresa y Sociedad</span>
                     </div>
             </div>
             

@@ -1,113 +1,169 @@
-import subprocess
+import ast
+import json
+import os
 import random
 import re
-import os
-import json
-import re
-from django.shortcuts import render, redirect, get_object_or_404
-from django.core.files.base import ContentFile
-from django.conf import settings
-from .utils import ensure_docker_image,extract_variables_models,clean_numpy_data,revise_file
-from storage.models import UserModel
-from django.shortcuts import render, redirect, get_object_or_404
-from django.core.files.base import ContentFile
 import subprocess
+import types
+import numpy as np
+
+from django.conf import settings
+from django.core.files.base import ContentFile
+from django.shortcuts import get_object_or_404, redirect, render
+
+from storage.models import UserModel
+from .utils import (
+    ensure_docker_image,
+    
+    
+)
 
 def home(request):
     files = []
     if request.method == "GET" and 'archivo_modelo_id' in request.session:
         modelo_id = request.session.get('archivo_modelo_id')
         instancia_modelo = get_object_or_404(UserModel, id=modelo_id, user=request.user)        
-        
         archivo_emulado = ContentFile(instancia_modelo.file.read())
         nombre_seguro = instancia_modelo.name.replace(" ", "_")
         archivo_emulado.name = nombre_seguro if nombre_seguro.endswith('.py') else f"{nombre_seguro}.py"
-        
         files.append(archivo_emulado)
         del request.session['archivo_modelo_id'] 
-    elif request.method == "POST" and request.FILES.getlist('file'):
-        files = request.FILES.getlist('file')
-        for file in files:
-            if revise_file(file) == False:
-                return render(request, 'simulator/home.html', {'error': 'Archivo no válido'})
+        
+    elif request.method == "POST" and request.FILES.get('file'):
+        model_file = request.FILES.get('file')
+        if model_file.name.endswith('.py') and model_file.size < 2000000:
+            files.append(model_file)
+       
     if files:
-        print("Listado de ficheros procesando...")
         ensure_docker_image()
         container_name = f"simulation_{request.user.id}" 
+        nombre_archivo_interno = "script.py"
+        code = files[0].read().decode('utf-8')
         
         try:
             subprocess.run(["docker", "rm", "-f", container_name], capture_output=True)
             subprocess.run([
                 "docker", "run", "-d", 
                 "--name", container_name, 
-                "dockerfile", 
+                "container", 
                 "sh", "-c", "mkdir -p /app && tail -f /dev/null"
-            ], check=True)       
+            ], check=True)
+        
+            files[0].seek(0)
+            code = files[0].read().decode('utf-8')
             
-            variables = {} 
-            for file in files:
-                if file.name.endswith('.py'):
-                    script_code = file.read().decode('utf-8')
-                    variables = extract_variables_models(script_code)
-                    file.seek(0)
+            setup_numpy = (
+                "import numpy as np\n"
+                "try:\n"
+                "    np.set_printoptions(threshold=np.inf)\n"
+                "except:\n"
+                "    pass\n"
+            )
             
-            for f in files:
-                contenido_archivo = f.read()
-                nombre_destino = f.name.replace(" ", "_")
-                subprocess.run([
-                    "docker", "exec", "-i", 
-                    container_name, 
-                    "sh", "-c", f"cat > /app/{nombre_destino}"
-                ], input=contenido_archivo, check=True)
+            extractor_json = (
+                "\n\n"
+                "import json\n"
+                "import types\n"
+                "import numpy as np\n"
+                "valores_finales = {}\n"
+                "for k, v in list(globals().items()):\n"
+                "    if k.startswith('_') or k in ['json', 'types', 'np', 'valores_finales', 'k', 'v']:\n"
+                "        continue\n"
+                "    if isinstance(v, (types.ModuleType, types.FunctionType, types.BuiltinFunctionType)):\n"
+                "        continue\n"
+                "    try:\n"
+                "        if isinstance(v, np.ndarray):\n"
+                "            valores_finales[k] = v.tolist()\n"
+                "        else:\n"
+                "            json.dumps(v)\n"
+                "            valores_finales[k] = v\n"
+                "    except:\n"
+                "        valores_finales[k] = str(v)\n"
+                "\n"
+                "with open('/app/variables.json', 'w') as f:\n"
+                "    json.dump(valores_finales, f)\n"
+            )
             
-            script_a_ejecutar = next((f.name.replace(" ", "_") for f in files if f.name.endswith('.py')), None)            
-            if script_a_ejecutar:
-                # Usamos comillas triples por si acaso
-                comando_inyectado = (
-                    f"import numpy as np; "
-                    f"np.set_printoptions(threshold=np.inf); "
-                    f"import sys; "
-                    f"sys.argv=['{script_a_ejecutar}']; "
-                    f"exec(open('{script_a_ejecutar}').read())"
-                )
+            codigo_final = setup_numpy + code + extractor_json
+            subprocess.run([
+                "docker", "exec", "-i",
+                container_name,
+                "sh", "-c", f"cat > /app/{nombre_archivo_interno}"
+            ], input=codigo_final, check=True, text=True)
+            
+            resultado = subprocess.run([
+                "docker", "exec", 
+                "-w", "/app", 
+                container_name, 
+                "python", nombre_archivo_interno
+            ], capture_output=True, text=True)
+            
+            resultado_json = subprocess.run([
+                "docker", "exec", 
+                container_name, 
+                "cat", "/app/variables.json"
+            ], capture_output=True, text=True)
+            
+            valores_reales = {}
+            if resultado_json.returncode == 0:
+                try:
+                    valores_reales = json.loads(resultado_json.stdout)
+                except json.JSONDecodeError:
+                    pass
 
-                resultado = subprocess.run([
-                    "docker", "exec", 
-                    "-w", "/app", 
-                    container_name, 
-                    "python", "-c", comando_inyectado
-                ], capture_output=True, text=True)
-                
-                salida_consola = resultado.stdout.strip()
-                errores_consola = resultado.stderr.strip()
+            input_data = {}
+            output_data = {}
+            tree = ast.parse(code)
+            
+            def revise_value_local(key, value, dictionary):
+                if value is not None:
+                    dictionary[key] = value
 
-                if salida_consola:
-                    t_lista, c_valores = clean_numpy_data(salida_consola)
-                    json_unificado = {
-                        "initial_data": variables,  
-                        "final_results": {
-                            "time": t_lista,
-                            "concentration": c_valores  
-                        }
-                    }                     
-                    request.session['simulacion_completa'] = json_unificado
-                    return redirect('simulator')
-                    
-                elif errores_consola:
-                    error_msg = f"Error en la simulación: {errores_consola}"
-                    return render(request, 'simulator/home.html', {'error': error_msg})
-            else:
-                error_msg = "No se detectó ningún script .py válido"
-                return render(request, 'simulator/home.html', {'error': error_msg})
+            for node in ast.walk(tree):
+                if isinstance(node, ast.Assign) and isinstance(node.value, ast.Call):
+                    for arg in node.value.args:
+                        if isinstance(arg, ast.Name):
+                            revise_value_local(arg.id, valores_reales.get(arg.id), input_data)
+                        elif isinstance(arg, ast.Tuple): 
+                            for el in arg.elts:
+                                if isinstance(el, ast.Name):
+                                    revise_value_local(el.id, valores_reales.get(el.id), input_data)
+                                    
+                    if isinstance(node.targets[0], ast.Tuple):
+                        for item in node.targets[0].elts:
+                            if isinstance(item, ast.Name):
+                                revise_value_local(item.id, valores_reales.get(item.id), output_data)
 
+            for output_var in list(output_data.keys()):
+                if output_var in input_data:
+                    del input_data[output_var]
+            
+            t_lista = output_data.get('t', [])
+            c_valores = output_data.get('C', [])
+            
+            json_unificado = {
+                "initial_data": input_data,  
+                "final_results": {
+                    "time": t_lista,
+                    "concentration": c_valores  
+                }
+            }
+            
+            request.session['simulacion_completa'] = json_unificado
+           
+            
+            return redirect('simulator')
+            
         except subprocess.CalledProcessError as e:
             error_msg = f"Error crítico de Docker: {e}"
             return render(request, 'simulator/home.html', {'error': error_msg})
             
         finally:
             subprocess.run(["docker", "rm", "-f", container_name], capture_output=True)
-
+    
     return render(request, 'simulator/home.html', {})
+
+
 def simulator(request):
     datos_sesion = request.session.get('simulacion_completa', None)
     datos_json_string = json.dumps(datos_sesion) if datos_sesion else None

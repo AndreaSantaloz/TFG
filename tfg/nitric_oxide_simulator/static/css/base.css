@@ -1,73 +1,161 @@
-html,body{
-    padding:0;
-    margin:0;
-    font-family:Arial;
-    color:#1A252C;
-    
-     height: 100%;
-}
-body{
-    display:flex;
-    flex-direction:column;
-    min-height:300vh;
-}
-header{
-    padding-bottom:80px;
-    height:80px;
-}
-#profile_icon{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-}
-main{
-   flex:1 ;
-    background-image:url('../images/brain2.png');
-    background-repeat:no-repeat;
-    background-position:center top;
-    background-color:#F5F7FA;
-    width:100%;
-    padding:60px 40px;
-   
-}
-footer{
-    background-color:#CCE6EC;
-    height:160px;
-    flex-shrink: 0;
+
+*, *:before, *:after {
+    box-sizing: border-box;
 }
 
-ul{
-    list-style-type:none;
-    display:flex;
-    width:400px;
-    justify-content:space-around;
+html, body {
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #1A252C;
+    height: 100%;
 }
-ul li a{
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 300vh; 
+    transition: background-color 0.3s, color 0.3s;
+    width: 100%;
+}
+
+/* 3. Ajuste del header para evitar alturas duplicadas innecesarias */
+header {
+    height: 160px;
+}
+
+#profile_icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 4. El main toma todo el espacio restante gracias a flex: 1 */
+main {
+    flex: 1; 
+    background-image: url('../images/brain2.png');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-color: #F5F7FA;
+    width: 100%;
+    padding: 60px 40px;
+    transition: background-color 0.3s;
+}
+
+footer {
+    background-color: #CCE6EC;
+    height: 160px;
+    flex-shrink: 0; /* Evita que el footer se aplaste si hay mucho contenido */
+    width: 100%;
+}
+
+/* --- Listas y navegación --- */
+ul {
+    list-style-type: none;
+    display: flex;
+    width: 400px;
+    justify-content: space-around;
+    padding: 0;
+    margin: 0;
+}
+
+ul li a {
     text-decoration: none;
-    color:#1A252C;
-}
-#scheme-header{
-    display:flex;
-    justify-content:space-around;
-}
-#images-institution{
-    display:flex;
-    width:240px;
-    justify-content:space-around;
-}
-#institution{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
+    color: #1A252C;
 }
 
-#language{
-     background-color:#CCE6EC;
-      display:block;
-    
+#scheme-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
 }
-ul li label{
-    display:inline-block;
-    margin-right:10px;
+
+#images-institution {
+    display: flex;
+    width: 240px;
+    justify-content: space-around;
+}
+
+#institution {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#language {
+    background-color: #CCE6EC;
+    display: block;
+}
+
+ul li label {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* --- Switch del Tema (Modo Oscuro) --- */
+.theme-switch {
+    display: inline-block;
+    height: 24px;
+    position: relative;
+    width: 45px;
+    vertical-align: middle; 
+}
+
+.theme-switch .theme-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    background-color: white;
+    bottom: 3px;
+    content: "";
+    height: 18px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 18px;
+    border-radius: 50%;
+}
+
+.theme-checkbox:checked + .slider {
+    background-color: #2196F3;
+}
+
+.theme-checkbox:checked + .slider:before {
+    transform: translateX(19px);
+}
+
+/* --- MODO OSCURO (Estilos corregidos) --- */
+body.dark-mode {
+    background-color: #1A252C;
+    color: #F5F7FA;
+}
+
+body.dark-mode main {
+    background-color: #22313a; 
+}
+
+body.dark-mode footer {
+    background-color: #055181; /* Tu azul oscuro para el footer */
+}
+
+body.dark-mode ul li a {
+    color: #F5F7FA;
 }

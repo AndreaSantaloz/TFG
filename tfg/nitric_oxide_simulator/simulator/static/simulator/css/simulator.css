@@ -3,14 +3,12 @@ main{
 }
 
 #simulate {
-    background-color: #CCE6EC;
+    background-color: transparent;
     width: 1280px;
-    /* CAMBIO: Quitamos height fijo para evitar que los elementos se aplasten o se salgan */
     min-height: 1080px; 
     display: flex;
     align-items: center;
     flex-direction: column;
-    /* CAMBIO: Usamos padding en lugar de space-around para controlar el flujo real */
     padding: 40px 0; 
     gap: 20px;
     border-radius: 25px;

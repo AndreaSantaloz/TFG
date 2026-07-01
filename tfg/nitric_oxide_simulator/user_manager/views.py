@@ -72,38 +72,59 @@ def sign_up_academic_view(request):
         form = SignUpSecondStepForm()
     return render(request,'user_manager/sign_up_academic.html',{'form':form})
 
-def delete_acount_view(request):
-     return render(request,'user_manager/application.html',{'title':'DELETE ACCOUNT','action':'deleting your account'})
-
-def recover_password_view(request):
-    return render(request,'user_manager/application.html',{'title':'RECOVER PASSWORD','action':'recovering your password'})
-
-def change_password_view(request):
-     return render(request,'user_manager/application.html',{'title':'CHANGE PASSWORD','action':'changing your password'})
 
 
 def user_profile(request):
-    profile_user = Profile_User.objects.get(user=request.user)
-    return render(request,'user_manager/user_profile.html',{'name':request.user.username,
-                                                                    'email': request.user.email,
-                                                                    'institution':profile_user.institution,
-                                                                     'researchfield':profile_user.researchfield,
-                                                                      'researcharea':profile_user.researcharea,
-                                                                      'image':profile_user.image,
-                                                                      'aboutuser':profile_user.aboutuser,
-                                                                      'researchs':profile_user.researchs,
-                                                                    })
+    
+    profile_user = Profile_User.objects.get(user=request.user)    
+    display_name = request.user.first_name if request.user.first_name else request.user.username
+    return render(request, 'user_manager/user_profile.html', {
+        'name': display_name, 
+        'email': request.user.email,
+        'institution': profile_user.institution,
+        'researchfield': profile_user.researchfield,
+        'researcharea': profile_user.researcharea,
+        'aboutme': profile_user.aboutuser,  
+        'researchs': profile_user.researchs, 
+    })
+    
 def logout_view(request):
     logout(request)
     return redirect('index')
 
-
-def settings(request):
-    return render(request,'user_manager/settings.html',{})
-
-def account_settings(request):
-    return render(request,'user_manager/account_settings.html',{})
-def accesibility_settings(request):
-    return render(request,'user_manager/accesibility_settings.html',{})
 def edit_profile(request):
-    return render(request,'user_manager/edit_profile.html',{})
+    user = request.user
+    profile, created = Profile_User.objects.get_or_create(user=user)
+    
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        institution = request.POST.get('institution')
+        researchfield = request.POST.get('researchfield')
+        researcharea = request.POST.get('researcharea')
+        aboutme = request.POST.get('aboutme') 
+        researchs = request.POST.get('researchs')
+        
+        user.username = name
+        user.save()
+        
+        profile.institution = institution
+        profile.researchfield = researchfield
+        profile.researcharea = researcharea
+        profile.aboutuser = aboutme  
+        profile.researchs = researchs
+        profile.save()
+        
+        
+        
+        return redirect('user_profile') 
+    context = {
+        'name': user.username,
+        'email': user.email,
+        'institution': profile.institution,
+        'researchfield': profile.researchfield,
+        'researcharea': profile.researcharea,
+        'aboutme': profile.aboutuser,
+        'researchs': profile.researchs,
+    }
+    return render(request, 'user_manager/edit_profile.html', context)
+    

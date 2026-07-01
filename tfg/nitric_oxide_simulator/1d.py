@@ -57,4 +57,4 @@ if __name__=="__main__":
 
     t, C = compartmentalModelOfNitricOxide_1D(N_, (start_t , end_t , delta_t), D_, F_, Lambda_)
 
-    print(t,C)
+ 

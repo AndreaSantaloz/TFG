@@ -1,3 +1,14 @@
+const layoutLineal = {
+    xaxis:{title:'Time(t)'},
+    xaxis:{title:'Time(t)'},
+    hovermode:'closest'
+}
+
+function create_chart(name,data,layout){
+    Plotly.newPlot(name,data,layout);
+}
+
+
 try {
         const data = document.getElementById('datos-django');
         
