@@ -3,71 +3,72 @@
 
 {% block css %}
     {{ block.super }}
-    <link href="{% static 'user_manager/css/user_profile.css' %}" rel="stylesheet"> 
+    <link href="{% static 'user_manager/css/user_profile.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-<div id="profile">
+<div id="profile" aria-labelledby="edit-profile-title">
     
-    <div id="buttons" style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px;">
-        <a class="edit-btn" onclick="window.history.back()" style="cursor: pointer; display: flex; align-items: center;" title="Volver atrás">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <div id="buttons" role="toolbar" aria-label="Edit profile actions" style="display: flex; gap: 15px; align-items: center; margin-bottom: 20px;">
+        <a class="edit-btn" onclick="window.history.back()" role="button" tabindex="0" aria-label="Go back" style="cursor: pointer; display: flex; align-items: center;" title="Volver atras">
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
         </a>
 
-        <button  type="submit" form="profile-form" class="edit-btn" style="display: flex; align-items: center;" title="Editar perfil">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <button type="submit" form="profile-form" class="edit-btn" aria-label="Save profile changes" style="display: flex; align-items: center;" title="Editar perfil">
+            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
                 <polyline points="17 21 17 13 7 13 7 21"></polyline>
                 <polyline points="7 3 7 8 15 8"></polyline>
             </svg>
-        </button >
+        </button>
     </div>
 
-    <section id="profile-panel">
+    <section id="profile-panel" aria-labelledby="edit-profile-title">
         <div id="user">
             <div id="userdata">
-                <form method="POST" action="" id="profile-form">
+                <form method="POST" action="" id="profile-form" aria-labelledby="edit-profile-title">
                     {% csrf_token %}
+                    <h1 id="edit-profile-title">Edit profile</h1>
                     
-                    <label>
+                    <label for="name">
                         {% if name %} <b>Name</b>  {% else %} <b>Name</b> {% endif %}
                     </label>
-                    <input type="text" name="name" value="{{ name|default:'' }}" >
+                    <input id="name" type="text" name="name" value="{{ name|default:'' }}">
                     
-                    <label>
-                         <b>Email</b>: {{ email }} 
+                    <label for="email">
+                         <b>Email</b>: {{ email }}
                     </label>
-                    <input type="email" name="email" value="{{ email|default:'' }}" disabled>
+                    <input id="email" type="email" name="email" value="{{ email|default:'' }}" disabled aria-disabled="true">
                     
-                    <label>
-                        {% if institution %} <b>Institución</b>: {{ institution }} {% else %} <b>Institution</b> {% endif %}
+                    <label for="institution">
+                        {% if institution %} <b>Institution</b>: {{ institution }} {% else %} <b>Institution</b> {% endif %}
                     </label>
-                    <input type="text" name="institution" value="{{ institution|default:'' }}" >
+                    <input id="institution" type="text" name="institution" value="{{ institution|default:'' }}">
                     
-                    <label>
+                    <label for="researchfield">
                         {% if researchfield %} <b>Research Field</b>: {{ researchfield }} {% else %} <b>Research Field</b> {% endif %}
                     </label>
-                    <input type="text" name="researchfield" value="{{ researchfield|default:'' }}" >
+                    <input id="researchfield" type="text" name="researchfield" value="{{ researchfield|default:'' }}">
                     
-                    <label>
+                    <label for="researcharea">
                         {% if researcharea %} <b>Research Area</b>: {{ researcharea }} {% else %} <b>Research Area</b> {% endif %}
                     </label>
-                    <input type="text" name="researcharea" value="{{ researcharea|default:'' }}" >
+                    <input id="researcharea" type="text" name="researcharea" value="{{ researcharea|default:'' }}">
                 </form>
             </div>
         </div>
 
         <div id="area-texto">
-            <div id="aboutme">
-                <h1>About me </h1>
-                <textarea name="aboutme" rows="20" cols="100" form="profile-form">{{ aboutme|default:'' }}</textarea>
+            <div id="aboutme" aria-labelledby="aboutme-title">
+                <h1 id="aboutme-title">About me</h1>
+                <textarea name="aboutme" rows="20" cols="100" form="profile-form" aria-labelledby="aboutme-title">{{ aboutme|default:'' }}</textarea>
             </div>
-            <div id="researchs">
-                <h1>Researchs</h1>
-                <textarea name="researchs" rows="20" cols="100" form="profile-form">{{ researchs|default:'' }}</textarea>
+            <div id="researchs" aria-labelledby="researchs-title">
+                <h1 id="researchs-title">Researchs</h1>
+                <textarea name="researchs" rows="20" cols="100" form="profile-form" aria-labelledby="researchs-title">{{ researchs|default:'' }}</textarea>
             </div>
         </div>
     </section>

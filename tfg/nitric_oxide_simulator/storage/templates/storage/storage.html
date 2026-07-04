@@ -8,10 +8,10 @@
 
 {% endblock%}
 {% block content%}
-<div id="storage-box">
-    <div id="menu_buttons">
-        <button id="add_model" title="Add New Model" onclick=addModel()> 
-           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<div id="storage-box" aria-labelledby="storage-title">
+    <div id="menu_buttons" role="toolbar" aria-label="Storage actions">
+        <button id="add_model" type="button" title="Add New Model" aria-label="Upload a new model" onclick=addModel()> 
+           <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                 <polyline points="14 2 14 8 20 8"></polyline>
                 <line x1="12" y1="18" x2="12" y2="12"></line>
@@ -20,9 +20,9 @@
             <label>Upload Model</label>
         </button>
     </div>
-    <div id="storage">
-        <table>
-        <caption><h1>Storage</h1></caption>
+    <div id="storage" role="region" aria-labelledby="storage-title">
+        <table aria-describedby="storage-title">
+        <caption><h1 id="storage-title">Storage</h1></caption>
         <thead>
             <tr>
                 <th>Name</th>
@@ -41,15 +41,15 @@
                     <td>{{ i.first_date|date:"d/m/Y" }}</td>
                     <td>{{ i.last_date|date:"d/m/Y" }}</td>
                     <td>
-                        <button class="buttons" title="Eliminar Modelo" data-id="{{ i.id }}" onclick="deleteModel(this)">
-                            <svg id="deletesvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                        <button class="buttons" type="button" title="Eliminar Modelo" aria-label="Delete model {{ i.name }}" data-id="{{ i.id }}" onclick="deleteModel(this)">
+                            <svg id="deletesvg" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
                                 <path d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z"></path>
                             </svg>
                         </button>
                     </td>
                     <td>
-                         <button class="buttons" title="Simular Modelo" data-id="{{ i.id }}" onclick="simulateModel(this)">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill:#3498db;">
+                         <button class="buttons" type="button" title="Simular Modelo" aria-label="Simulate model {{ i.name }}" data-id="{{ i.id }}" onclick="simulateModel(this)">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" style="fill:#3498db;">
                                 <path d="M8 5v14l11-7z"/>
                             </svg>
                         </button>
@@ -57,7 +57,7 @@
                 </tr>
             {% endfor %}
         {% else %}
-            <tr><td colspan="6"><p>No existen modelos actualmente almacenados</p></td></tr>
+            <tr><td colspan="6"><p role="status">There aren't models</p></td></tr>
         {% endif %}
         </tbody>
     </table>
@@ -69,21 +69,21 @@ function addModel() {
     Swal.fire({
         title: 'Are you sure what do you want to save this model?',
         html: `
-            <form id="my-django-form" style="text-align: left;" method="post" action="{% url 'add_model' %}" enctype="multipart/form-data">
+            <form id="my-django-form" aria-label="Upload model form" style="text-align: left;" method="post" action="{% url 'add_model' %}" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="mb-3">
-                    <label class="form-label" style="font-weight: bold;">Name:</label>
+                    <label for="nombre" class="form-label" style="font-weight: bold;">Name:</label>
                     <input type="text" id="nombre" name="name" class="swal2-input" placeholder="Name Model" style="margin: 5px 0 15px 0; width: 100%;" required>
                 </div>
                 
                 <label for="file" id="file_upload" style="display: flex; flex-direction: column; align-items: center; justify-content: center; border: 2px dashed #3498db; padding: 20px; border-radius: 8px; cursor: pointer; background: #f8f9fa; transition: background 0.3s;">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="80" height="80" style="fill:#3498db; margin-bottom: 10px;">
+                    <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="80" height="80" style="fill:#3498db; margin-bottom: 10px;">
                         <path d="M19.35 10.04A7.49 7.49 0 0 0 12 4C9.11 4 6.6 5.64 5.35 8.04A5.994 5.994 0 0 0 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/>
                     </svg>
                     <span id="file-label-text" style="color: #555; font-weight: 500;">Click to upload (Maximum 1 file)</span>
                 </label>
                 
-                <input type="file" id="file" name="model" style="display: none;" required>
+                <input type="file" id="file" name="model" aria-describedby="file-label-text" style="display: none;" required>
             </form>
         `,
         confirmButtonText: 'Save Model',
@@ -119,7 +119,7 @@ function deleteModel(id) {
     Swal.fire({
         title: 'Are you sure?',
         html: `
-            <form id="delete-django-form" method="POST" action="{% url 'delete_model' %}">
+            <form id="delete-django-form" aria-label="Delete model form" method="POST" action="{% url 'delete_model' %}">
                 {% csrf_token %}
                 <input type="hidden" name="id_eliminar" value="${idModelo}">
             </form>
@@ -152,7 +152,7 @@ function simulateModel(btn) {
     Swal.fire({
         title: 'Are you sure  what do you want to simulate this model?',
         html: `
-            <form id="simulate-django-form" method="POST" action="{% url 'simulate_model' %}">
+            <form id="simulate-django-form" aria-label="Simulate model form" method="POST" action="{% url 'simulate_model' %}">
                 {% csrf_token %}
                 <input type="hidden" name="id_simulator" value="${idModelo}">
             </form>

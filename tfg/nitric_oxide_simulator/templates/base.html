@@ -18,49 +18,53 @@
             <script src="{% static 'js/base.js' %}" defer></script>
     </head>
     <body>
-        <header>
+        <header role="banner">
             {% block header%}
-             <section id="scheme-header">
+             <section id="scheme-header" aria-label="Main header">
                 <div id="images-institution">
                     {%if user.is_authenticated %}
-                     <a href="{% url 'home' %}"><img src="{% static 'images/brain2.png' %}" width="80" height="80" alt="it doesn't charge image"></a>
+                     <a href="{% url 'home' %}" aria-label="Go to simulation home"><img src="{% static 'images/brain2.png' %}" width="80" height="80" alt="NOsimulator logo"></a>
                      {% else %}
-                      <a href="{% url 'index' %}"><img src="{% static 'images/brain2.png' %}" width="80" height="80" alt="it doesn't charge image"></a>
+                      <a href="{% url 'index' %}" aria-label="Go to homepage"><img src="{% static 'images/brain2.png' %}" width="80" height="80" alt="NOsimulator logo"></a>
                       {%endif%}
                      
                 </div>
             {%if user.is_authenticated %}
+                    <nav aria-label="User navigation">
                     <ul>
                         <li><a href="{% url 'storage' %}">Storage</a></li>
-                        <li><a id="profile_icon" href="{% url 'user_profile' %}">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <li><a id="profile_icon" href="{% url 'user_profile' %}" aria-label="Open user profile">
+                            <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="25" height="25" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
                             </svg>  
                         </a></li>
                         <li>
                             <label class="theme-switch">
-                                <input type="checkbox" class="theme-checkbox">
-                                <div class="slider round"></div>
+                                <input type="checkbox" class="theme-checkbox" aria-label="Toggle dark mode">
+                                <div class="slider round" aria-hidden="true"></div>
                             </label>
                         </li>
                     </ul>
+                    </nav>
             {% else %}
+                    <nav aria-label="Guest navigation">
                     <ul>
                         <li><a href="{% url 'login' %}">Login</a></li>
                         <li><b><a href="{% url 'sign_up' %}">Sign up</a></b></li>
                        <li>
                             <label class="theme-switch">
-                                <input type="checkbox" class="theme-checkbox">
-                                <div class="slider round"></div>
+                                <input type="checkbox" class="theme-checkbox" aria-label="Toggle dark mode">
+                                <div class="slider round" aria-hidden="true"></div>
                             </label>
                         </li>
                         
                     </ul>
+                    </nav>
             {%endif%}
           
-             <div id="institution">
-                     <img src="{% static 'images/ulpgc.png' %}" width="88" height="80" alt="it doesn't charge image">
+             <div id="institution" aria-label="Institution information">
+                     <img src="{% static 'images/ulpgc.png' %}" width="88" height="80" alt="ULPGC logo">
                     <div>
                         <span>Comciencia </span><span>Instituto Universitario de Cibérnetica , Empresa y Sociedad</span>
                     </div>
@@ -69,12 +73,12 @@
             </section>
             {% endblock%}
         </header>
-        <main>
+        <main id="main-content" role="main">
             {%block content%}
            
             {% endblock %}
         </main>
-        <footer>
+        <footer role="contentinfo">
                <p>@If you have some problem you can comunicate with our support using the following email: support@mail.com</p> 
         </footer>
 

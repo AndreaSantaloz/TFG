@@ -7,11 +7,12 @@
 {% endblock %}
 
 {% block content %}
-<div id="profile">
-    <div id="buttons">
+<a href="{% url 'setting'%}" aria-label="Open settings">Setting</a>
+<div id="profile" aria-labelledby="profile-title">
+    <div id="buttons" role="toolbar" aria-label="Profile actions">
         <div class="profile-container">
-            <a class="edit-btn" href="{% url 'edit_profile' %}" title="Editar perfil">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <a class="edit-btn" href="{% url 'edit_profile' %}" title="Editar perfil" aria-label="Edit profile">
+                <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                   <path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                 </svg>
@@ -19,14 +20,14 @@
         </div>
     </div>
 
-    <section id="profile-panel">
+    <section id="profile-panel" aria-labelledby="profile-title">
         <div id="user">
             <div id="userdata">
-                <label>
-                    <h1>
+                <div>
+                    <h1 id="profile-title">
                         {% if name %}{{ name }}{% else %}<b>Name</b>{% endif %}
                     </h1>
-                </label>
+                </div>
                 
                 <p>
                     <b>Email</b>: {% if email %}{{ email }}{% else %}-{% endif %}
@@ -48,19 +49,17 @@
 
         <div id="area-texto">
             <div id="aboutme">
-                <h1>About me</h1>
-                <textarea name="aboutme" rows="20" cols="100" readonly>{{ aboutme|default:'' }}</textarea>
+                <h1 id="aboutme-title">About me</h1>
+                <textarea name="aboutme" rows="20" cols="100" readonly aria-labelledby="aboutme-title">{{ aboutme|default:'' }}</textarea>
             </div>
             
             <div id="researchs">
-                <h1>Researchs</h1>
-                <textarea name="researchs" rows="20" cols="100" readonly>{{ researchs|default:'' }}</textarea>
+                <h1 id="researchs-title">Researchs</h1>
+                <textarea name="researchs" rows="20" cols="100" readonly aria-labelledby="researchs-title">{{ researchs|default:'' }}</textarea>
             </div>
         </div>
     </section>
 
-    <div style="margin-top: 20px;">
-        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
-    </div>
+    
 </div>
 {% endblock %}

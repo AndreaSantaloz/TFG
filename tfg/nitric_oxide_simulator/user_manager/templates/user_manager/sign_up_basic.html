@@ -5,22 +5,22 @@
            <link href="{% static 'user_manager/css/authentication.css' %}" rel="stylesheet"> 
   {% endblock %}
    {%block content%}
-   <div id ="authentication-container">
+   <div id ="authentication-container" aria-labelledby="signup-title">
       <div>
-        <h1>SIGN UP</h1>
+        <h1 id="signup-title">SIGN UP</h1>
       </div>
-      <form id ="authentication-form"  method="post">
+      <form id ="authentication-form"  method="post" aria-labelledby="signup-title">
          {% csrf_token %}
-        <label>Name*</label>
-        <input type="text" name="name" placeholder="pepe">
-        <label>Email*</label>
-        <input type="email" name="email" placeholder="pepe@gmail.com">
-         <label>Password*</label>
-        <input type="password" name="password" placeholder="12345678">
-        <label>Confirm Password*</label>
-        <input type="password" name="confirm_password" placeholder="12345678">
+        <label for="name">Name*</label>
+        <input id="name" type="text" name="name" placeholder="pepe" required aria-required="true">
+        <label for="email">Email*</label>
+        <input id="email" type="email" name="email" placeholder="pepe@gmail.com" required aria-required="true">
+         <label for="password">Password*</label>
+        <input id="password" type="password" name="password" placeholder="12345678" required aria-required="true">
+        <label for="confirm_password">Confirm Password*</label>
+        <input id="confirm_password" type="password" name="confirm_password" placeholder="12345678" required aria-required="true">
          <div id="section-signup-form">
-          <button onclick="window.history.back()">Return</button>
+          <button type="button" onclick="window.history.back()">Return</button>
           <button type="submit">Create an account</button>
         </div>
       </form>

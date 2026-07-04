@@ -2,88 +2,48 @@
 {% load static %}
 
 {% block css %}
-    {{block.super}}
-    <link href="{% static 'user_manager/css/settings.css' %}" rel="stylesheet"> 
+    {{ block.super }}
+    <link href="{% static 'user_manager/css/settings.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"> 
 {% endblock %}
 
-{%block content%}
-<section id="back">
-    <a id="back" onclick="window.history.back()">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+{% block content %}
+<section id="back" aria-label="Back navigation">
+    <a id="back" onclick="window.history.back()" role="button" tabindex="0" aria-label="Go back">
+        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
             <line x1="19" y1="12" x2="5" y2="12"></line>
             <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
     </a>
 </section>
 
-<section id="menu-setting">
-    <h1>Settings</h1>
-    
-   
-    <a>
-        Dark Mode
-        <label class="switch">
-            <input type="checkbox" id="darkModeToggle">
-            <span class="slider"></span>
-        </label>
-    </a>
-    <a href="{% url 'logout'%}">
-        Logout
-    </a>
+<section id="menu-setting" aria-labelledby="settings-title">
+    <h1 id="settings-title">Settings</h1>
+    <button id="delete_account" type="button" class="button_setting" aria-label="Delete account" onclick="deleteAccount()">Delete Account</button>
+    <a id="logout_d" href="{% url 'logout' %}" >Logout</a>
 </section>
 
-{%block setting%}
-{%endblock%}
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // Dark Mode
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const body = document.body;
-
-    if (localStorage.getItem('darkMode') === 'enabled') {
-        body.classList.add('dark-mode');
-        darkModeToggle.checked = true;
-    }
-
-    darkModeToggle.addEventListener('change', function() {
-        if (this.checked) {
-            body.classList.add('dark-mode');
-            localStorage.setItem('darkMode', 'enabled');
-        } else {
-            body.classList.remove('dark-mode');
-            localStorage.setItem('darkMode', 'disabled');
+function deleteAccount(){
+     Swal.fire({
+        title: 'Are you sure you want to delete your account?',
+        html: `
+             <form id="save-django-form" aria-label="Delete account form" method="POST" action="{% url 'delete_account' %}">
+                {% csrf_token %}
+                <input type="hidden" name="id_save">
+            </form>
+        `,
+        confirmButtonText: 'Delete Account',
+        cancelButtonText: 'Return',
+        showCancelButton: true,
+        confirmButtonColor: '#5b1109',
+        cancelButtonColor: '#d9e1e7',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('save-django-form').submit();
         }
     });
-
-    // Font Size
-    let currentFontSize = parseInt(localStorage.getItem('fontSize')) || 16;
-    const fontSizeDisplay = document.getElementById('fontSizeDisplay');
-
-    function updateFontSize(size) {
-        currentFontSize = Math.min(Math.max(size, 12), 24);
-        document.body.style.fontSize = currentFontSize + 'px';
-        fontSizeDisplay.textContent = currentFontSize;
-        localStorage.setItem('fontSize', currentFontSize);
-    }
-
-    updateFontSize(currentFontSize);
-
-    document.getElementById('fontDecrease').addEventListener('click', function(e) {
-        e.stopPropagation();
-        updateFontSize(currentFontSize - 2);
-    });
-
-    document.getElementById('fontIncrease').addEventListener('click', function(e) {
-        e.stopPropagation();
-        updateFontSize(currentFontSize + 2);
-    });
-
-    // Prevenir que los controles activen el enlace
-    document.querySelectorAll('.switch, .font-btn, .font-size-display').forEach(el => {
-        el.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    });
+}
 </script>
-
 {% endblock %}

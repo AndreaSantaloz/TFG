@@ -19,7 +19,7 @@ body {
     width: 100%;
 }
 
-/* 3. Ajuste del header para evitar alturas duplicadas innecesarias */
+
 header {
     height: 160px;
 }
@@ -31,7 +31,6 @@ header {
     align-items: center;
 }
 
-/* 4. El main toma todo el espacio restante gracias a flex: 1 */
 main {
     flex: 1; 
     background-image: url('../images/brain2.png');
@@ -46,11 +45,11 @@ main {
 footer {
     background-color: #CCE6EC;
     height: 160px;
-    flex-shrink: 0; /* Evita que el footer se aplaste si hay mucho contenido */
+    flex-shrink: 0; 
     width: 100%;
 }
 
-/* --- Listas y navegación --- */
+
 ul {
     list-style-type: none;
     display: flex;
@@ -94,7 +93,6 @@ ul li label {
     margin-right: 10px;
 }
 
-/* --- Switch del Tema (Modo Oscuro) --- */
 .theme-switch {
     display: inline-block;
     height: 24px;
@@ -142,7 +140,6 @@ ul li label {
     transform: translateX(19px);
 }
 
-/* --- MODO OSCURO (Estilos corregidos) --- */
 body.dark-mode {
     background-color: #1A252C;
     color: #F5F7FA;
@@ -153,7 +150,7 @@ body.dark-mode main {
 }
 
 body.dark-mode footer {
-    background-color: #055181; /* Tu azul oscuro para el footer */
+    background-color: #055181; 
 }
 
 body.dark-mode ul li a {

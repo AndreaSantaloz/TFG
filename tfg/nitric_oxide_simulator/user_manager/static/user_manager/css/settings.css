@@ -2,253 +2,47 @@ main{
     display:flex;
     flex-direction:column;
     align-items:center;
-    
-}
-#options-settings{
-    display:flex;
-    flex-direction:column;
-}
-#menu-setting{
-    width:80%;
-    background-color:white;
-    height:800px;
-    display:flex;
-    justify-content:space-around;
-    align-items:center; 
-    flex-direction:column;
+
 }
 #back{
     display:flex;
-    justify-content:flex-start; 
+    align-items:flex-start;
     width:100%;
 }
-/* settings.css */
-
-/* Estilos para los enlaces del menú */
-#menu-setting a {
-    display: block;
-    padding: 1rem 1.5rem;
-    margin: 0.8rem 0;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 500;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    position: relative;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-}
-
-/* Delete Account - Rojo */
-#menu-setting a:nth-child(2) {
-    background: linear-gradient(135deg, #fee, #fdd);
-    color: #c0392b;
-    border-left: 5px solid #e74c3c;
-}
-
-#menu-setting a:nth-child(2):hover {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-    color: white;
-    transform: translateX(10px);
-    box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
-}
-
-/* Change Password - Azul */
-#menu-setting a:nth-child(3) {
-    background: linear-gradient(135deg, #e8f4fd, #d6eaf8);
-    color: #2471a3;
-    border-left: 5px solid #3498db;
-}
-
-#menu-setting a:nth-child(3):hover {
-    background: linear-gradient(135deg, #3498db, #2471a3);
-    color: white;
-    transform: translateX(10px);
-    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
-}
-
-/* Dark Mode - Morado */
-#menu-setting a:nth-child(4) {
-    background: linear-gradient(135deg, #f4ecf7, #e8daef);
-    color: #6c3483;
-    border-left: 5px solid #8e44ad;
-}
-
-#menu-setting a:nth-child(4):hover {
-    background: linear-gradient(135deg, #8e44ad, #6c3483);
-    color: white;
-    transform: translateX(10px);
-    box-shadow: 0 8px 25px rgba(142, 68, 173, 0.4);
-}
-
-/* Change Letter size - Verde */
-#menu-setting a:nth-child(5) {
-    background: linear-gradient(135deg, #eafaf1, #d5f5e3);
-    color: #1e8449;
-    border-left: 5px solid #27ae60;
-}
-
-#menu-setting a:nth-child(5):hover {
-    background: linear-gradient(135deg, #27ae60, #1e8449);
-    color: white;
-    transform: translateX(10px);
-    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
-}
-
-#menu-setting a:nth-child(6):hover {
-    background-color:#71b4ca;
-    color: white;
-    transform: translateX(10px);
-    box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
-}
-
-/* Modo Oscuro */
-body.dark-mode #menu-setting a:nth-child(2) {
-    background: linear-gradient(135deg, #2c1a1a, #3d1a1a);
-    color: #ff6b6b;
-    border-left-color: #ff6b6b;
-}
-
-body.dark-mode #menu-setting a:nth-child(2):hover {
-    background: linear-gradient(135deg, #ff6b6b, #e74c3c);
-    color: white;
-}
-
-body.dark-mode #menu-setting a:nth-child(3) {
-    background: linear-gradient(135deg, #1a2a3a, #1a3a4a);
-    color: #5dade2;
-    border-left-color: #5dade2;
-}
-
-body.dark-mode #menu-setting a:nth-child(3):hover {
-    background: linear-gradient(135deg, #5dade2, #3498db);
-    color: white;
-}
-
-body.dark-mode #menu-setting a:nth-child(4) {
-    background: linear-gradient(135deg, #2a1a3a, #3a1a4a);
-    color: #af7ac5;
-    border-left-color: #af7ac5;
-}
-
-body.dark-mode #menu-setting a:nth-child(4):hover {
-    background: linear-gradient(135deg, #af7ac5, #8e44ad);
-    color: white;
-}
-
-body.dark-mode #menu-setting a:nth-child(5) {
-    background: linear-gradient(135deg, #1a2a1a, #1a3a1a);
-    color: #58d68d;
-    border-left-color: #58d68d;
-}
-
-body.dark-mode #menu-setting a:nth-child(5):hover {
-    background: linear-gradient(135deg, #58d68d, #27ae60);
-    color: white;
-}
 
 
-
-
-
-
-
-
-
-/* Fondo oscuro para el menú */
-body.dark-mode #menu-setting {
-    background: #2d3436;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-mode #menu-setting h1 {
-    color: #ecf0f1;
-}
-
-/* Toggle switch para dark mode */
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 50px;
-    height: 26px;
-    margin-left: 15px;
-    vertical-align: middle;
-}
-
-.switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 18px;
-    width: 18px;
-    left: 4px;
-    bottom: 4px;
-    background: white;
-    transition: .4s;
-    border-radius: 50%;
-}
-
-input:checked + .slider {
-    background: #8e44ad;
-}
-
-input:checked + .slider:before {
-    transform: translateX(24px);
-}
-
-/* Botones de fuente */
-.font-btn {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    border: 2px solid #27ae60;
-    background: transparent;
-    color: #27ae60;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin: 0 5px;
-}
-
-.font-btn:hover {
-    background: #27ae60;
-    color: white;
-    transform: scale(1.1);
-}
-
-.font-size-display {
-    min-width: 30px;
-    text-align: center;
-    font-weight: bold;
-    color: #27ae60;
-    display: inline-block;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    #menu-setting {
-        margin: 1rem;
-        padding: 1.5rem;
-    }
+#menu-setting{
+    background-color:white;
+    height:400px;
+    width:60%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px;
     
-    #menu-setting a {
-        font-size: 1rem;
-        padding: 0.8rem 1.2rem;
-    }
+}
+.button_setting{
+    padding: 16px 320px 16px 16px;
+    border-radius:25px;
+    border-style:transparent;
+}
+#delete_account{
+    background-color:rgb(156, 100, 100);
+    color:white;
+}
+#change_password{
+     background-color:rgb(70, 140, 154);
+     color:white;
+}
+#recover_password{
+    background-color:rgb(112, 131, 135);
+    color:white;
+}
+#logout_d{
+    padding: 16px 16px 16px 16px;
+    border-radius:25px;
+    border-style:transparent;
+    background-color:rgb(46, 153, 100);
+    color:white;
+    text-decoration: none;
 }

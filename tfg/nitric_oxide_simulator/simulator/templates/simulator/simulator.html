@@ -4,63 +4,109 @@
 {% block css %}
     {{ block.super }}
     <link href="{% static 'simulator/css/home.css' %}" rel="stylesheet">
-     <link href="{% static 'simulator/css/simulator.css' %}" rel="stylesheet">
-    
+    <link href="{% static 'simulator/css/simulator.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 {% endblock %}
 
 {% block content %}
-<div id="simulate">
+<div id="simulate" aria-labelledby="dynamic-title">
     <h1 id="dynamic-title">Simulation in process!</h1>
-    <div id="input_data_content">
-        <h2>Data inputs of Model</h2>
+    <div id="input_data_content" role="region" aria-label="Simulation input data">
         <div id="input_data">
-            <div>
-                <h3>Compartimentals </h3>
-                <span id="compartimentals"> </span>
+            <div aria-labelledby="compartimentals-title">
+                <h3 id="compartimentals-title">Compartimentals </h3>
+                <span id="compartimentals" role="status"> </span>
             </div>
-            <div>
-                <h3>Start time</h3>
-                <span id="start_t"></span>
+            <div id="time" aria-labelledby="time-title">
+                <h3 id="time-title">Time</h3>
+                <span><b>Start time:</b> <span id="start_t"></span></span>
+                <span><b>End time:</b> <span id="end_t"></span></span>
+                <span><b>Delta time:</b> <span id="delta_t"></span></span>
             </div>
-            <div>
-                <h3>End time</h3>
-                 <span id="end_t"></span>
-            </div>
-            <div>
-                <h3>Delta time</h3>
-                <span id="delta_t"></span>
-            </div>
-            <div id="dimensions">
-                <h3>Dimension</h3>
-                <span id="rows"> </span>
-                <span id="cols"></span>
-                <span id="depths"></span>
-            
+            <div id="dimensions" aria-labelledby="dimension-title">
+                <h3 id="dimension-title">Dimension</h3>
+                <span><b>Rows:</b> <span id="rows"> </span></span>
+                <span><b>Columns:</b> <span id="cols"></span></span>
+                <span><b>Depth:</b> <span id="depths"></span></span>
             </div>
         </div>
-        <h2>Charts of Model</h2>
+      
     </div>
     
-    <div id="dashboard">
-        <div class="chart-container" id="lineal_chart"></div>
-        <div class="chart-container" id="scatter_chart"></div>
-        <div class="chart-container" id="heatmap_chart"></div>
-        <div class="chart-container" id="volume_chart"></div>
-    
+    <div id="dashboard" role="region" aria-label="Simulation charts">
+        <div class="chart-container" id="lineal_chart" role="img" aria-label="Line chart of simulation results"></div>
+        <div class="chart-container" id="scatter_chart" role="img" aria-label="Scatter chart of simulation results"></div>
+        <div class="chart-container" id="heatmap_chart" role="img" aria-label="Heatmap chart of simulation results"></div>
+        <div class="chart-container" id="volume_chart" role="img" aria-label="Volume chart of simulation results"></div>
     </div>
     
-    <div id="menu-button">
-       <button onclick="history.back()">Return</button>
-        <button>Stop Simulation</button>
-        <button>Save Model</button>
+    <div id="menu-button" role="toolbar" aria-label="Simulation actions">
+        <button type="button" onclick="history.back()">Return</button>
+        <button type="button" onclick="stopmodel()">Stop Simulation</button>
+        <button type="button" onclick="savemodel()">Save Model</button>
     </div>
 </div>
-<script id="json" type="application/json">
+
+<script id="datos-django" type="application/json">
     {{ json_simulacion|safe }}
+</script>
+<script id="modelo" type="text/plain">
+    {{ modelo|safe }}
 </script>
 
 <script src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{% static 'simulator/js/simulator.js' %}"></script>
 
+<script>
+    function savemodel(){
+        const codigoTexto = document.getElementById('modelo').textContent;
+        
+        Swal.fire({
+            title: 'Are you sure what do you want to save this model?',
+            html: `
+                 <form id="save-django-form" aria-label="Save model form" method="POST" action="{% url 'save_model' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="code" id="codigo_fuente_input">
+                </form>
+            `,
+            confirmButtonText: 'Save Model',
+            cancelButtonText: 'Return',
+            showCancelButton: true,
+            confirmButtonColor: '#2c7287',
+            cancelButtonColor: '#d9e1e7',
+            didOpen: () => {
+                document.getElementById('codigo_fuente_input').value = codigoTexto;
+            },
+            preConfirm: () => {
+                const formulario = document.getElementById('save-django-form');
+                if (formulario) {
+                    formulario.submit();
+                }
+            }
+        });
+    }
 
+    function stopmodel(){
+         Swal.fire({
+            title: 'Are you sure what do you want to stop this model?',
+            html: `
+                 <form id="stop-django-form" aria-label="Stop model form" method="POST" action="{% url 'stop_model' %}">
+                    {% csrf_token %}
+                </form>
+            `,
+            confirmButtonText: 'Stop Model',
+            cancelButtonText: 'Return',
+            showCancelButton: true,
+            confirmButtonColor: '#d34343',
+            cancelButtonColor: '#d9e1e7',
+            preConfirm: () => {
+                const formulario = document.getElementById('stop-django-form');
+                if (formulario) {
+                    formulario.submit();
+                }
+            }
+        });
+    }
+</script>
 {% endblock %}

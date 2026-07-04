@@ -148,39 +148,36 @@ textarea {
     box-sizing: border-box;
 }
 
-/* 2. Cambiamos el formulario para que alinee los textos a la izquierda */
 #userdata form {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Alinea todas las etiquetas al inicio izquierdo */
+    align-items: flex-start; 
     width: 100%;
-    gap: 12px;               /* Da un espacio uniforme entre filas */
-    padding-left: 10%;       /* Margen elegante para que no pegue al borde izquierdo */
+    gap: 12px;               
+    padding-left: 10%;       
     box-sizing: border-box;
 }
 
-/* 3. Forzamos a las etiquetas a comportarse como bloques completos */
 #userdata form label {
     display: block;
     width: 100%;
-    text-align: left;        /* Fuerza a que el texto interno vaya a la izquierda */
+    text-align: left;        
 }
 
-/* 4. REGLA CLAVE: Sacamos el h1 del flujo de la izquierda y lo centramos */
+
 #userdata form label:has(h1), 
-#userdata form label:first-of-type {      /* Centra el contenedor del Nombre */
-    margin-bottom: 15px;     /* Separa el nombre del resto de datos */
-    padding-right: 10%;      /* Compensa el padding-left del formulario para centrar real */
+#userdata form label:first-of-type {      
+    margin-bottom: 15px;     
+    padding-right: 10%;      
 }
 
 #userdata form h1 {
-    margin: 0;               /* Quita los márgenes por defecto que rompen el diseño */
+    margin: 0;               
     display: inline-block;
 }
 
-/* 5. Nos aseguramos de que los inputs ocultos no ocupen espacio residual */
 #userdata form input[hidden] {
-    display: none !important;
+    display: none ;
 }
 #logout{
     display:flex;

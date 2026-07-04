@@ -5,17 +5,17 @@
             <link href="{% static 'user_manager/css/authentication.css' %}" rel="stylesheet"> 
   {% endblock %}
    {%block content%}
-   <div id ="authentication-container">
+   <div id ="authentication-container" aria-labelledby="login-title">
       <div>
-        <h1>LOGIN</h1>
+        <h1 id="login-title">LOGIN</h1>
       </div>
-      <form id ="authentication-form" method="post">
+      <form id ="authentication-form" method="post" aria-labelledby="login-title">
         {% csrf_token %}
         <label for="email">Email</label>
         <input id="email" type="email" name="email" placeholder="pepe@gmail.com" required>
         <label for="password">Password</label>
         <input id="password" type="password" name="password" placeholder="12345678" required>
-        <button type="submit" >login</button>
+        <button type="submit">login</button>
       </form>
       {% if messages %}
         <script>
@@ -25,6 +25,6 @@
         </script>
       {% endif %}
       <p>If you don't have an account you can create an account in this <a href="{% url 'sign_up' %}">link</a></p>
-      <p>Have you lost your password?Click on this <a >link</a></p>
+      
    </div>
    {% endblock %}

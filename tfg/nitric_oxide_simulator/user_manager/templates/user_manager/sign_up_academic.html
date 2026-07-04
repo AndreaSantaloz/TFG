@@ -5,21 +5,20 @@
            <link href="{% static 'user_manager/css/authentication.css' %}" rel="stylesheet"> 
   {% endblock %}
    {%block content%}
-   <!--El formulario es demasiado largo bro-->
-   <div id ="authentication-container">
+   <div id ="authentication-container" aria-labelledby="signup-academic-title">
       <div>
-        <h1>SIGN UP</h1>
+        <h1 id="signup-academic-title">SIGN UP</h1>
       </div>
-      <form id ="authentication-form" method="post">
+      <form id ="authentication-form" method="post" aria-labelledby="signup-academic-title">
          {% csrf_token %}
-         <label>Institution</label>
-        <input type="text" name="institution" placeholder="ulpgc">
-        <label>Research field</label>
-        <input type="text" name="researchfield" placeholder=" Computacional Neuroscience">
-        <label>Research area</label>
-        <input type="text" name="researcharea" placeholder="brain movement">
+         <label for="institution">Institution</label>
+        <input id="institution" type="text" name="institution" placeholder="ulpgc">
+        <label for="researchfield">Research field</label>
+        <input id="researchfield" type="text" name="researchfield" placeholder=" Computacional Neuroscience">
+        <label for="researcharea">Research area</label>
+        <input id="researcharea" type="text" name="researcharea" placeholder="brain movement">
         <div id="section-signup-form">
-          <button onclick="window.history.back()">Return</button>
+          <button type="button" onclick="window.history.back()">Return</button>
           <button type="submit">Enter</button>
         </div>
         
